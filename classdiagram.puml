@@ -1,0 +1,7 @@
+@startuml
+class Component {
+    + void Component()
+    + void ~Component()
+    - int function()
+}
+@enduml
