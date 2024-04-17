@@ -1,7 +1,48 @@
-@startuml
-class Component {
-    + void Component()
-    + void ~Component()
-    - int function()
+@startuml classdiagram
+
+class OrGate{
+
 }
+
+class AndGate{
+
+}
+
+class NorGate{
+
+}
+
+class NandGate{
+
+}
+
+class XorGate{
+
+}
+
+class NotGate{
+
+}
+
+class Gate{
+    - bool *input
+    - bool output
+    - int amountInputs
+
+    - int minInputs
+    - int maxInputs    
+
+    + void setInput(int index, bool value)
+    + bool getOutput()
+    + void setAmountInputs(int inputs)
+
+
+}
+
+OrGate --|> Gate
+NorGate --|> Gate
+AndGate --|> Gate
+NandGate --|> Gate
+XorGate --|> Gate
+NotGate --|> Gate
 @enduml
