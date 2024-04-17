@@ -1,6 +1,11 @@
 #include <iostream>
 
-int main () {
-    std::cout << "Hallo Seger!" << std::endl;
-    std::cout << "Hallo Sean!" << std::endl;
+#include "Component.h"
+
+int main() {
+    Component component;
+
+    component.printComponent();
+
+    return 0;
 }
