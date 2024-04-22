@@ -10,7 +10,7 @@ class FileToGraph {
 }
 
 class CircuitSim {
-
+    + runSim() : void
 }
 
 class ResultToFile {
@@ -60,7 +60,7 @@ class Vertex {
     + setInput(int aIndex, bool aValue) virtual : void
 }
 
-class Edge{
+class Edge {
     - mNext : Vertex**
     - mVertexInputIndex : int
     - mAmountVertex : int
@@ -68,7 +68,7 @@ class Edge{
     + setIntput(bool aValue) : void
 }
 
-class Input{
+class Input {
     - mValue : int
 
     + mSetValue(bool) : void
@@ -76,7 +76,7 @@ class Input{
 
 }
 
-class Probe{
+class Probe {
     - mValue : int
 
     + getValue() : bool
@@ -85,6 +85,10 @@ class Probe{
 
 FileToGraph *-- MapContainer
 ResultToFile *-- MapContainer
+
+MapContainer <-- Vertex
+
+CircuitSim <-- MapContainer
 
 OrGate --|> Gate
 NorGate --|> Gate
