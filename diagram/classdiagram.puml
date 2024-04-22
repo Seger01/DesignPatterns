@@ -25,18 +25,45 @@ class NotGate{
 }
 
 class Gate{
-    - bool *input
-    - bool output
-    - int amountInputs
+    - int *mInput
+    - int mOutput
+    - int mAmountInputs
 
-    - int minInputs
-    - int maxInputs    
+    - int mMinInputs
+    - int mMaxInputs    
 
-    + void setInput(int index, bool value)
-    + bool getOutput()
-    + void setAmountInputs(int inputs)
+    + void setInput(int aIndex, bool aValue) override
+    + int getOutput()
+    + void setAmountInputs(int aInputs)
+}
 
+class Vertex {
+    - Edge* mEdge
 
+    + void setInput(int aIndex, bool aValue) virtual
+}
+
+class Edge{
+    - Vertex** mNext
+    - int mVertexInputIndex
+    - int mAmountVertex
+
+    + void setIntput(bool aValue)
+}
+
+class Input{
+    - int mValue
+
+    + void mSetValue(bool)
+    + void setInput(int aIndex, bool aValue) override
+
+}
+
+class Probe{
+    - int mValue
+
+    + bool getValue()
+    + void setInput(int aIndex, bool aValue) override
 }
 
 OrGate --|> Gate
@@ -45,4 +72,12 @@ AndGate --|> Gate
 NandGate --|> Gate
 XorGate --|> Gate
 NotGate --|> Gate
+
+Gate --|> Vertex
+Input --|> Vertex
+Probe --|> Vertex
+
+Vertex --* "0..1" Edge
+Edge --o "1..*" Vertex
+
 @enduml
