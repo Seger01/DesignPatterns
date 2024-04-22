@@ -1,5 +1,22 @@
 @startuml classdiagram
 
+class MapContainer {
+    - mMapVertexes : map<string,Vertex>
+    - mMapConnections : map<string,string>
+}
+
+class FileToGraph {
+    - mInputFile : FILE
+}
+
+class CircuitSim {
+
+}
+
+class ResultToFile {
+    - mOutputFile : FILE
+}
+
 class OrGate{
 
 }
@@ -25,46 +42,49 @@ class NotGate{
 }
 
 class Gate{
-    - int *mInput
-    - int mOutput
-    - int mAmountInputs
+    - *mInput : int
+    - mOutput : int
+    - mAmountInputs : int
 
-    - int mMinInputs
-    - int mMaxInputs    
+    - mMinInputs : int
+    - mMaxInputs : int    
 
-    + void setInput(int aIndex, bool aValue) override
-    + int getOutput()
-    + void setAmountInputs(int aInputs)
+    + setInput(int aIndex, bool aValue) override : void
+    + getOutput() : int
+    + setAmountInputs(int aInputs) : void
 }
 
 class Vertex {
-    - Edge* mEdge
+    - mEdge : Edge*
 
-    + void setInput(int aIndex, bool aValue) virtual
+    + setInput(int aIndex, bool aValue) virtual : void
 }
 
 class Edge{
-    - Vertex** mNext
-    - int mVertexInputIndex
-    - int mAmountVertex
+    - mNext : Vertex**
+    - mVertexInputIndex : int
+    - mAmountVertex : int
 
-    + void setIntput(bool aValue)
+    + setIntput(bool aValue) : void
 }
 
 class Input{
-    - int mValue
+    - mValue : int
 
-    + void mSetValue(bool)
-    + void setInput(int aIndex, bool aValue) override
+    + mSetValue(bool) : void
+    + setInput(int aIndex, bool aValue) override : void
 
 }
 
 class Probe{
-    - int mValue
+    - mValue : int
 
-    + bool getValue()
-    + void setInput(int aIndex, bool aValue) override
+    + getValue() : bool
+    + setInput(int aIndex, bool aValue) override : void
 }
+
+FileToGraph *-- MapContainer
+ResultToFile *-- MapContainer
 
 OrGate --|> Gate
 NorGate --|> Gate
