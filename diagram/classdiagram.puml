@@ -1,6 +1,6 @@
 @startuml classdiagram
 
-class MapContainer {
+class Circuit {
     - mMapVertexes : map<string,Vertex>
     - mMapConnections : map<string,string>
 }
@@ -83,12 +83,12 @@ class Probe {
     + setInput(int aIndex, bool aValue) override : void
 }
 
-FileToGraph *-- MapContainer
-ResultToFile *-- MapContainer
+FileToGraph *-- Circuit
+ResultToFile *-- Circuit
 
-MapContainer <-- Vertex
+Circuit <-- Vertex
 
-CircuitSim <-- MapContainer
+CircuitSim <-- Circuit
 
 OrGate --|> Gate
 NorGate --|> Gate
