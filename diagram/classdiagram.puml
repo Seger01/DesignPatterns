@@ -3,14 +3,11 @@
 class Circuit {
     - mMapVertexes : map<string,Vertex>
     - mMapConnections : map<string,string>
+    + runSim() : void
 }
 
 class FileToGraph {
     - mInputFile : FILE
-}
-
-class CircuitSim {
-    + runSim() : void
 }
 
 class ResultToFile {
@@ -87,8 +84,6 @@ FileToGraph *-- Circuit
 ResultToFile *-- Circuit
 
 Circuit <-- Vertex
-
-CircuitSim <-- Circuit
 
 OrGate --|> Gate
 NorGate --|> Gate
