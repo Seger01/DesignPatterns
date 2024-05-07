@@ -8,10 +8,21 @@ class Circuit {
 
 class FileToGraph {
     - mInputFile : FILE
+
+    - openFile() : void
+    - closeFile() : void
+    - readVertex() : map<string, Vertex>
+    - readEdge() : map<string,string>
+    ' + getGraph(map<string, string>& aVertexMap, map<strng,string>& aStringMap) : void ' vertexMap :first string name of vertex second string type
 }
 
 class ResultToFile {
     - mOutputFile : FILE
+
+    - openFile() : void
+    - closeFile() : void
+    - write???(): void
+    + writeOutput(map<string, Vertex>&) : void
 }
 
 class OrGate{
@@ -79,9 +90,6 @@ class Probe {
     + getValue() : bool
     + setInput(int aIndex, bool aValue) override : void
 }
-
-FileToGraph *-- Circuit
-ResultToFile *-- Circuit
 
 Circuit <-- Vertex
 
