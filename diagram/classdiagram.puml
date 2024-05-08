@@ -5,8 +5,11 @@ class CircuitSimulator{
     + run() : void
 }
 
-class Circuit {
-    - mMapVertexes : map<string,vertex>
+class Circuit <singleton>{
+    - mInstance : Circuit
+    - mMapVertexes : map<string,Vertex>
+    - Circuit() : void
+    + getInstance() : Circuit
     + runSim() : void
 }
 
@@ -107,12 +110,22 @@ class Probe {
     + setInput(int aIndex, bool aValue) override : void
 }
 
-CircuitSimulator --> FileToGraph
-CircuitSimulator --> ResultToFile
-CircuitSimulator --> Circuit
-CircuitSimulator --> Iterator
+class VertexFactory{
 
-Circuit <-- Vertex
+}
+
+class OrGateCreator{
+
+}
+
+class AndGateCreator{
+    
+}
+
+CircuitSimulator <-- FileToGraph
+CircuitSimulator <-- ResultToFile
+CircuitSimulator <-- Circuit
+CircuitSimulator <-- Iterator
 
 OrGate --|> Gate
 NorGate --|> Gate
