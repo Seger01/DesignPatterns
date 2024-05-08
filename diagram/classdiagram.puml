@@ -111,7 +111,7 @@ class Probe {
 }
 
 class VertexFactory{
-
+    + createVertex()
 }
 
 class OrGateFactory{
@@ -147,10 +147,13 @@ class ProbeFactory{
 }
 
 class GraphBuilder {
+    + createGraph(map<String, String>, map<String, String>)
     'Only create the vertices (for inputs: set the value)
     + createVertices(map<String, String>) : void
     'Create the edges and fill the corresponding vertex's pointer, then fill the edges pointers
     + createEdges(map<String, String>) : void
+    - fillVertex()
+    - fillEdge()
 }
 
 VertexFactory <|-- OrGateFactory

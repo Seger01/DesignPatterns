@@ -1,0 +1,32 @@
+@startuml
+
+CircuitSimulator -> FileToGraph: getGraph(aVertexMap &, aEdgeMap &)
+activate FileToGraph
+CircuitSimulator <- FileToGraph
+deactivate FileToGraph
+
+CircuitSimulator -> GraphCreator: createGraph(aVertexMap &, aEdgeMap &)
+activate GraphCreator
+loop
+GraphCreator -> VertexFactory: createVertex()
+activate VertexFactory
+GraphCreator <- VertexFactory
+deactivate VertexFactory
+end
+
+GraphCreator -> GraphCreator: createEdges()
+activate GraphCreator
+deactivate GraphCreator
+
+GraphCreator -> GraphCreator: fillVertex()
+activate GraphCreator
+deactivate GraphCreator
+GraphCreator -> GraphCreator: fillEdge()
+activate GraphCreator
+deactivate GraphCreator
+CircuitSimulator <- GraphCreator
+deactivate GraphCreator
+
+
+
+@enduml
