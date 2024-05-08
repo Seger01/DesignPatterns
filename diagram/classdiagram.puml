@@ -1,8 +1,12 @@
 @startuml classdiagram
 
+
+class CircuitSimulator{
+    + run() : void
+}
+
 class Circuit {
-    - mMapVertexes : map<string,Vertex>
-    - mMapConnections : map<string,string>
+    - mMapVertexes : map<string,vertex>
     + runSim() : void
 }
 
@@ -13,7 +17,11 @@ class FileToGraph {
     - closeFile() : void
     - readVertex() : map<string, Vertex>
     - readEdge() : map<string,string>
-    ' + getGraph(map<string, string>& aVertexMap, map<strng,string>& aStringMap) : void ' vertexMap :first string name of vertex second string type
+    - getNumConfigs();
+    - setInputs();
+    + getGraph(map<string, string>& aVertexMap, map<strng,string>& aEdgeMap) : void 
+    ' vertexMap :first string name of vertex second string type
+
 }
 
 class ResultToFile {
@@ -21,8 +29,15 @@ class ResultToFile {
 
     - openFile() : void
     - closeFile() : void
-    - write???(): void
+    - writeSingle(map<string, Vertex>&): void
+    - writeMultiple(map<string, Vertex>&): void
     + writeOutput(map<string, Vertex>&) : void
+}
+
+class Iterator{
+    - mInputs : vertex*[]
+
+    + setInputs(ertex>)
 }
 
 class OrGate{
@@ -79,7 +94,8 @@ class Edge {
 class Input {
     - mValue : int
 
-    + mSetValue(bool) : void
+    + Input(bool aStartValue) : void
+    + SetValue(bool) : void
     + setInput(int aIndex, bool aValue) override : void
 
 }
@@ -90,6 +106,11 @@ class Probe {
     + getValue() : bool
     + setInput(int aIndex, bool aValue) override : void
 }
+
+CircuitSimulator --> FileToGraph
+CircuitSimulator --> ResultToFile
+CircuitSimulator --> Circuit
+CircuitSimulator --> Iterator
 
 Circuit <-- Vertex
 
