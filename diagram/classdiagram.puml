@@ -1,0 +1,144 @@
+@startuml classdiagram
+
+
+class CircuitSimulator{
+    + run() : void
+}
+
+class Circuit <singleton>{
+    - mInstance : Circuit
+    - mMapVertexes : map<string,Vertex>
+    - Circuit() : void
+    + getInstance() : Circuit
+    + runSim() : void
+}
+
+class FileToGraph {
+    - mInputFile : FILE
+
+    - openFile() : void
+    - closeFile() : void
+    - readVertex() : map<string, Vertex>
+    - readEdge() : map<string,string>
+    - getNumConfigs();
+    - setInputs();
+    + getGraph(map<string, string>& aVertexMap, map<strng,string>& aEdgeMap) : void 
+    ' vertexMap :first string name of vertex second string type
+
+}
+
+class ResultToFile {
+    - mOutputFile : FILE
+
+    - openFile() : void
+    - closeFile() : void
+    - writeSingle(map<string, Vertex>&): void
+    - writeMultiple(map<string, Vertex>&): void
+    + writeOutput(map<string, Vertex>&) : void
+}
+
+class Iterator{
+    - mInputs : vertex*[]
+
+    + setInputs(ertex>)
+}
+
+class OrGate{
+
+}
+
+class AndGate{
+
+}
+
+class NorGate{
+
+}
+
+class NandGate{
+
+}
+
+class XorGate{
+
+}
+
+class NotGate{
+
+}
+
+class Gate{
+    - *mInput : int
+    - mOutput : int
+    - mAmountInputs : int
+
+    - mMinInputs : int
+    - mMaxInputs : int    
+
+    + setInput(int aIndex, bool aValue) override : void
+    + getOutput() : int
+    + setAmountInputs(int aInputs) : void
+}
+
+class Vertex {
+    - mEdge : Edge*
+
+    + setInput(int aIndex, bool aValue) virtual : void
+}
+
+class Edge {
+    - mNext : Vertex**
+    - mVertexInputIndex : int
+    - mAmountVertex : int
+
+    + setIntput(bool aValue) : void
+}
+
+class Input {
+    - mValue : int
+
+    + Input(bool aStartValue) : void
+    + SetValue(bool) : void
+    + setInput(int aIndex, bool aValue) override : void
+
+}
+
+class Probe {
+    - mValue : int
+
+    + getValue() : bool
+    + setInput(int aIndex, bool aValue) override : void
+}
+
+class VertexFactory{
+
+}
+
+class OrGateCreator{
+
+}
+
+class AndGateCreator{
+    
+}
+
+CircuitSimulator <-- FileToGraph
+CircuitSimulator <-- ResultToFile
+CircuitSimulator <-- Circuit
+CircuitSimulator <-- Iterator
+
+OrGate --|> Gate
+NorGate --|> Gate
+AndGate --|> Gate
+NandGate --|> Gate
+XorGate --|> Gate
+NotGate --|> Gate
+
+Gate --|> Vertex
+Input --|> Vertex
+Probe --|> Vertex
+
+Vertex --* "0..1" Edge
+Edge --o "1..*" Vertex
+
+@enduml
