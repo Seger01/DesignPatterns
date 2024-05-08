@@ -164,7 +164,8 @@ VertexFactory <|-- ProbeFactory
 
 VertexFactory --> GraphBuilder
 Vertex --> GraphBuilder
-VertexEdge --> GraphBuilder
+Edge --> GraphBuilder
+Circuit --> GraphBuilder
 
 'CircuitSimulator <-- FileToGraph
 'CircuitSimulator <-- ResultToFile
