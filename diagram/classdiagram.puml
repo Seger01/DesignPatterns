@@ -114,18 +114,62 @@ class VertexFactory{
 
 }
 
-class OrGateCreator{
+class OrGateFactory{
 
 }
 
-class AndGateCreator{
+class AndGateFactory{
     
 }
 
-CircuitSimulator <-- FileToGraph
-CircuitSimulator <-- ResultToFile
-CircuitSimulator <-- Circuit
-CircuitSimulator <-- Iterator
+class NorGateFactory{
+    
+}
+
+class NandGateFactory{
+    
+}
+
+class XorGateFactory{
+    
+}
+
+class NotGateFactory{
+    
+}
+
+class InputFactory{
+    
+}
+
+class ProbeFactory{
+    
+}
+
+class GraphBuilder {
+    'Only create the vertices (for inputs: set the value)
+    + createVertices(map<String, String>) : void
+    'Create the edges and fill the corresponding vertex's pointer, then fill the edges pointers
+    + createEdges(map<String, String>) : void
+}
+
+VertexFactory <|-- OrGateFactory
+VertexFactory <|-- AndGateFactory
+VertexFactory <|-- NorGateFactory
+VertexFactory <|-- NandGateFactory
+VertexFactory <|-- XorGateFactory
+VertexFactory <|-- NotGateFactory
+VertexFactory <|-- InputFactory
+VertexFactory <|-- ProbeFactory
+
+VertexFactory --> GraphBuilder
+Vertex --> GraphBuilder
+VertexEdge --> GraphBuilder
+
+'CircuitSimulator <-- FileToGraph
+'CircuitSimulator <-- ResultToFile
+'CircuitSimulator <-- Circuit
+'CircuitSimulator <-- Iterator
 
 OrGate --|> Gate
 NorGate --|> Gate
