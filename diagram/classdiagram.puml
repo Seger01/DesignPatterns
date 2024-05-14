@@ -37,7 +37,7 @@ class ResultToFile {
     + writeOutput(map<string, Vertex>&) : void
 }
 
-class Iterator{
+class CircuitInitializer{
     - mInputs : vertex*[]
 
     + setInputs(ertex>)
@@ -169,11 +169,12 @@ VertexFactory --> GraphBuilder
 Vertex --> GraphBuilder
 Edge --> GraphBuilder
 Circuit --> GraphBuilder
+Circuit --* Vertex
 
-'CircuitSimulator <-- FileToGraph
-'CircuitSimulator <-- ResultToFile
-'CircuitSimulator <-- Circuit
-'CircuitSimulator <-- Iterator
+CircuitSimulator <-- FileToGraph
+CircuitSimulator <-- ResultToFile
+CircuitSimulator <-- Circuit
+CircuitSimulator <-- CircuitInitializer
 
 OrGate --|> Gate
 NorGate --|> Gate
