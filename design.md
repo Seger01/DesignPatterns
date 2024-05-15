@@ -22,5 +22,7 @@ inputfile heeft inputs die gedefineerd kunnen worden als "INPUT_HIGH", "INPUT_LO
 
 De volgende design patterns zijn er gebruikt:
 - Template method: TextFileToGraph implementeert stappen die gedefnieerd zijn in FileToGraph
+- Strategy: meerdere implementaties onder de FileStrategy interface
 - Singleton: de Circuit klasse is een singleton
 - Factory method: De vertex factory en bijbehorende child classes
+- Observer: de vertex subscribet bij de andere vertices waaraan die verbonden is

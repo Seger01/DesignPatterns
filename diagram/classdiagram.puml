@@ -13,7 +13,7 @@ class Circuit <singleton>{
     + runSim() : void
 }
 
-class FileToGraph {
+class FileToGraph <Template Method> {
     - mInputFile : FILE
 
     - openFile() : void
@@ -26,11 +26,17 @@ class FileToGraph {
 
 }
 
-class TextFileToGraph <Template methods> {
-    - openFile() : void
-    - closeFile() : void
-    - readVertex() : map<string, Vertex>
-    - readEdge() : map<string,string>
+'TODO interface voor verschillende strategies
+'TODO check of hierby dependency injection van toepassing is
+
+interface FileStrategy {
+    - openFile() : virtual void
+    - closeFile() : virtual void
+    - readVertex() : virtual map<string, Vertex>
+    - readEdge() : virtual map<string,string>
+}
+
+class TextStrategy <Strategy 1> {
 }
 
 class ResultToFile {
@@ -86,11 +92,13 @@ class Gate{
     + setAmountInputs(int aInputs) : void
 }
 
-class Vertex {
+class Vertex <Observer> {
     + setInput(int aIndex, bool aValue) virtual : void
 
     + addSubscriber(Vertex *) : void
     + removeSubscriber(Vertex *) : void
+    + notifySubscribers() : void
+    
     + update() : void
 
     - subscribers : Vertex[]
@@ -113,7 +121,7 @@ class Probe {
     + setInput(int aIndex, bool aValue) override : void
 }
 
-class VertexFactory{
+class VertexFactory <Factory method> {
     + createVertex()
 }
 
@@ -170,7 +178,8 @@ Vertex --> GraphBuilder
 Circuit --> GraphBuilder
 Circuit --* Vertex
 
-FileToGraph <|-- TextFileToGraph
+FileToGraph *-- FileStrategy
+TextStrategy --|> FileStrategy
 
 CircuitSimulator <-- FileToGraph
 CircuitSimulator <-- ResultToFile
