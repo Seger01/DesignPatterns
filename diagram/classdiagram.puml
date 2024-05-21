@@ -79,7 +79,7 @@ class NotGate{
 
 }
 
-class Gate <interface>{
+class IGate <interface>{
     - *mInput : int
     - mOutput : int
     - mAmountInputs : int
@@ -87,9 +87,9 @@ class Gate <interface>{
     - mMinInputs : int
     - mMaxInputs : int    
 
-    + setInput(int aIndex, bool aValue) override : void
-    + getOutput() : int
-    + setAmountInputs(int aInputs) : void
+    + setInput(int aIndex, bool aValue) virtual override : void
+    + getOutput() virtual : int
+    + setAmountInputs(int aInputs) virtual : void
 }
 
 class Vertex <Observer> {
@@ -172,6 +172,14 @@ VertexFactory <|-- XorGateFactory
 VertexFactory <|-- NotGateFactory
 VertexFactory <|-- InputFactory
 VertexFactory <|-- ProbeFactory
+OrGateFactory --> OrGate
+AndGateFactory --> AndGate
+NorGateFactory --> NorGate
+NandGateFactory --> NandGate
+XorGateFactory --> XorGate
+NotGateFactory --> NotGate
+InputFactory --> Input
+ProbeFactory --> Probe
 
 VertexFactory --> GraphBuilder
 Vertex --> GraphBuilder
@@ -186,14 +194,14 @@ CircuitSimulator <-- ResultToFile
 CircuitSimulator <-- Circuit
 CircuitSimulator <-- CircuitInitializer
 
-OrGate --|> Gate
-NorGate --|> Gate
-AndGate --|> Gate
-NandGate --|> Gate
-XorGate --|> Gate
-NotGate --|> Gate
+OrGate --|> IGate
+NorGate --|> IGate
+AndGate --|> IGate
+NandGate --|> IGate
+XorGate --|> IGate
+NotGate --|> IGate
 
-Gate --|> Vertex
+IGate --|> Vertex
 Input --|> Vertex
 Probe --|> Vertex
 
