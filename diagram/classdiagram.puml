@@ -172,6 +172,14 @@ VertexFactory <|-- XorGateFactory
 VertexFactory <|-- NotGateFactory
 VertexFactory <|-- InputFactory
 VertexFactory <|-- ProbeFactory
+OrGateFactory --> OrGate
+AndGateFactory --> AndGate
+NorGateFactory --> NorGate
+NandGateFactory --> NandGate
+XorGateFactory --> XorGate
+NotGateFactory --> NotGate
+InputFactory --> Input
+ProbeFactory --> Probe
 
 VertexFactory --> GraphBuilder
 Vertex --> GraphBuilder
