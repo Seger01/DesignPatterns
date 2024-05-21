@@ -9,6 +9,7 @@ private:
     int *mInput;
     int mOutput;
     int mAmountInputs;
-    int mMinInputs;
-    int mMaxInputs;
+
+    const unsigned mMinInputs;
+    const unsigned mMaxInputs;
 };
