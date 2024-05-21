@@ -1,0 +1,9 @@
+{
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "/home/sean/git/DEPA/DesignPatterns",
+            "binaryPath": "/home/sean/git/DEPA/DesignPatterns/executable",
+            "binaryArgs": []
+        }
+    ]
+}
