@@ -1,11 +1,11 @@
+#include "AndGate.h"
 #include <iostream>
 
-#include "Component.h"
-
 int main() {
-    Component component;
+    std::cout << "Niet tutteren Godverdomme!" << std::endl;
 
-    component.printComponent();
+    AndGate andGate;
 
+    andGate.printIets();
     return 0;
 }
