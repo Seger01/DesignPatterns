@@ -79,7 +79,7 @@ class NotGate{
 
 }
 
-class Gate{
+class Gate <interface>{
     - *mInput : int
     - mOutput : int
     - mAmountInputs : int
