@@ -30,6 +30,5 @@
 *.exe
 *.out
 *.app
-.vscode/tasks.json
 executable
 .vscode/c_cpp_properties.json
