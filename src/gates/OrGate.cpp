@@ -3,6 +3,13 @@
 
 OrGate::OrGate() {
     mInput = new int[mMaxInputs];
+    mAmountInputs = -1;
+}
+
+OrGate::~OrGate() {
+    if (mInput != nullptr) {
+        delete mInput;
+    }
 }
 
 void OrGate::setInput(int aIndex, bool aValue) {
@@ -11,6 +18,10 @@ void OrGate::setInput(int aIndex, bool aValue) {
 }
 int OrGate::getOutput() {
     bool output = false;
+    if (mAmountInputs < 0) {
+        std::cout << "Amount of inputs not set!" << std::endl;
+        return -1;
+    }
     for (int i = 0; i < mAmountInputs; i++) {
         if (mInput[i] == -1) {
             std::cout << "Input at index " << i << " not set yet!" << std::endl;
