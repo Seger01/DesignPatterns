@@ -2,14 +2,14 @@
 
 class IGate : public Vertex {
 public:
-    virtual void setInput(int, bool) override;
-    virtual int getOutput();
-    virtual void setAmountInputs(int);
-private:
+    virtual void setInput(int, bool) override = 0;
+    virtual int getOutput() = 0;
+    virtual void setAmountInputs(int) = 0;
+protected:
     int *mInput;
     int mOutput;
-    int mAmountInputs;
+    int mAmountInputs = -1;
 
-    const unsigned mMinInputs;
-    const unsigned mMaxInputs;
+    unsigned mMinInputs = 0;
+    unsigned mMaxInputs = 0;
 };

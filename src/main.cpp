@@ -1,11 +1,9 @@
-#include "AndGate.h"
+#include "OrGate.h"
 #include <iostream>
 
 int main() {
-    std::cout << "Niet tutteren Godverdomme!" << std::endl;
+    OrGate orGate;
 
-    AndGate andGate;
-
-    andGate.printIets();
+    std::cout << orGate.getOutput() << std::endl;
     return 0;
 }

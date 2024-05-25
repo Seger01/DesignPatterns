@@ -1,5 +1,5 @@
-
-
 class Vertex {
-    virtual void setInput(int, bool);
+public:
+    virtual ~Vertex() = default;
+    virtual void setInput(int, bool) = 0;
 };
