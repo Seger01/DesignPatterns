@@ -5,11 +5,11 @@ public:
     virtual void setInput(int, bool) override = 0;
     virtual int getOutput() = 0;
     virtual void setAmountInputs(int) = 0;
-private:
+protected:
     int *mInput;
     int mOutput;
     int mAmountInputs;
 
-    const unsigned mMinInputs;
-    const unsigned mMaxInputs;
+    const unsigned mMinInputs = 0;
+    const unsigned mMaxInputs = 0;
 };
