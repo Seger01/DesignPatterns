@@ -4,6 +4,8 @@
 OrGate::OrGate() {
     mInput = new int[mMaxInputs];
     mAmountInputs = -1;
+    mMinInputs = 2;
+    mMaxInputs = 3;
 }
 
 OrGate::~OrGate() {
@@ -36,7 +38,7 @@ int OrGate::getOutput() {
 
 void OrGate::setAmountInputs(int aAmount) {
     if (aAmount < mMinInputs || aAmount > mMaxInputs){
-        std::cout << "Error: invalid amount of inputs (" << aAmount << ") for orgate" << std::endl;
+        std::cout << "Error: invalid amount of inputs (" << aAmount << ") for OrGate" << std::endl;
         return;
     }
     mAmountInputs = aAmount;
