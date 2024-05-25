@@ -16,6 +16,7 @@ BUILD_DIR := obj
 
 SRC_FILES := $(shell find $(SRC_DIR) -name '*.cpp')
 HDR_FILES := $(shell find $(INC_DIR) -name '*.h')
+HDR_FILES := $(shell find $(INC_DIR) -name '*.hpp')
 OBJ_FILES := $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(SRC_FILES))
 
 INC_DIRS := $(addsuffix /,$(addprefix -I,$(shell find $(INC_DIR) -type d))) 
