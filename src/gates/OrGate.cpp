@@ -2,13 +2,13 @@
 #include <iostream>
 
 
-void OrGate::setInput(int, bool) {
+void OrGate::setInput(int aIndex, bool aValue) {
 
 }
 int OrGate::getOutput() {
-
+    return 0;
 }
 
-void OrGate::setAmountInputs(int) {
+void OrGate::setAmountInputs(int aAmount) {
     
 }

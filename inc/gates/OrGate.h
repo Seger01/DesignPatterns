@@ -7,5 +7,5 @@ public:
     void setAmountInputs(int) override;
 
 private:
-    const unsigned mMinInputs = 2;
+    //const unsigned mMinInputs = 2;
 };
