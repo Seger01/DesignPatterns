@@ -2,10 +2,10 @@
 #include <iostream>
 
 AndGate::AndGate() {
-    mInput = new int[mMaxInputs];
     mAmountInputs = -1;
     mMinInputs = 2;
     mMaxInputs = 3;
+    mInput = new int[mMaxInputs];
 }
 
 AndGate::~AndGate() {

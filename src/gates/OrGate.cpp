@@ -19,7 +19,6 @@ void OrGate::setInput(int aIndex, bool aValue) {
         mInput[aIndex] = aValue ? 1 : 0;
 }
 int OrGate::getOutput() {
-    bool output = false;
     if (mAmountInputs < 0) {
         std::cout << "Amount of inputs not set!" << std::endl;
         return -1;
