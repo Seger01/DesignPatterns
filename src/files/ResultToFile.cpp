@@ -71,25 +71,25 @@ void ResultToFile::writeOutput(const std::map<std::string, Vertex> &aData) {
 
     // Input values
     mOutputFile << "Input:" << "\n";
-    for (auto pair = aData.begin(); pair != aData.end(); ++pair) {
-        //Use dynamic_cast to check if the Vertex is an instance of Input
-        Input* inputPtr = dynamic_cast<Input*>(pair.second);
-        if (inputPtr) {
-            mOutputFile << pair->first << ": \t";
-            mOutputFile << pair->second.getInput() << "\n";
-        }
-    }
+    // for (auto pair = aData.begin(); pair != aData.end(); ++pair) {
+    //     //Use dynamic_cast to check if the Vertex is an instance of Input
+    //     Input* inputPtr = dynamic_cast<Input*>(pair.second);
+    //     if (inputPtr) {
+    //         mOutputFile << pair->first << ": \t";
+    //         mOutputFile << pair->second.getInput() << "\n";
+    //     }
+    // }
 
     // Output values
     mOutputFile << "\n"<< "Output:" << "\n";
-    for (auto pair = aData.begin(); pair != aData.end(); ++pair) {
-        //Use dynamic_cast to check if the Vertex is an instance of Input
-        Probe* probePtr = dynamic_cast<Probe*>(pair.second);
-        if (probePtr) {
-            mOutputFile << pair->first << ": \t";
-            mOutputFile << pair->second.getOutput() << "\n";
-        }
-    }
+    // for (auto pair = aData.begin(); pair != aData.end(); ++pair) {
+    //     //Use dynamic_cast to check if the Vertex is an instance of Input
+    //     Probe* probePtr = dynamic_cast<Probe*>(pair.second);
+    //     if (probePtr) {
+    //         mOutputFile << pair->first << ": \t";
+    //         mOutputFile << pair->second.getOutput() << "\n";
+    //     }
+    // }
 
     mOutputFile << "-------------------------------------------------" << "\n\n";
 }

@@ -1,3 +1,6 @@
+#ifndef INPUT_H
+#define INPUT_H
+
 #include "Vertex.h"
 class Input : public Vertex
 {
@@ -7,14 +10,8 @@ public:
     Input(/* args */);
     ~Input();
 
-    void setInput(bool aValue);
+    void setInput(int, bool) override;
     int getInput();
 };
 
-Input::Input(/* args */)
-{
-}
-
-Input::~Input()
-{
-}
+#endif // INPUT_H
