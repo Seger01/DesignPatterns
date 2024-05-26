@@ -1,5 +1,9 @@
 #include "ResultToFile.h"
-#include "Vertex.h" // Include the Vertex class definition
+
+#include "Vertex.h" 
+#include "Input.h"
+#include "Probe.h"
+
 #include <iostream>
 #include <iomanip>
 #include <sstream>
@@ -67,20 +71,24 @@ void ResultToFile::writeOutput(const std::map<std::string, Vertex> &aData) {
 
     // Input values
     mOutputFile << "Input:" << "\n";
-    for (auto it = aData.begin(); it != aData.end(); ++it) {
-        // if (it->second.getType() == "Input") {
-        //     mOutputFile << it->first << ": \t";
-        //     mOutputFile << (it->second.getValue() ? "High" : "Low") << "\n";
-        // }
+    for (auto pair = aData.begin(); pair != aData.end(); ++pair) {
+        //Use dynamic_cast to check if the Vertex is an instance of Input
+        Input* inputPtr = dynamic_cast<Input*>(pair.second);
+        if (inputPtr) {
+            mOutputFile << pair->first << ": \t";
+            mOutputFile << pair->second.getInput() << "\n";
+        }
     }
 
     // Output values
     mOutputFile << "\n"<< "Output:" << "\n";
-    for (auto it = aData.begin(); it != aData.end(); ++it) {
-        // if (it->second.getType() == "Output") {
-        //     mOutputFile << it->first << ": \t";
-        //     mOutputFile << (it->second.getValue() ? "High" : "Low") << "\n";
-        // }
+    for (auto pair = aData.begin(); pair != aData.end(); ++pair) {
+        //Use dynamic_cast to check if the Vertex is an instance of Input
+        Probe* probePtr = dynamic_cast<Probe*>(pair.second);
+        if (probePtr) {
+            mOutputFile << pair->first << ": \t";
+            mOutputFile << pair->second.getOutput() << "\n";
+        }
     }
 
     mOutputFile << "-------------------------------------------------" << "\n\n";
