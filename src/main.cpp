@@ -1,5 +1,6 @@
 #include "OrGate.h"
 #include <iostream>
+#include <map>
 
 int main() {
     OrGate orGate;
