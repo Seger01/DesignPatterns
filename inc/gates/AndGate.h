@@ -1,9 +1,11 @@
-#include <iostream>
+#include "IGate.h"
 
-class AndGate {
-private:
-    int iets = 0;
-
+class AndGate : public IGate {
 public:
-    void printIets() { std::cout << "printIets()" << std::endl; }
+    AndGate();
+    virtual ~AndGate();
+
+    void setInput(int, bool) override;
+    int getOutput() override;
+    void setAmountInputs(int) override;
 };

@@ -84,8 +84,8 @@ class IGate <interface>{
     - mOutput : int
     - mAmountInputs : int
 
-    - mMinInputs : int
-    - mMaxInputs : int    
+    - mMinInputs : const unsigned
+    - mMaxInputs : const unsigned    
 
     + setInput(int aIndex, bool aValue) virtual override : void
     + getOutput() virtual : int
