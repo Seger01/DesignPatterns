@@ -7,7 +7,7 @@ Vertex::Vertex() {
 }
 
 Vertex::Vertex(int id) {
-    Factory::VertexFactory<int,Vertex>::assign(id,this);
+    Factory::VertexFactory<int,Vertex>::assign(id,this); // Associate the ID of the child, so the factory knows which type of child to create
     std::cout << "Vertex assignment constructor" << std::endl;
 }
 

@@ -1,7 +1,18 @@
 #include "NotGate.h"
 #include <iostream>
 
+NotGate NotGate::m_cInstance(4);
+
 NotGate::NotGate() {
+    std::cout << "NotGate default constructor" << std::endl;
+    mAmountInputs = -1;
+    mMinInputs = 1;
+    mMaxInputs = 1;
+    mInput = new int[mMaxInputs];
+}
+
+NotGate::NotGate(int id) : Vertex(id) {
+    std::cout << "NotGate assignment constructor" << std::endl;
     mAmountInputs = -1;
     mMinInputs = 1;
     mMaxInputs = 1;
@@ -9,8 +20,9 @@ NotGate::NotGate() {
 }
 
 NotGate::~NotGate() {
+    std::cout << "NotGate desctructor" << std::endl;
     if (mInput != nullptr) {
-        delete mInput;
+        delete[] mInput;
     }
 }
 
@@ -40,4 +52,8 @@ void NotGate::setAmountInputs(unsigned aAmount) {
         return;
     }
     mAmountInputs = aAmount;
+}
+
+Vertex *NotGate::clone() const {
+    return new NotGate;
 }

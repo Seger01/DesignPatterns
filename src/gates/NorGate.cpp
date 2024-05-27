@@ -1,7 +1,18 @@
 #include "NorGate.h"
 #include <iostream>
 
+NorGate NorGate::m_cInstance(3);
+
 NorGate::NorGate() {
+    std::cout << "NorGate default constructor" << std::endl;
+    mAmountInputs = -1;
+    mMinInputs = 2;
+    mMaxInputs = 3;
+    mInput = new int[mMaxInputs];
+}
+
+NorGate::NorGate(int id) : Vertex(id) {
+    std::cout << "NorGate assignment constructor" << std::endl;
     mAmountInputs = -1;
     mMinInputs = 2;
     mMaxInputs = 3;
@@ -9,8 +20,9 @@ NorGate::NorGate() {
 }
 
 NorGate::~NorGate() {
+    std::cout << "NorGate destructor" << std::endl;
     if (mInput != nullptr) {
-        delete mInput;
+        delete[] mInput;
     }
 }
 
@@ -42,4 +54,8 @@ void NorGate::setAmountInputs(unsigned aAmount) {
         return;
     }
     mAmountInputs = aAmount;
+}
+
+Vertex *NorGate::clone() const {
+    return new NorGate;
 }

@@ -1,7 +1,18 @@
 #include "AndGate.h"
 #include <iostream>
 
+AndGate AndGate::m_cInstance(1);
+
 AndGate::AndGate() {
+    std::cout << "AndGate default constructor" << std::endl;
+    mAmountInputs = -1;
+    mMinInputs = 2;
+    mMaxInputs = 3;
+    mInput = new int[mMaxInputs];
+}
+
+AndGate::AndGate(int id) : Vertex(id) {
+    std::cout << "AndGate assignment constructor" << std::endl;
     mAmountInputs = -1;
     mMinInputs = 2;
     mMaxInputs = 3;
@@ -9,8 +20,9 @@ AndGate::AndGate() {
 }
 
 AndGate::~AndGate() {
+    std::cout << "AndGate destructor" << std::endl;
     if (mInput != nullptr) {
-        delete mInput;
+        delete[] mInput;
     }
 }
 
@@ -42,4 +54,8 @@ void AndGate::setAmountInputs(unsigned aAmount) {
         return;
     }
     mAmountInputs = aAmount;
+}
+
+Vertex *AndGate::clone() const {
+    return new AndGate;
 }

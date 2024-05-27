@@ -1,7 +1,18 @@
 #include "NandGate.h"
 #include <iostream>
 
+NandGate NandGate::m_cInstance(2);
+
 NandGate::NandGate() {
+    std::cout << "NandGate default constructor" << std::endl;
+    mAmountInputs = -1;
+    mMinInputs = 2;
+    mMaxInputs = 3;
+    mInput = new int[mMaxInputs];
+}
+
+NandGate::NandGate(int id) : Vertex(id) {
+    std::cout << "NandGate assignment constructor" << std::endl;
     mAmountInputs = -1;
     mMinInputs = 2;
     mMaxInputs = 3;
@@ -9,8 +20,9 @@ NandGate::NandGate() {
 }
 
 NandGate::~NandGate() {
+    std::cout << "NandGate destructor" << std::endl;
     if (mInput != nullptr) {
-        delete mInput;
+        delete[] mInput;
     }
 }
 
@@ -42,4 +54,8 @@ void NandGate::setAmountInputs(unsigned aAmount) {
         return;
     }
     mAmountInputs = aAmount;
+}
+
+Vertex *NandGate::clone() const {
+    return new NandGate;
 }

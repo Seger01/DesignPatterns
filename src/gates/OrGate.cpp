@@ -1,7 +1,7 @@
 #include "OrGate.h"
 #include <iostream>
 
-OrGate OrGate::m_cInstance(1);
+OrGate OrGate::m_cInstance(5);
 
 OrGate::OrGate() {
     std::cout << "OrGate default constructor" << std::endl;
