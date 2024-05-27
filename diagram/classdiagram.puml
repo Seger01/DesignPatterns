@@ -102,9 +102,7 @@ class Vertex <Observer> {
 class Input {
     - mValue : int
 
-    + Input(bool aStartValue) : void
     + SetValue(bool) : void
-    + setInput(int aIndex, bool aValue) override : void
 
 }
 
@@ -112,7 +110,6 @@ class Probe {
     - mValue : int
 
     + getValue() : bool
-    + setInput(int aIndex, bool aValue) override : void
 }
 
 class VertexFactory <Factory method> {

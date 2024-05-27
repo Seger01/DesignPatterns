@@ -2,16 +2,26 @@
 #define INPUT_H
 
 #include "Vertex.h"
-class Input : public Vertex
-{
+
+class Input : public Vertex {
 private:
-    /* data */
+    Input();
+    Input(int);
 public:
-    Input(/* args */);
     ~Input();
 
-    void setInput(unsigned, bool) override;
-    int getInput();
+public: // Inherited methods
+    void setInput(unsigned, bool) override {}  // Unused in input, not relevant
+    int getOutput() override;
+    void setAmountInputs(unsigned) override {}  // Unused in input, not relevant
+
+    Vertex *clone() const override;
+public: // Other methods
+    void setValue(bool);
+
+private:
+    static Input m_cInstance;
+    int mValue;
 };
 
 #endif // INPUT_H

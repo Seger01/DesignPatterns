@@ -1,17 +1,27 @@
+#ifndef PROBE_H
+#define PROBE_H
+
 #include "Vertex.h"
-class Probe: public Vertex
-{
+
+class Probe : public Vertex {
 private:
-    /* data */
+    Probe();
+    Probe(int);
 public:
-    Probe(/* args */);
     ~Probe();
+
+public: // Inherited methods
+    void setInput(unsigned, bool) override;
+    int getOutput() override {return 0;};                // Unused in probe, not relevant
+    void setAmountInputs(unsigned) override {}  // Unused in probe, not relevant
+
+    Vertex *clone() const override;
+public: // Other methods
+    int getValue();
+
+private:
+    static Probe m_cInstance;
+    int mValue;
 };
 
-Probe::Probe(/* args */)
-{
-}
-
-Probe::~Probe()
-{
-}
+#endif // PROBE_H
