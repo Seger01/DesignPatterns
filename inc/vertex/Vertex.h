@@ -1,3 +1,6 @@
+#ifndef VERTEX_H
+#define VERTEX_H
+
 class Vertex {
 protected:
     Vertex();
@@ -21,3 +24,5 @@ protected:
     unsigned mMinInputs = 0;
     unsigned mMaxInputs = 0;
 };
+
+#endif // VERTEX_H
