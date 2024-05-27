@@ -79,21 +79,10 @@ class NotGate{
 
 }
 
-class IGate <interface>{
-    - *mInput : int
-    - mOutput : int
-    - mAmountInputs : int
-
-    - mMinInputs : const unsigned
-    - mMaxInputs : const unsigned    
-
-    + setInput(int aIndex, bool aValue) virtual override : void
+class Vertex <Observer> {
+    + setInput(unsigned aIndex, bool aValue) virtual : void
     + getOutput() virtual : int
     + setAmountInputs(int aInputs) virtual : void
-}
-
-class Vertex <Observer> {
-    + setInput(int aIndex, bool aValue) virtual : void
 
     + addSubscriber(Vertex *) : void
     + removeSubscriber(Vertex *) : void
@@ -102,7 +91,12 @@ class Vertex <Observer> {
     + update() : void
 
     - subscribers : Vertex[]
+    - *mInput : int
+    - mOutput : int
+    - mAmountInputs : int
 
+    - mMinInputs : const unsigned
+    - mMaxInputs : const unsigned
 }
 
 class Input {
@@ -125,34 +119,6 @@ class VertexFactory <Factory method> {
     + createVertex()
 }
 
-class OrGateFactory{
-
-}
-
-class AndGateFactory{
-    
-}
-
-class NorGateFactory{
-    
-}
-
-class NandGateFactory{
-    
-}
-
-class XorGateFactory{
-    
-}
-
-class NotGateFactory{
-    
-}
-
-class InputFactory{
-    
-}
-
 class ProbeFactory{
     
 }
@@ -164,27 +130,11 @@ class GraphBuilder {
     - fillVertex()
 }
 
-VertexFactory <|-- OrGateFactory
-VertexFactory <|-- AndGateFactory
-VertexFactory <|-- NorGateFactory
-VertexFactory <|-- NandGateFactory
-VertexFactory <|-- XorGateFactory
-VertexFactory <|-- NotGateFactory
-VertexFactory <|-- InputFactory
-VertexFactory <|-- ProbeFactory
-OrGateFactory --> OrGate
-AndGateFactory --> AndGate
-NorGateFactory --> NorGate
-NandGateFactory --> NandGate
-XorGateFactory --> XorGate
-NotGateFactory --> NotGate
-InputFactory --> Input
-ProbeFactory --> Probe
-
 VertexFactory --> GraphBuilder
 Vertex --> GraphBuilder
 Circuit --> GraphBuilder
 Circuit --* Vertex
+VertexFactory --> Vertex
 
 FileToGraph *-- FileStrategy
 TextStrategy --|> FileStrategy
@@ -194,14 +144,13 @@ CircuitSimulator <-- ResultToFile
 CircuitSimulator <-- Circuit
 CircuitSimulator <-- CircuitInitializer
 
-OrGate --|> IGate
-NorGate --|> IGate
-AndGate --|> IGate
-NandGate --|> IGate
-XorGate --|> IGate
-NotGate --|> IGate
+OrGate --|> Vertex
+NorGate --|> Vertex
+AndGate --|> Vertex
+NandGate --|> Vertex
+XorGate --|> Vertex
+NotGate --|> Vertex
 
-IGate --|> Vertex
 Input --|> Vertex
 Probe --|> Vertex
 
