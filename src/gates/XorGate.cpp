@@ -14,7 +14,7 @@ XorGate::~XorGate() {
     }
 }
 
-void XorGate::setInput(int aIndex, bool aValue) {
+void XorGate::setInput(unsigned aIndex, bool aValue) {
     if (aIndex < mAmountInputs)
         mInput[aIndex] = aValue ? 1 : 0;
 }
@@ -37,7 +37,7 @@ int XorGate::getOutput() {
     return 1; // Not a single input was true, so return false
 }
 
-void XorGate::setAmountInputs(int aAmount) {
+void XorGate::setAmountInputs(unsigned aAmount) {
     if (aAmount < mMinInputs || aAmount > mMaxInputs){
         std::cout << "Error: invalid amount of inputs (" << aAmount << ") for XorGate" << std::endl;
         return;

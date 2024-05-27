@@ -1,11 +1,11 @@
-#include "IGate.h"
+#include "Vertex.h"
 
-class NorGate : public IGate {
+class NorGate : public Vertex {
 public:
     NorGate();
     virtual ~NorGate();
 
-    void setInput(int, bool) override;
+    void setInput(unsigned, bool) override;
     int getOutput() override;
-    void setAmountInputs(int) override;
+    void setAmountInputs(unsigned) override;
 };

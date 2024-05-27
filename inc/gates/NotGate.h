@@ -1,11 +1,11 @@
-#include "IGate.h"
+#include "Vertex.h"
 
-class NotGate : public IGate {
+class NotGate : public Vertex {
 public:
     NotGate();
     virtual ~NotGate();
 
-    void setInput(int, bool) override;
+    void setInput(unsigned, bool) override;
     int getOutput() override;
-    void setAmountInputs(int) override;
+    void setAmountInputs(unsigned) override;
 };

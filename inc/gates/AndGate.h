@@ -1,11 +1,11 @@
-#include "IGate.h"
+#include "Vertex.h"
 
-class AndGate : public IGate {
+class AndGate : public Vertex {
 public:
     AndGate();
     virtual ~AndGate();
 
-    void setInput(int, bool) override;
+    void setInput(unsigned, bool) override;
     int getOutput() override;
-    void setAmountInputs(int) override;
+    void setAmountInputs(unsigned) override;
 };

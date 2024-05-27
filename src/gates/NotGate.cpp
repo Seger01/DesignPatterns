@@ -14,7 +14,7 @@ NotGate::~NotGate() {
     }
 }
 
-void NotGate::setInput(int aIndex, bool aValue) {
+void NotGate::setInput(unsigned aIndex, bool aValue) {
     if (aIndex < mAmountInputs)
         mInput[aIndex] = aValue ? 1 : 0;
 }
@@ -34,7 +34,7 @@ int NotGate::getOutput() {
     return 0; // Input was not zero, so return 1
 }
 
-void NotGate::setAmountInputs(int aAmount) {
+void NotGate::setAmountInputs(unsigned aAmount) {
     if (aAmount < mMinInputs || aAmount > mMaxInputs){
         std::cout << "Error: invalid amount of inputs (" << aAmount << ") for NotGate" << std::endl;
         return;

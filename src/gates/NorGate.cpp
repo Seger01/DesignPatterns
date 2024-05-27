@@ -14,7 +14,7 @@ NorGate::~NorGate() {
     }
 }
 
-void NorGate::setInput(int aIndex, bool aValue) {
+void NorGate::setInput(unsigned aIndex, bool aValue) {
     if (aIndex < mAmountInputs)
         mInput[aIndex] = aValue ? 1 : 0;
 }
@@ -36,7 +36,7 @@ int NorGate::getOutput() {
     return 1; // Not a single input was true, so return true
 }
 
-void NorGate::setAmountInputs(int aAmount) {
+void NorGate::setAmountInputs(unsigned aAmount) {
     if (aAmount < mMinInputs || aAmount > mMaxInputs){
         std::cout << "Error: invalid amount of inputs (" << aAmount << ") for NorGate" << std::endl;
         return;
