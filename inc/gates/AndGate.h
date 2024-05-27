@@ -1,11 +1,19 @@
-#include "IGate.h"
+#include "Vertex.h"
 
-class AndGate : public IGate {
-public:
+class AndGate : public Vertex {
+private:
     AndGate();
+    AndGate(int);
+public:
     virtual ~AndGate();
 
-    void setInput(int, bool) override;
+public:
+    void setInput(unsigned, bool) override;
     int getOutput() override;
-    void setAmountInputs(int) override;
+    void setAmountInputs(unsigned) override;
+
+    Vertex *clone() const override;
+
+private:
+    static AndGate m_cInstance;
 };

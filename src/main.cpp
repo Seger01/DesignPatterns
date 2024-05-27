@@ -1,10 +1,14 @@
-#include "OrGate.h"
+#include "VertexFactory.h"
+#include "Vertex.h"
 #include <iostream>
 #include <map>
 
 int main() {
-    OrGate orGate;
+    Vertex *pVertex = Factory::VertexFactory<int,Vertex>::create(1);
 
-    std::cout << orGate.getOutput() << std::endl;
+    if (pVertex != nullptr) {
+        pVertex->getOutput();
+        delete pVertex;
+    }
     return 0;
 }

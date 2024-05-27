@@ -1,11 +1,19 @@
-#include "IGate.h"
+#include "Vertex.h"
 
-class NandGate : public IGate {
-public:
+class NandGate : public Vertex {
+private:
     NandGate();
+    NandGate(int);
+public:
     virtual ~NandGate();
 
-    void setInput(int, bool) override;
+public:
+    void setInput(unsigned, bool) override;
     int getOutput() override;
-    void setAmountInputs(int) override;
+    void setAmountInputs(unsigned) override;
+
+    Vertex *clone() const override;
+
+private:
+    static NandGate m_cInstance;
 };

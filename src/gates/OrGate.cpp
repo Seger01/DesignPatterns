@@ -1,7 +1,18 @@
 #include "OrGate.h"
 #include <iostream>
 
+OrGate OrGate::m_cInstance(5);
+
 OrGate::OrGate() {
+    std::cout << "OrGate default constructor" << std::endl;
+    mInput = new int[mMaxInputs];
+    mAmountInputs = -1;
+    mMinInputs = 2;
+    mMaxInputs = 3;
+}
+
+OrGate::OrGate(int id) : Vertex(id) {
+    std::cout << "OrGate assignment constructor" << std::endl;
     mInput = new int[mMaxInputs];
     mAmountInputs = -1;
     mMinInputs = 2;
@@ -9,12 +20,13 @@ OrGate::OrGate() {
 }
 
 OrGate::~OrGate() {
+    std::cout << "OrGate destructor" << std::endl;
     if (mInput != nullptr) {
-        delete mInput;
+        delete[] mInput;
     }
 }
 
-void OrGate::setInput(int aIndex, bool aValue) {
+void OrGate::setInput(unsigned aIndex, bool aValue) {
     if (aIndex < mAmountInputs)
         mInput[aIndex] = aValue ? 1 : 0;
 }
@@ -35,10 +47,14 @@ int OrGate::getOutput() {
     return 0; // Not a single input was true, so return false
 }
 
-void OrGate::setAmountInputs(int aAmount) {
+void OrGate::setAmountInputs(unsigned aAmount) {
     if (aAmount < mMinInputs || aAmount > mMaxInputs){
         std::cout << "Error: invalid amount of inputs (" << aAmount << ") for OrGate" << std::endl;
         return;
     }
     mAmountInputs = aAmount;
+}
+
+Vertex *OrGate::clone() const {
+    return new OrGate;
 }

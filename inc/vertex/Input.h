@@ -10,7 +10,7 @@ public:
     Input(/* args */);
     ~Input();
 
-    void setInput(int, bool) override;
+    void setInput(unsigned, bool) override;
     int getInput();
 };
 

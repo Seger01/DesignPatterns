@@ -1,11 +1,19 @@
-#include "IGate.h"
+#include "Vertex.h"
 
-class XorGate : public IGate {
-public:
+class XorGate : public Vertex {
+private:
     XorGate();
+    XorGate(int);
+public:
     virtual ~XorGate();
 
-    void setInput(int, bool) override;
+public:
+    void setInput(unsigned, bool) override;
     int getOutput() override;
-    void setAmountInputs(int) override;
+    void setAmountInputs(unsigned) override;
+
+    Vertex *clone() const override;
+
+private:
+    static XorGate m_cInstance;
 };

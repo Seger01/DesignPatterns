@@ -1,11 +1,19 @@
-#include "IGate.h"
+#include "Vertex.h"
 
-class NotGate : public IGate {
-public:
+class NotGate : public Vertex {
+private:
     NotGate();
+    NotGate(int);
+public:
     virtual ~NotGate();
 
-    void setInput(int, bool) override;
+public:
+    void setInput(unsigned, bool) override;
     int getOutput() override;
-    void setAmountInputs(int) override;
+    void setAmountInputs(unsigned) override;
+
+    Vertex *clone() const override;
+
+private:
+    static NotGate m_cInstance;
 };

@@ -1,11 +1,19 @@
-#include "IGate.h"
+#include "Vertex.h"
 
-class OrGate : public IGate {
-public:
+class OrGate : public Vertex {
+private:
     OrGate();
+    OrGate(int);
+public:
     virtual ~OrGate();
 
-    void setInput(int, bool) override;
+public:
+    void setInput(unsigned, bool) override;
     int getOutput() override;
-    void setAmountInputs(int) override;
+    void setAmountInputs(unsigned) override;
+
+    Vertex *clone() const override;
+
+private:
+    static OrGate m_cInstance;
 };
