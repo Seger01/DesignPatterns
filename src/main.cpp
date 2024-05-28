@@ -5,28 +5,28 @@
 #include <iostream>
 #include <map>
 
-void vertexObserverTest() {
-    std::cout << "Start!" << std::endl;
+// void vertexObserverTest() {
+//     std::cout << "Start!" << std::endl;
 
-    Input subject(1234);
+//     Vertex* pInput = Factory::VertexFactory<int, Vertex>::create subject(1234);
 
-    Vertex observer1;
-    Vertex observer2;
+//     Vertex observer1;
+//     Vertex observer2;
 
-    observer1.addSubject(&subject);
+//     observer1.addSubject(&subject);
 
-    observer2.addSubject(&observer1);
-    observer2.addSubject(&subject);
+//     observer2.addSubject(&observer1);
+//     observer2.addSubject(&subject);
 
-    Probe probe;
+//     Probe probe;
 
-    probe.addSubject(&observer1);
+//     probe.addSubject(&observer1);
 
-    std::cout << "setstate(1)" << std::endl;
-    subject.setState(1);
-    std::cout << "setstate(2)" << std::endl;
-    subject.setState(2);
-}
+//     std::cout << "setstate(1)" << std::endl;
+//     subject.setState(1);
+//     std::cout << "setstate(2)" << std::endl;
+//     subject.setState(2);
+// }
 
 int main() {
     Vertex* pVertex = Factory::VertexFactory<int, Vertex>::create(1);

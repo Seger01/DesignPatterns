@@ -9,10 +9,10 @@ private:
     int mValue = -1;
     static Probe m_cInstance;
 
-public:
+private:
     Probe();
     Probe(int);
-
+public:
     ~Probe();
 
     using Vertex::Vertex;

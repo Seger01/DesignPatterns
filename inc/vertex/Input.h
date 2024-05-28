@@ -8,11 +8,10 @@ private:
     int mValue = -1;
 
 private:
-public:
-    ~Input();
-
     Input();
     Input(int);
+public:
+    ~Input();
 
     virtual void setInput(int aIndex, int aValue) override;
     virtual int getOutput() override;
