@@ -7,6 +7,35 @@
 #include <iostream>
 #include <map>
 
+void GraphBuilderTest() {
+    // Map with vertices
+    std::map<std::string,std::string> myVertices;
+    myVertices.insert({"andSiem","AND"});
+    myVertices.insert({"orSeger","OR"});
+    myVertices.insert({"inputSean","INPUT"});
+    myVertices.insert({"inputWouter","INPUT"});
+    myVertices.insert({"inputLoek","INPUT"});
+
+    // Map with connections
+    std::multimap<std::string,std::string> myConnections;
+    myConnections.insert({"inputSean","andSiem"});
+    myConnections.insert({"inputWouter","andSiem"});
+    myConnections.insert({"andSiem","orSeger"});
+    myConnections.insert({"inputLoek","orSeger"});
+
+    GraphBuilder builder;
+    builder.createGraph(myVertices, myConnections);
+
+    std::map<std::string, Vertex*> vertexMap = Circuit::getInstance().getVertexMap();
+    std::map<std::string, Vertex*>::iterator it = vertexMap.begin();
+    while (it != vertexMap.end()) {
+        std::cout << "My name is " << it->first << ". " << it->second->whoAmI() << std::endl;
+        //std::cout << "My output is connected to: ";
+        
+        ++it;
+    }
+}
+
 // void vertexObserverTest() {
 //     std::cout << "Start!" << std::endl;
 
@@ -32,21 +61,8 @@
 
 int main() {
     std::cout << std::endl << std::endl;
-    
-    std::multimap<std::string,std::string> myConnections;
-    std::map<std::string,std::string> myVertices;
-    myVertices.insert({"andSiem","AND"});
-    myVertices.insert({"orSeger","OR"});
-    myVertices.insert({"inputSean","INPUT"});
-    GraphBuilder builder;
-    builder.createGraph(myVertices, myConnections);
 
-    std::map<std::string, Vertex*> vertexMap = Circuit::getInstance().getVertexMap();
-    std::map<std::string, Vertex*>::iterator it = vertexMap.begin();
-    while (it != vertexMap.end()) {
-        std::cout << "My name is " << it->first << ". " << it->second->whoAmI() << std::endl;
-        ++it;
-    }
+    GraphBuilderTest();
 
     std::cout << std::endl << std::endl;
     return 0;
