@@ -109,16 +109,15 @@ class Input {
     - mValue : int
 
     + Input(bool aStartValue) : void
-    + SetValue(bool) : void
     + setInput(int aIndex, bool aValue) override : void
-
+    + getInput() : int
 }
 
 class Probe {
     - mValue : int
 
-    + getValue() : bool
     + setInput(int aIndex, bool aValue) override : void
+    + getInput() : int
 }
 
 class VertexFactory <Factory method> {
