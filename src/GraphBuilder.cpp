@@ -12,12 +12,12 @@ void GraphBuilder::createGraph(std::map<std::string,std::string> vertexNameType,
 }
 
 void GraphBuilder::populateCircuit(std::map<std::string,std::string> vertexNameType) {
-    std::map<std::string, Vertex*> &vertexMap = Circuit::getInstance().getVertexMap();
-    vertexMap.clear();  // Remove all elements from the map
-    std::map<std::string,std::string>::iterator iter = vertexNameType.begin();
-    while(iter != vertexNameType.end()) {
-        Vertex *pVertex = Factory::VertexFactory<std::string, Vertex>::create(iter->second);
-        vertexMap.insert(std::make_pair(iter->first, pVertex));
+    std::map<std::string, Vertex*> &vertexMap = Circuit::getInstance().getVertexMap();  // Retrieve the map (containing vertex name and vertex pointer) from the Circuit singleton
+    vertexMap.clear();                                                                  // Remove all elements from the map
+    std::map<std::string,std::string>::iterator iter = vertexNameType.begin();          // Create an iterator at the start of the map (containing vertex name and vertex type)
+    while(iter != vertexNameType.end()) {                                               // Iterate through the map (containing vertex name and vertex type)
+        Vertex *pVertex = Factory::VertexFactory<std::string, Vertex>::create(iter->second);    // Create a new vertex of the right type (iter->second contains the type as a string)
+        vertexMap.insert(std::make_pair(iter->first, pVertex));                         // Insert the new vertex pointer
         ++iter;
     }
 }

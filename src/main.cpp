@@ -42,7 +42,6 @@ int main() {
     builder.createGraph(myVertices, myConnections);
 
     std::map<std::string, Vertex*> vertexMap = Circuit::getInstance().getVertexMap();
-    std::cout << "vertexMap size: " << vertexMap.size() << std::endl;
     std::map<std::string, Vertex*>::iterator it = vertexMap.begin();
     while (it != vertexMap.end()) {
         std::cout << "My name is " << it->first << ". " << it->second->whoAmI() << std::endl;
