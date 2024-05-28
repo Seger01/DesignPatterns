@@ -13,8 +13,7 @@ private:
 
 public:
     Vertex();
-    Vertex(int);
-    // Vertex(Vertex* subject, int aObserverIndex) : subject(subject) { subject->subscribe(aObserverIndex, this); }
+    Vertex(std::string);
 
     virtual ~Vertex();
 

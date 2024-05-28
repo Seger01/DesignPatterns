@@ -3,7 +3,7 @@
 class XorGate : public Vertex {
 private:
     XorGate();
-    XorGate(int);
+    XorGate(std::string);
 public:
     virtual ~XorGate();
 

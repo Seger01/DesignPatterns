@@ -3,7 +3,7 @@
 class NotGate : public Vertex {
 private:
     NotGate();
-    NotGate(int);
+    NotGate(std::string);
 public:
     virtual ~NotGate();
 

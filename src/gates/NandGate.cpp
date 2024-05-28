@@ -1,7 +1,7 @@
 #include "NandGate.h"
 #include <iostream>
 
-NandGate NandGate::m_cInstance(2);
+NandGate NandGate::m_cInstance("NAND");
 
 NandGate::NandGate() {
     std::cout << "NandGate default constructor" << std::endl;
@@ -11,7 +11,7 @@ NandGate::NandGate() {
     mInput = new int[mMaxInputs];
 }
 
-NandGate::NandGate(int id) : Vertex(id) {
+NandGate::NandGate(std::string id) : Vertex(id) {
     std::cout << "NandGate assignment constructor" << std::endl;
     mAmountInputs = -1;
     mMinInputs = 2;

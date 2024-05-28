@@ -9,7 +9,7 @@ private:
 
 private:
     Input();
-    Input(int);
+    Input(std::string);
 public:
     ~Input();
 

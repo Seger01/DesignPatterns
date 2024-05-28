@@ -29,11 +29,13 @@
 // }
 
 int main() {
-    Vertex* pVertex = Factory::VertexFactory<int, Vertex>::create(1);
+    std::cout << std::endl << std::endl;
+    Vertex* pVertex = Factory::VertexFactory<std::string, Vertex>::create("NOR");
 
     if (pVertex != nullptr) {
         pVertex->getOutput();
         delete pVertex;
     }
+    std::cout << std::endl << std::endl;
     return 0;
 }

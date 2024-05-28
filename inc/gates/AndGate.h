@@ -3,7 +3,7 @@
 class AndGate : public Vertex {
 private:
     AndGate();
-    AndGate(int);
+    AndGate(std::string);
 public:
     virtual ~AndGate();
 

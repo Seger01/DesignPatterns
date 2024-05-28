@@ -3,7 +3,7 @@
 class NandGate : public Vertex {
 private:
     NandGate();
-    NandGate(int);
+    NandGate(std::string);
 public:
     virtual ~NandGate();
 

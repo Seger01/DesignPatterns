@@ -3,7 +3,7 @@
 class NorGate : public Vertex {
 private:
     NorGate();
-    NorGate(int);
+    NorGate(std::string);
 public:
     virtual ~NorGate();
 

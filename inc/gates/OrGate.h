@@ -3,7 +3,7 @@
 class OrGate : public Vertex {
 private:
     OrGate();
-    OrGate(int);
+    OrGate(std::string);
 public:
     virtual ~OrGate();
 

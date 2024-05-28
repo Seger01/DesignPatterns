@@ -11,7 +11,9 @@ void GraphBuilder::createGraph(std::map<std::string,std::string> vertexNameType,
 }
 
 void GraphBuilder::populateCircuit(std::map<std::string,std::string> vertexNameType) {
-
+    std::map<std::string, Vertex> vertexMap = Circuit::getInstance().getVertexMap();
+    vertexMap.clear();  // Remove all elements from the map
+    
 }
 
 void GraphBuilder::connectVertices(std::multimap<std::string,std::string> vertexConnections) {

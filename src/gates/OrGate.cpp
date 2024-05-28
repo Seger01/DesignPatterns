@@ -1,7 +1,7 @@
 #include "OrGate.h"
 #include <iostream>
 
-OrGate OrGate::m_cInstance(5);
+OrGate OrGate::m_cInstance("OR");
 
 OrGate::OrGate() {
     std::cout << "OrGate default constructor" << std::endl;
@@ -11,7 +11,7 @@ OrGate::OrGate() {
     mMaxInputs = 3;
 }
 
-OrGate::OrGate(int id) : Vertex(id) {
+OrGate::OrGate(std::string id) : Vertex(id) {
     std::cout << "OrGate assignment constructor" << std::endl;
     mInput = new int[mMaxInputs];
     mAmountInputs = -1;

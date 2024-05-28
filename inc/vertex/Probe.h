@@ -11,7 +11,7 @@ private:
 
 private:
     Probe();
-    Probe(int);
+    Probe(std::string);
 public:
     ~Probe();
 
