@@ -59,3 +59,7 @@ void NorGate::setAmountInputs(unsigned aAmount) {
 Vertex *NorGate::clone() const {
     return new NorGate;
 }
+
+std::string NorGate::whoAmI() {
+    return std::string("I am an NorGate!");
+}

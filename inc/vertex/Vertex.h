@@ -37,6 +37,7 @@ public:
 protected:
 public:
     virtual void setAmountInputs(unsigned) { std::cout << "setAmountInputs()" << std::endl; };
+    virtual std::string whoAmI();
 
 public:
     virtual Vertex* clone() const { return new Vertex; }

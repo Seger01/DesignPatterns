@@ -28,3 +28,7 @@ void Probe::setInput(int aIndex, int aValue) {
 int Probe::getValue() { return mValue; }
 
 Vertex* Probe::clone() const { return new Probe; }
+
+std::string Probe::whoAmI() {
+    return std::string("I am a Probe!");
+}

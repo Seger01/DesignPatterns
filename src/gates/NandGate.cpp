@@ -59,3 +59,7 @@ void NandGate::setAmountInputs(unsigned aAmount) {
 Vertex *NandGate::clone() const {
     return new NandGate;
 }
+
+std::string NandGate::whoAmI() {
+    return std::string("I am a NandGate!");
+}

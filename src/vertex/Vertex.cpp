@@ -62,6 +62,10 @@ void Vertex::update() {
     }
 }
 
+std::string Vertex::whoAmI() {
+    return std::string("I am a Vertex!");
+}
+
 // #include "Vertex.h"
 // #include "VertexFactory.h"
 // #include <iostream>

@@ -59,3 +59,7 @@ void AndGate::setAmountInputs(unsigned aAmount) {
 Vertex *AndGate::clone() const {
     return new AndGate;
 }
+
+std::string AndGate::whoAmI() {
+    return std::string("I am an AndGate!");
+}

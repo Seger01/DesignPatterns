@@ -11,6 +11,7 @@ public:
     void setInput(unsigned, bool) override;
     int getOutput() override;
     void setAmountInputs(unsigned) override;
+    std::string whoAmI() override;
 
     Vertex *clone() const override;
 

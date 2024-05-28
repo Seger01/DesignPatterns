@@ -31,3 +31,7 @@ int Input::getOutput() { return mValue; }
 void Input::setValue(bool aValue) { mValue = aValue ? 1 : 0; }
 
 Vertex* Input::clone() const { return new Input; }
+
+std::string Input::whoAmI() {
+    return std::string("I am an Input!");
+}
