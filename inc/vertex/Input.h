@@ -5,23 +5,27 @@
 
 class Input : public Vertex {
 private:
+    int mValue = -1;
+
+private:
     Input();
     Input(int);
 public:
     ~Input();
 
-public: // Inherited methods
-    void setInput(unsigned, bool) override {}  // Unused in input, not relevant
-    int getOutput() override;
-    void setAmountInputs(unsigned) override {}  // Unused in input, not relevant
+    virtual void setInput(int aIndex, int aValue) override;
+    virtual int getOutput() override;
 
-    Vertex *clone() const override;
+public:                                        // Inherited methods
+    void setAmountInputs(unsigned) override {} // Unused in input, not relevant
+
+    Vertex* clone() const override;
+
 public: // Other methods
     void setValue(bool);
 
 private:
     static Input m_cInstance;
-    int mValue;
 };
 
 #endif // INPUT_H

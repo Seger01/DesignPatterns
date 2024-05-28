@@ -1,3 +1,4 @@
+#pragma once
 #ifndef PROBE_H
 #define PROBE_H
 
@@ -5,23 +6,20 @@
 
 class Probe : public Vertex {
 private:
+    int mValue = -1;
+    static Probe m_cInstance;
+
+private:
     Probe();
     Probe(int);
 public:
     ~Probe();
 
-public: // Inherited methods
-    void setInput(unsigned, bool) override;
-    int getOutput() override {return 0;};                // Unused in probe, not relevant
-    void setAmountInputs(unsigned) override {}  // Unused in probe, not relevant
-
-    Vertex *clone() const override;
-public: // Other methods
+    using Vertex::Vertex;
+    virtual void setInput(int aIndex, int aValue) override;
     int getValue();
 
-private:
-    static Probe m_cInstance;
-    int mValue;
+    virtual Vertex* clone() const override;
 };
 
 #endif // PROBE_H

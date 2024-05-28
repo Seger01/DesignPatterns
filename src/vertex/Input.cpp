@@ -1,7 +1,8 @@
-#include "Input.h"
+#pragma once
+
 #include <iostream>
 
-Input Input::m_cInstance(7);
+#include "Input.h"
 
 Input::Input() {
     std::cout << "Input default constructor" << std::endl;
@@ -13,18 +14,20 @@ Input::Input(int id) : Vertex(id) {
     mValue = -1;
 }
 
-Input::~Input() {
-    std::cout << "Input destructor" << std::endl;
-}
+Input::~Input() { std::cout << "Input destructor" << std::endl; }
 
-int Input::getOutput() {
-    return mValue;
-}
+void Input::setInput(int aIndex, int aValue) {
+    if (aIndex != 0) {
+        std::cout << "Input::setInput error aIndex is not zero" << std::endl;
+    }
 
-void Input::setValue(bool aValue) {
-    mValue = aValue ? 1 : 0;
+    mValue = aValue;
+    return;
 }
+int Input::getOutput() { return mValue; }
 
-Vertex *Input::clone() const {
-    return new Input;
-}
+Input Input::m_cInstance(7);
+
+void Input::setValue(bool aValue) { mValue = aValue ? 1 : 0; }
+
+Vertex* Input::clone() const { return new Input; }
