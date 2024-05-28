@@ -28,42 +28,4 @@ void vertexObserverTest() {
     subject.setState(2);
 }
 
-class Circuit {
-private:
-    std::map<std::string, Vertex> mMapVertexes;
-
-private:
-    // Private constructor to prevent instantiation
-    Circuit() { std::cout << "Circuit singleton instance created." << std::endl; }
-
-    // Private destructor
-    ~Circuit() { std::cout << "Circuit singleton instance destroyed." << std::endl; }
-
-public:
-    int state = 0;
-    // Delete copy constructor and assignment operator to prevent copying
-    Circuit(const Circuit&) = delete;
-    Circuit& operator=(const Circuit&) = delete;
-
-    // Static method to get the single instance of the class
-    static Circuit& getInstance() {
-        static Circuit instance;
-        return instance;
-    }
-
-    // Example method
-    void showMessage() { std::cout << "Circuit singleton instance method called." << state << std::endl; }
-};
-
-int main() {
-    // Access the singleton instance and call its method
-    Circuit& circuit1 = Circuit::getInstance();
-    circuit1.state = 1234;
-    circuit1.showMessage();
-
-    // Another reference to the singleton instance
-    Circuit& circuit2 = Circuit::getInstance();
-    circuit2.showMessage();
-
-    return 0;
-}
+int main() { return 0; }
