@@ -12,7 +12,7 @@ public:
     ~Input();
 
     Input();
-    Input(int aStartValue);
+    Input(int);
 
     virtual void setInput(int aIndex, int aValue) override;
     virtual int getOutput() override;

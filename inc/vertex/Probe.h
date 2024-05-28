@@ -10,7 +10,11 @@ private:
     static Probe m_cInstance;
 
 public:
+    Probe();
     Probe(int);
+
+    ~Probe();
+
     using Vertex::Vertex;
     virtual void setInput(int aIndex, int aValue) override;
     int getValue();

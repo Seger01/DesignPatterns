@@ -18,6 +18,9 @@ int Probe::getValue() { return mValue; }
 
 Probe Probe::m_cInstance(8);
 
+Probe::Probe() { std::cout << "Probe constructor" << std::endl; }
+
+Probe::~Probe() { std::cout << "Probe destructor" << std::endl; }
 Probe::Probe(int id) : Vertex(id) {
     std::cout << "Probe assignment constructor" << std::endl;
     mValue = -1;
