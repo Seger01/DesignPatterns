@@ -1,7 +1,7 @@
 #include "XorGate.h"
 #include <iostream>
 
-XorGate XorGate::m_cInstance(6);
+XorGate XorGate::m_cInstance("XOR");
 
 XorGate::XorGate() {
     std::cout << "XorGate default constructor" << std::endl;
@@ -11,7 +11,7 @@ XorGate::XorGate() {
     mInput = new int[mMaxInputs];
 }
 
-XorGate::XorGate(int id) : Vertex(id) {
+XorGate::XorGate(std::string id) : Vertex(id) {
     std::cout << "XorGate assignment constructor" << std::endl;
     mAmountInputs = -1;
     mMinInputs = 2;
@@ -59,4 +59,8 @@ void XorGate::setAmountInputs(unsigned aAmount) {
 
 Vertex *XorGate::clone() const {
     return new XorGate;
+}
+
+std::string XorGate::whoAmI() {
+    return std::string("I am an XorGate!");
 }

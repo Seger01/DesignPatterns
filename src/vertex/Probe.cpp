@@ -4,11 +4,11 @@
 
 #include "Probe.h"
 
-Probe Probe::m_cInstance(8);
+Probe Probe::m_cInstance("PROBE");
 
 Probe::Probe() { std::cout << "Probe constructor" << std::endl; }
 
-Probe::Probe(int id) : Vertex(id) {
+Probe::Probe(std::string id) : Vertex(id) {
     std::cout << "Probe assignment constructor" << std::endl;
     mValue = -1;
 }
@@ -28,3 +28,7 @@ void Probe::setInput(int aIndex, int aValue) {
 int Probe::getValue() { return mValue; }
 
 Vertex* Probe::clone() const { return new Probe; }
+
+std::string Probe::whoAmI() {
+    return std::string("I am a Probe!");
+}

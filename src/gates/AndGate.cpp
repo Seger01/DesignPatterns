@@ -1,7 +1,7 @@
 #include "AndGate.h"
 #include <iostream>
 
-AndGate AndGate::m_cInstance(1);
+AndGate AndGate::m_cInstance("AND");
 
 AndGate::AndGate() {
     std::cout << "AndGate default constructor" << std::endl;
@@ -11,7 +11,7 @@ AndGate::AndGate() {
     mInput = new int[mMaxInputs];
 }
 
-AndGate::AndGate(int id) : Vertex(id) {
+AndGate::AndGate(std::string id) : Vertex(id) {
     std::cout << "AndGate assignment constructor" << std::endl;
     mAmountInputs = -1;
     mMinInputs = 2;
@@ -58,4 +58,8 @@ void AndGate::setAmountInputs(unsigned aAmount) {
 
 Vertex *AndGate::clone() const {
     return new AndGate;
+}
+
+std::string AndGate::whoAmI() {
+    return std::string("I am an AndGate!");
 }

@@ -3,7 +3,7 @@
 class AndGate : public Vertex {
 private:
     AndGate();
-    AndGate(int);
+    AndGate(std::string);
 public:
     virtual ~AndGate();
 
@@ -11,6 +11,7 @@ public:
     void setInput(unsigned, bool) override;
     int getOutput() override;
     void setAmountInputs(unsigned) override;
+    std::string whoAmI() override;
 
     Vertex *clone() const override;
 

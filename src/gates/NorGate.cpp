@@ -1,7 +1,7 @@
 #include "NorGate.h"
 #include <iostream>
 
-NorGate NorGate::m_cInstance(3);
+NorGate NorGate::m_cInstance("NOR");
 
 NorGate::NorGate() {
     std::cout << "NorGate default constructor" << std::endl;
@@ -11,7 +11,7 @@ NorGate::NorGate() {
     mInput = new int[mMaxInputs];
 }
 
-NorGate::NorGate(int id) : Vertex(id) {
+NorGate::NorGate(std::string id) : Vertex(id) {
     std::cout << "NorGate assignment constructor" << std::endl;
     mAmountInputs = -1;
     mMinInputs = 2;
@@ -58,4 +58,8 @@ void NorGate::setAmountInputs(unsigned aAmount) {
 
 Vertex *NorGate::clone() const {
     return new NorGate;
+}
+
+std::string NorGate::whoAmI() {
+    return std::string("I am an NorGate!");
 }

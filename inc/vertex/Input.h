@@ -9,7 +9,7 @@ private:
 
 private:
     Input();
-    Input(int);
+    Input(std::string);
 public:
     ~Input();
 
@@ -18,6 +18,7 @@ public:
 
 public:                                        // Inherited methods
     void setAmountInputs(unsigned) override {} // Unused in input, not relevant
+    std::string whoAmI() override;
 
     Vertex* clone() const override;
 

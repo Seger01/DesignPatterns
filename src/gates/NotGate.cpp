@@ -1,7 +1,7 @@
 #include "NotGate.h"
 #include <iostream>
 
-NotGate NotGate::m_cInstance(4);
+NotGate NotGate::m_cInstance("NOT");
 
 NotGate::NotGate() {
     std::cout << "NotGate default constructor" << std::endl;
@@ -11,7 +11,7 @@ NotGate::NotGate() {
     mInput = new int[mMaxInputs];
 }
 
-NotGate::NotGate(int id) : Vertex(id) {
+NotGate::NotGate(std::string id) : Vertex(id) {
     std::cout << "NotGate assignment constructor" << std::endl;
     mAmountInputs = -1;
     mMinInputs = 1;
@@ -56,4 +56,8 @@ void NotGate::setAmountInputs(unsigned aAmount) {
 
 Vertex *NotGate::clone() const {
     return new NotGate;
+}
+
+std::string NotGate::whoAmI() {
+    return std::string("I am a NotGate!");
 }
