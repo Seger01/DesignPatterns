@@ -7,7 +7,7 @@
 #include "Vertex.h"
 
 class Circuit {
-private:
+private:    
     std::map<std::string, Vertex> mMapVertexes;
 
 private:
@@ -31,4 +31,5 @@ public:
 
     // Example method
     void showMessage() { std::cout << "Circuit singleton instance method called." << state << std::endl; }
+    std::map<std::string, Vertex> &getVertexMap();
 };
