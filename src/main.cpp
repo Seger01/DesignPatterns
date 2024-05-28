@@ -1,3 +1,5 @@
+#include "Circuit.h"
+#include "GraphBuilder.h"
 #include "Input.h"
 #include "Probe.h"
 #include "Vertex.h"
@@ -30,12 +32,23 @@
 
 int main() {
     std::cout << std::endl << std::endl;
-    Vertex* pVertex = Factory::VertexFactory<std::string, Vertex>::create("NOR");
+    
+    std::multimap<std::string,std::string> myConnections;
+    std::map<std::string,std::string> myVertices;
+    myVertices.insert({"andSiem","AND"});
+    myVertices.insert({"orSeger","OR"});
+    myVertices.insert({"inputSean","INPUT"});
+    GraphBuilder builder;
+    builder.createGraph(myVertices, myConnections);
 
-    if (pVertex != nullptr) {
-        pVertex->getOutput();
-        delete pVertex;
+    std::map<std::string, Vertex*> vertexMap = Circuit::getInstance().getVertexMap();
+    std::cout << "vertexMap size: " << vertexMap.size() << std::endl;
+    std::map<std::string, Vertex*>::iterator it = vertexMap.begin();
+    while (it != vertexMap.end()) {
+        std::cout << "My name is " << it->first << ". " << it->second->whoAmI() << std::endl;
+        ++it;
     }
+
     std::cout << std::endl << std::endl;
     return 0;
 }
