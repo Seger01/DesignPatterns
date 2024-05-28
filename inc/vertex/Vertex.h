@@ -1,23 +1,49 @@
+#pragma once
 #ifndef VERTEX_H
 #define VERTEX_H
 
+#include <iostream>
+#include <vector>
+
 class Vertex {
-protected:
+private:
+    int state = -1;
+    std::vector<Vertex*> observers;
+    std::vector<Vertex*> subjects;
+
+public:
     Vertex();
     Vertex(int);
-public:
+    // Vertex(Vertex* subject, int aObserverIndex) : subject(subject) { subject->subscribe(aObserverIndex, this); }
+
     virtual ~Vertex();
 
-public:
-    virtual void setInput(unsigned, bool) = 0;
-    virtual int getOutput() = 0;
-    virtual void setAmountInputs(unsigned) = 0;
+    void subscribe(Vertex* observer);
+    void unsubscribe(Vertex* observer);
 
-public:
-    virtual Vertex *clone() const = 0;
+    void addSubject(Vertex* subject);
+    void removeSubject(Vertex* subject);
+
+    void notify();
+
+    void setState(int state);
+
+    virtual void setInput(int aIndex, int value);
+    virtual void setInput(unsigned aIndex, bool value);
+
+    virtual int getOutput();
+
+    virtual void update();
 
 protected:
-    int *mInput;
+public:
+    virtual void setAmountInputs(unsigned) { std::cout << "setAmountInputs()" << std::endl; };
+
+public:
+    virtual Vertex* clone() const { return new Vertex; }
+
+protected:
+    int* mInput;
     int mOutput;
     int mAmountInputs = -1;
 

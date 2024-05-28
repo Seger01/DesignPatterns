@@ -1,0 +1,382 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-g",
+      "-Iinc/",
+      "-Iinc/files/",
+      "-Iinc/files/strategy/",
+      "-Iinc/gates/",
+      "-Iinc/factory/",
+      "-Iinc/vertex/",
+      "-c",
+      "-o",
+      "obj/ResultToFile.o",
+      "src/files/ResultToFile.cpp"
+    ],
+    "directory": "/home/seger/projects/school/DesignPatterns",
+    "file": "/home/seger/projects/school/DesignPatterns/src/files/ResultToFile.cpp",
+    "output": "/home/seger/projects/school/DesignPatterns/obj/ResultToFile.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-g",
+      "-Iinc/",
+      "-Iinc/files/",
+      "-Iinc/files/strategy/",
+      "-Iinc/gates/",
+      "-Iinc/factory/",
+      "-Iinc/vertex/",
+      "-c",
+      "-o",
+      "obj/TextStrategy.o",
+      "src/files/strategy/TextStrategy.cpp"
+    ],
+    "directory": "/home/seger/projects/school/DesignPatterns",
+    "file": "/home/seger/projects/school/DesignPatterns/src/files/strategy/TextStrategy.cpp",
+    "output": "/home/seger/projects/school/DesignPatterns/obj/TextStrategy.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-g",
+      "-Iinc/",
+      "-Iinc/files/",
+      "-Iinc/files/strategy/",
+      "-Iinc/gates/",
+      "-Iinc/factory/",
+      "-Iinc/vertex/",
+      "-c",
+      "-o",
+      "obj/FileStrategy.o",
+      "src/files/FileStrategy.cpp"
+    ],
+    "directory": "/home/seger/projects/school/DesignPatterns",
+    "file": "/home/seger/projects/school/DesignPatterns/src/files/FileStrategy.cpp",
+    "output": "/home/seger/projects/school/DesignPatterns/obj/FileStrategy.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-g",
+      "-Iinc/",
+      "-Iinc/files/",
+      "-Iinc/files/strategy/",
+      "-Iinc/gates/",
+      "-Iinc/factory/",
+      "-Iinc/vertex/",
+      "-c",
+      "-o",
+      "obj/FileToGraph.o",
+      "src/files/FileToGraph.cpp"
+    ],
+    "directory": "/home/seger/projects/school/DesignPatterns",
+    "file": "/home/seger/projects/school/DesignPatterns/src/files/FileToGraph.cpp",
+    "output": "/home/seger/projects/school/DesignPatterns/obj/FileToGraph.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-g",
+      "-Iinc/",
+      "-Iinc/files/",
+      "-Iinc/files/strategy/",
+      "-Iinc/gates/",
+      "-Iinc/factory/",
+      "-Iinc/vertex/",
+      "-c",
+      "-o",
+      "obj/OrGate.o",
+      "src/gates/OrGate.cpp"
+    ],
+    "directory": "/home/seger/projects/school/DesignPatterns",
+    "file": "/home/seger/projects/school/DesignPatterns/src/gates/OrGate.cpp",
+    "output": "/home/seger/projects/school/DesignPatterns/obj/OrGate.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-g",
+      "-Iinc/",
+      "-Iinc/files/",
+      "-Iinc/files/strategy/",
+      "-Iinc/gates/",
+      "-Iinc/factory/",
+      "-Iinc/vertex/",
+      "-c",
+      "-o",
+      "obj/NorGate.o",
+      "src/gates/NorGate.cpp"
+    ],
+    "directory": "/home/seger/projects/school/DesignPatterns",
+    "file": "/home/seger/projects/school/DesignPatterns/src/gates/NorGate.cpp",
+    "output": "/home/seger/projects/school/DesignPatterns/obj/NorGate.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-g",
+      "-Iinc/",
+      "-Iinc/files/",
+      "-Iinc/files/strategy/",
+      "-Iinc/gates/",
+      "-Iinc/factory/",
+      "-Iinc/vertex/",
+      "-c",
+      "-o",
+      "obj/IGate.o",
+      "src/gates/IGate.cpp"
+    ],
+    "directory": "/home/seger/projects/school/DesignPatterns",
+    "file": "/home/seger/projects/school/DesignPatterns/src/gates/IGate.cpp",
+    "output": "/home/seger/projects/school/DesignPatterns/obj/IGate.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-g",
+      "-Iinc/",
+      "-Iinc/files/",
+      "-Iinc/files/strategy/",
+      "-Iinc/gates/",
+      "-Iinc/factory/",
+      "-Iinc/vertex/",
+      "-c",
+      "-o",
+      "obj/NandGate.o",
+      "src/gates/NandGate.cpp"
+    ],
+    "directory": "/home/seger/projects/school/DesignPatterns",
+    "file": "/home/seger/projects/school/DesignPatterns/src/gates/NandGate.cpp",
+    "output": "/home/seger/projects/school/DesignPatterns/obj/NandGate.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-g",
+      "-Iinc/",
+      "-Iinc/files/",
+      "-Iinc/files/strategy/",
+      "-Iinc/gates/",
+      "-Iinc/factory/",
+      "-Iinc/vertex/",
+      "-c",
+      "-o",
+      "obj/XorGate.o",
+      "src/gates/XorGate.cpp"
+    ],
+    "directory": "/home/seger/projects/school/DesignPatterns",
+    "file": "/home/seger/projects/school/DesignPatterns/src/gates/XorGate.cpp",
+    "output": "/home/seger/projects/school/DesignPatterns/obj/XorGate.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-g",
+      "-Iinc/",
+      "-Iinc/files/",
+      "-Iinc/files/strategy/",
+      "-Iinc/gates/",
+      "-Iinc/factory/",
+      "-Iinc/vertex/",
+      "-c",
+      "-o",
+      "obj/AndGate.o",
+      "src/gates/AndGate.cpp"
+    ],
+    "directory": "/home/seger/projects/school/DesignPatterns",
+    "file": "/home/seger/projects/school/DesignPatterns/src/gates/AndGate.cpp",
+    "output": "/home/seger/projects/school/DesignPatterns/obj/AndGate.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-g",
+      "-Iinc/",
+      "-Iinc/files/",
+      "-Iinc/files/strategy/",
+      "-Iinc/gates/",
+      "-Iinc/factory/",
+      "-Iinc/vertex/",
+      "-c",
+      "-o",
+      "obj/NotGate.o",
+      "src/gates/NotGate.cpp"
+    ],
+    "directory": "/home/seger/projects/school/DesignPatterns",
+    "file": "/home/seger/projects/school/DesignPatterns/src/gates/NotGate.cpp",
+    "output": "/home/seger/projects/school/DesignPatterns/obj/NotGate.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-g",
+      "-Iinc/",
+      "-Iinc/files/",
+      "-Iinc/files/strategy/",
+      "-Iinc/gates/",
+      "-Iinc/factory/",
+      "-Iinc/vertex/",
+      "-c",
+      "-o",
+      "obj/VertexFactory.o",
+      "src/factory/VertexFactory.cpp"
+    ],
+    "directory": "/home/seger/projects/school/DesignPatterns",
+    "file": "/home/seger/projects/school/DesignPatterns/src/factory/VertexFactory.cpp",
+    "output": "/home/seger/projects/school/DesignPatterns/obj/VertexFactory.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-g",
+      "-Iinc/",
+      "-Iinc/files/",
+      "-Iinc/files/strategy/",
+      "-Iinc/gates/",
+      "-Iinc/factory/",
+      "-Iinc/vertex/",
+      "-c",
+      "-o",
+      "obj/XorGateFactory.o",
+      "src/factory/XorGateFactory.cpp"
+    ],
+    "directory": "/home/seger/projects/school/DesignPatterns",
+    "file": "/home/seger/projects/school/DesignPatterns/src/factory/XorGateFactory.cpp",
+    "output": "/home/seger/projects/school/DesignPatterns/obj/XorGateFactory.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-g",
+      "-Iinc/",
+      "-Iinc/files/",
+      "-Iinc/files/strategy/",
+      "-Iinc/gates/",
+      "-Iinc/factory/",
+      "-Iinc/vertex/",
+      "-c",
+      "-o",
+      "obj/NorGateFactory.o",
+      "src/factory/NorGateFactory.cpp"
+    ],
+    "directory": "/home/seger/projects/school/DesignPatterns",
+    "file": "/home/seger/projects/school/DesignPatterns/src/factory/NorGateFactory.cpp",
+    "output": "/home/seger/projects/school/DesignPatterns/obj/NorGateFactory.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-g",
+      "-Iinc/",
+      "-Iinc/files/",
+      "-Iinc/files/strategy/",
+      "-Iinc/gates/",
+      "-Iinc/factory/",
+      "-Iinc/vertex/",
+      "-c",
+      "-o",
+      "obj/NotGateFactory.o",
+      "src/factory/NotGateFactory.cpp"
+    ],
+    "directory": "/home/seger/projects/school/DesignPatterns",
+    "file": "/home/seger/projects/school/DesignPatterns/src/factory/NotGateFactory.cpp",
+    "output": "/home/seger/projects/school/DesignPatterns/obj/NotGateFactory.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-g",
+      "-Iinc/",
+      "-Iinc/files/",
+      "-Iinc/files/strategy/",
+      "-Iinc/gates/",
+      "-Iinc/factory/",
+      "-Iinc/vertex/",
+      "-c",
+      "-o",
+      "obj/OrGateFactory.o",
+      "src/factory/OrGateFactory.cpp"
+    ],
+    "directory": "/home/seger/projects/school/DesignPatterns",
+    "file": "/home/seger/projects/school/DesignPatterns/src/factory/OrGateFactory.cpp",
+    "output": "/home/seger/projects/school/DesignPatterns/obj/OrGateFactory.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-g",
+      "-Iinc/",
+      "-Iinc/files/",
+      "-Iinc/files/strategy/",
+      "-Iinc/gates/",
+      "-Iinc/factory/",
+      "-Iinc/vertex/",
+      "-c",
+      "-o",
+      "obj/AndGateFactory.o",
+      "src/factory/AndGateFactory.cpp"
+    ],
+    "directory": "/home/seger/projects/school/DesignPatterns",
+    "file": "/home/seger/projects/school/DesignPatterns/src/factory/AndGateFactory.cpp",
+    "output": "/home/seger/projects/school/DesignPatterns/obj/AndGateFactory.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-g",
+      "-Iinc/",
+      "-Iinc/files/",
+      "-Iinc/files/strategy/",
+      "-Iinc/gates/",
+      "-Iinc/factory/",
+      "-Iinc/vertex/",
+      "-c",
+      "-o",
+      "obj/Probe.o",
+      "src/vertex/Probe.cpp"
+    ],
+    "directory": "/home/seger/projects/school/DesignPatterns",
+    "file": "/home/seger/projects/school/DesignPatterns/src/vertex/Probe.cpp",
+    "output": "/home/seger/projects/school/DesignPatterns/obj/Probe.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-g",
+      "-Iinc/",
+      "-Iinc/files/",
+      "-Iinc/files/strategy/",
+      "-Iinc/gates/",
+      "-Iinc/factory/",
+      "-Iinc/vertex/",
+      "-c",
+      "-o",
+      "obj/Input.o",
+      "src/vertex/Input.cpp"
+    ],
+    "directory": "/home/seger/projects/school/DesignPatterns",
+    "file": "/home/seger/projects/school/DesignPatterns/src/vertex/Input.cpp",
+    "output": "/home/seger/projects/school/DesignPatterns/obj/Input.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-g",
+      "-Iinc/",
+      "-Iinc/files/",
+      "-Iinc/files/strategy/",
+      "-Iinc/gates/",
+      "-Iinc/factory/",
+      "-Iinc/vertex/",
+      "-c",
+      "-o",
+      "obj/Vertex.o",
+      "src/vertex/Vertex.cpp"
+    ],
+    "directory": "/home/seger/projects/school/DesignPatterns",
+    "file": "/home/seger/projects/school/DesignPatterns/src/vertex/Vertex.cpp",
+    "output": "/home/seger/projects/school/DesignPatterns/obj/Vertex.o"
+  }
+]

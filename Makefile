@@ -1,4 +1,4 @@
-# MAKEFLAGS := --jobs=16
+MAKEFLAGS := --jobs=16
 
 TARGET := executable
 
