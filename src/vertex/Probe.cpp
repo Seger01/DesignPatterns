@@ -14,4 +14,13 @@ void Probe::setInput(int aIndex, int aValue) {
     this->notify();
     return;
 }
-bool Probe::getValue() { return mValue; }
+int Probe::getValue() { return mValue; }
+
+Probe Probe::m_cInstance(8);
+
+Probe::Probe(int id) : Vertex(id) {
+    std::cout << "Probe assignment constructor" << std::endl;
+    mValue = -1;
+}
+
+Vertex* Probe::clone() const { return new Probe; }

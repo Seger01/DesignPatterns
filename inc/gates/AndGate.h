@@ -1,9 +1,19 @@
-#include <iostream>
+#include "Vertex.h"
 
-class AndGate {
+class AndGate : public Vertex {
 private:
-    int iets = 0;
+    AndGate();
+    AndGate(int);
+public:
+    virtual ~AndGate();
 
 public:
-    void printIets() { std::cout << "printIets()" << std::endl; }
+    void setInput(unsigned, bool) override;
+    int getOutput() override;
+    void setAmountInputs(unsigned) override;
+
+    Vertex *clone() const override;
+
+private:
+    static AndGate m_cInstance;
 };

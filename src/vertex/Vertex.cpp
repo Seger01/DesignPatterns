@@ -2,8 +2,15 @@
 #include <iostream>
 
 #include "Vertex.h"
+#include "VertexFactory.h"
 
 Vertex::Vertex() {}
+
+Vertex::Vertex(int id) {
+    Factory::VertexFactory<int, Vertex>::assign(
+        id, this); // Associate the ID of the child, so the factory knows which type of child to create
+    std::cout << "Vertex assignment constructor" << std::endl;
+}
 
 Vertex::~Vertex() {
     if (subjects.size() != 0) {
@@ -43,6 +50,10 @@ void Vertex::setState(int state) {
 }
 
 void Vertex::setInput(int aIndex, int value) { std::cout << "setInput " << aIndex << ", " << value << std::endl; }
+void Vertex::setInput(unsigned aIndex, bool aValue) {
+    if (aIndex < mAmountInputs)
+        mInput[aIndex] = aValue ? 1 : 0;
+}
 
 int Vertex::getOutput() { return state; }
 
@@ -51,3 +62,21 @@ void Vertex::update() {
         this->setInput(i, subjects[i]->getOutput());
     }
 }
+
+// #include "Vertex.h"
+// #include "VertexFactory.h"
+// #include <iostream>
+//
+// Vertex::Vertex() {
+//     std::cout << "Vertex default constructor" << std::endl;
+// }
+//
+// Vertex::Vertex(int id) {
+//     Factory::VertexFactory<int,Vertex>::assign(id,this); // Associate the ID of the child, so the factory knows which
+//     type of child to create std::cout << "Vertex assignment constructor" << std::endl;
+// }
+//
+// Vertex::~Vertex() {
+//     std::cout << "Vertex destructor" << std::endl;
+// }
+// >>>>>>> development

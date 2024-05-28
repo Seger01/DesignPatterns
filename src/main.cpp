@@ -1,9 +1,9 @@
-#include <iostream>
-#include <map>
-
 #include "Input.h"
 #include "Probe.h"
 #include "Vertex.h"
+#include "VertexFactory.h"
+#include <iostream>
+#include <map>
 
 void vertexObserverTest() {
     std::cout << "Start!" << std::endl;
@@ -28,4 +28,12 @@ void vertexObserverTest() {
     subject.setState(2);
 }
 
-int main() { return 0; }
+int main() {
+    Vertex* pVertex = Factory::VertexFactory<int, Vertex>::create(1);
+
+    if (pVertex != nullptr) {
+        pVertex->getOutput();
+        delete pVertex;
+    }
+    return 0;
+}
