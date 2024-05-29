@@ -24,7 +24,7 @@ public:  // Functions
     ResultToFile();
     ~ResultToFile();
 
-    void writeOutput(const std::map<std::string, Vertex> &aData);
+    void writeOutput(std::map<std::string, Vertex> &aData);
 };
 
 #endif // RESULT_TO_FILE_H

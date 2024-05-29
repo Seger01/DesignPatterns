@@ -8,6 +8,7 @@
 #include <map>
 #include "FileToGraph.h"
 #include "TextStrategy.h"
+#include "ResultToFile.h"
 
 void GraphBuilderTest() {
     // Map with vertices
@@ -64,14 +65,18 @@ void GraphBuilderTest() {
 void fileTest(){
     std::map<std::string,std::string> vertexMap;
     std::multimap<std::string,std::string> edgeMap;
+    std::map<std::string, Vertex> circuitMap;
     FileToGraph fileReader("./inputfile.txt");
     TextStrategy strategy;
+    ResultToFile fileWriter;
+
     fileReader.setStrategy(&strategy);
     fileReader.getGraph(vertexMap,edgeMap);
 
     for(std::multimap<std::string,std::string>::iterator iterator = edgeMap.begin(); iterator != edgeMap.end(); iterator++){
         std::cout << iterator->first << ", " << iterator->second << std::endl;
     }
+    fileWriter.writeOutput(circuitMap);
 
 }
 
