@@ -22,6 +22,8 @@ public:                                        // Inherited methods
 
     Vertex* clone() const override;
 
+    int acceptOutputVisitor(IOutputVisitor aIOutputVisitor) override;
+
 public: // Other methods
     void setValue(bool);
 

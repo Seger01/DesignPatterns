@@ -16,6 +16,8 @@ public:
 
     Vertex* clone() const override;
 
+    int acceptOutputVisitor(IOutputVisitor aIOutputVisitor) override {return -1;};
+
 private:
     static OrGate m_cInstance;
 };

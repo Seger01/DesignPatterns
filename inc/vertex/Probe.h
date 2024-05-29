@@ -1,4 +1,3 @@
-#pragma once
 #ifndef PROBE_H
 #define PROBE_H
 
@@ -19,6 +18,8 @@ public:
     virtual void setInput(int aIndex, int aValue) override;
     int getValue();
     std::string whoAmI() override;
+
+    int acceptOutputVisitor(IOutputVisitor aIOutputVisitor) override;
 
     virtual Vertex* clone() const override;
 };

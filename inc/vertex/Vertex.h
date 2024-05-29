@@ -1,10 +1,9 @@
-#pragma once
 #ifndef VERTEX_H
 #define VERTEX_H
 
 #include <iostream>
 #include <vector>
-#include "IVertexVisitor.h"
+#include "IOutputVisitor.h"
 class Vertex {
 private:
     int state = -1;
@@ -36,7 +35,7 @@ public:
 
     virtual void reset() {}
 
-    virtual void acceptVisitor(IVertexVisitor aIVertexVisitor);
+    virtual int acceptOutputVisitor(IOutputVisitor aIOutputVisitor);
 
 protected:
 public:

@@ -1,24 +1,16 @@
 #ifndef OUTPUTVISITOR_H
 #define OUTPUTVISITOR_H
 
-#include "IVertexVisitor.h"
+#include "IOutputVisitor.h"
 #include <fstream>
 
-class OutputVisitor : public IVertexVisitor {
-private:
-    /* data */
+class OutputVisitor : public IOutputVisitor {
 public:
-    OutputVisitor(/* args */);
+    OutputVisitor();
     ~OutputVisitor();
 
 public:
-    void visitAndGate(AndGate aAndGate, std::fstream aFile) override;
-    void visitOrGate(OrGate aOrGate, std::fstream aFile) override;
-    void visitNandGate(NandGate aNandGate, std::fstream aFile) override;
-    void visitNorGate(NorGate aNorGate, std::fstream aFile) override;
-    void visitNotGate(NotGate aNotGate, std::fstream aFile) override;
-    void visitXorGate(XorGate aXorGat, std::fstream aFile) override;
-    void visitInput(Input aInput, std::fstream aFile) override;
-    void visitProbe(Probe aProbe, std::fstream aFile) override;
+    int visitInput(Input *aInput) override;
+    int visitProbe(Probe *aProbe) override;
 };
 #endif // OUTPUTVISITOR_H
