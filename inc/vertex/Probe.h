@@ -1,17 +1,26 @@
+#pragma once
+#ifndef PROBE_H
+#define PROBE_H
+
 #include "Vertex.h"
-class Probe: public Vertex
-{
+
+class Probe : public Vertex {
 private:
-    /* data */
+    int mValue = -1;
+    static Probe m_cInstance;
+
+private:
+    Probe();
+    Probe(std::string);
 public:
-    Probe(/* args */);
     ~Probe();
+
+    using Vertex::Vertex;
+    virtual void setInput(int aIndex, int aValue) override;
+    int getValue();
+    std::string whoAmI() override;
+
+    virtual Vertex* clone() const override;
 };
 
-Probe::Probe(/* args */)
-{
-}
-
-Probe::~Probe()
-{
-}
+#endif // PROBE_H

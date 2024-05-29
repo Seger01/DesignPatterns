@@ -1,11 +1,20 @@
-#include "IGate.h"
+#include "Vertex.h"
 
-class NorGate : public IGate {
-public:
+class NorGate : public Vertex {
+private:
     NorGate();
+    NorGate(std::string);
+public:
     virtual ~NorGate();
 
-    void setInput(int, bool) override;
+public:
+    void setInput(unsigned, bool) override;
     int getOutput() override;
-    void setAmountInputs(int) override;
+    void setAmountInputs(unsigned) override;
+std::string whoAmI() override;
+
+    Vertex *clone() const override;
+
+private:
+    static NorGate m_cInstance;
 };

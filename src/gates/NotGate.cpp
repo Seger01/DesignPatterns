@@ -1,7 +1,18 @@
 #include "NotGate.h"
 #include <iostream>
 
+NotGate NotGate::m_cInstance("NOT");
+
 NotGate::NotGate() {
+    std::cout << "NotGate default constructor" << std::endl;
+    mAmountInputs = -1;
+    mMinInputs = 1;
+    mMaxInputs = 1;
+    mInput = new int[mMaxInputs];
+}
+
+NotGate::NotGate(std::string id) : Vertex(id) {
+    std::cout << "NotGate assignment constructor" << std::endl;
     mAmountInputs = -1;
     mMinInputs = 1;
     mMaxInputs = 1;
@@ -9,12 +20,13 @@ NotGate::NotGate() {
 }
 
 NotGate::~NotGate() {
+    std::cout << "NotGate desctructor" << std::endl;
     if (mInput != nullptr) {
-        delete mInput;
+        delete[] mInput;
     }
 }
 
-void NotGate::setInput(int aIndex, bool aValue) {
+void NotGate::setInput(unsigned aIndex, bool aValue) {
     if (aIndex < mAmountInputs)
         mInput[aIndex] = aValue ? 1 : 0;
 }
@@ -34,10 +46,18 @@ int NotGate::getOutput() {
     return 0; // Input was not zero, so return 1
 }
 
-void NotGate::setAmountInputs(int aAmount) {
+void NotGate::setAmountInputs(unsigned aAmount) {
     if (aAmount < mMinInputs || aAmount > mMaxInputs){
         std::cout << "Error: invalid amount of inputs (" << aAmount << ") for NotGate" << std::endl;
         return;
     }
     mAmountInputs = aAmount;
+}
+
+Vertex *NotGate::clone() const {
+    return new NotGate;
+}
+
+std::string NotGate::whoAmI() {
+    return std::string("I am a NotGate!");
 }

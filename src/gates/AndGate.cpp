@@ -1,7 +1,18 @@
 #include "AndGate.h"
 #include <iostream>
 
+AndGate AndGate::m_cInstance("AND");
+
 AndGate::AndGate() {
+    std::cout << "AndGate default constructor" << std::endl;
+    mAmountInputs = -1;
+    mMinInputs = 2;
+    mMaxInputs = 3;
+    mInput = new int[mMaxInputs];
+}
+
+AndGate::AndGate(std::string id) : Vertex(id) {
+    std::cout << "AndGate assignment constructor" << std::endl;
     mAmountInputs = -1;
     mMinInputs = 2;
     mMaxInputs = 3;
@@ -9,12 +20,13 @@ AndGate::AndGate() {
 }
 
 AndGate::~AndGate() {
+    std::cout << "AndGate destructor" << std::endl;
     if (mInput != nullptr) {
-        delete mInput;
+        delete[] mInput;
     }
 }
 
-void AndGate::setInput(int aIndex, bool aValue) {
+void AndGate::setInput(unsigned aIndex, bool aValue) {
     if (aIndex < mAmountInputs)
         mInput[aIndex] = aValue ? 1 : 0;
 }
@@ -36,10 +48,18 @@ int AndGate::getOutput() {
     return 1; // Not a single input was false, so return true
 }
 
-void AndGate::setAmountInputs(int aAmount) {
+void AndGate::setAmountInputs(unsigned aAmount) {
     if (aAmount < mMinInputs || aAmount > mMaxInputs){
         std::cout << "Error: invalid amount of inputs (" << aAmount << ") for andgate" << std::endl;
         return;
     }
     mAmountInputs = aAmount;
+}
+
+Vertex *AndGate::clone() const {
+    return new AndGate;
+}
+
+std::string AndGate::whoAmI() {
+    return std::string("I am an AndGate!");
 }

@@ -79,21 +79,10 @@ class NotGate{
 
 }
 
-class IGate <interface>{
-    - *mInput : int
-    - mOutput : int
-    - mAmountInputs : int
-
-    - mMinInputs : const unsigned
-    - mMaxInputs : const unsigned    
-
-    + setInput(int aIndex, bool aValue) virtual override : void
+class Vertex <Observer> {
+    + setInput(unsigned aIndex, bool aValue) virtual : void
     + getOutput() virtual : int
     + setAmountInputs(int aInputs) virtual : void
-}
-
-class Vertex <Observer> {
-    + setInput(int aIndex, bool aValue) virtual : void
 
     + addSubscriber(Vertex *) : void
     + removeSubscriber(Vertex *) : void
@@ -102,55 +91,31 @@ class Vertex <Observer> {
     + update() : void
 
     - subscribers : Vertex[]
+    - *mInput : int
+    - mOutput : int
+    - mAmountInputs : int
 
+    - mMinInputs : const unsigned
+    - mMaxInputs : const unsigned
 }
 
 class Input {
     - mValue : int
 
     + Input(bool aStartValue) : void
-    + SetValue(bool) : void
     + setInput(int aIndex, bool aValue) override : void
-
+    + getInput() : int
 }
 
 class Probe {
     - mValue : int
 
-    + getValue() : bool
     + setInput(int aIndex, bool aValue) override : void
+    + getInput() : int
 }
 
 class VertexFactory <Factory method> {
     + createVertex()
-}
-
-class OrGateFactory{
-
-}
-
-class AndGateFactory{
-    
-}
-
-class NorGateFactory{
-    
-}
-
-class NandGateFactory{
-    
-}
-
-class XorGateFactory{
-    
-}
-
-class NotGateFactory{
-    
-}
-
-class InputFactory{
-    
 }
 
 class ProbeFactory{
@@ -158,33 +123,19 @@ class ProbeFactory{
 }
 
 class GraphBuilder {
-    + createGraph(map<String, String>, map<String, String>)
-    'Only create the vertices (make the vertices subscribe to its inputs)
-    + createVertices(map<String, String>) : void
-    - fillVertex()
+    ' The createGraph function takes a multimap of two strings, where the first string is the name of a vertex and the seconds string is the type, so for example <"gate1","OR">. It uses these to fill the map in Circuit with <"nameOfVertex",Vertex>
+    ' It also takes a multimap of strings, where the first string is the output of one vertex and the second string is the input of another vertex which should be connected. It is a multimap because the IDs are not unique.
+    + createGraph(map<String, String>, multimap<String, String>) : void
+    ' The populateCircuit function fills the map in Circuit, by inserting the names of the vertices and then creating the Vertex using the factory and also inserting that into the Circuit map
+    - populateCircuit(map<String, String>) : void
+    - connectVertices(multimap<String, String>) : void
 }
-
-VertexFactory <|-- OrGateFactory
-VertexFactory <|-- AndGateFactory
-VertexFactory <|-- NorGateFactory
-VertexFactory <|-- NandGateFactory
-VertexFactory <|-- XorGateFactory
-VertexFactory <|-- NotGateFactory
-VertexFactory <|-- InputFactory
-VertexFactory <|-- ProbeFactory
-OrGateFactory --> OrGate
-AndGateFactory --> AndGate
-NorGateFactory --> NorGate
-NandGateFactory --> NandGate
-XorGateFactory --> XorGate
-NotGateFactory --> NotGate
-InputFactory --> Input
-ProbeFactory --> Probe
 
 VertexFactory --> GraphBuilder
 Vertex --> GraphBuilder
 Circuit --> GraphBuilder
 Circuit --* Vertex
+VertexFactory --> Vertex
 
 FileToGraph *-- FileStrategy
 TextStrategy --|> FileStrategy
@@ -194,14 +145,13 @@ CircuitSimulator <-- ResultToFile
 CircuitSimulator <-- Circuit
 CircuitSimulator <-- CircuitInitializer
 
-OrGate --|> IGate
-NorGate --|> IGate
-AndGate --|> IGate
-NandGate --|> IGate
-XorGate --|> IGate
-NotGate --|> IGate
+OrGate --|> Vertex
+NorGate --|> Vertex
+AndGate --|> Vertex
+NandGate --|> Vertex
+XorGate --|> Vertex
+NotGate --|> Vertex
 
-IGate --|> Vertex
 Input --|> Vertex
 Probe --|> Vertex
 
