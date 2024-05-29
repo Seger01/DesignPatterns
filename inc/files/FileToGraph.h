@@ -25,7 +25,7 @@ public:// constructor
     int getNumOfConfigs();
 
     void setStrategy(FileStrategy *aStrategy);
-    void getGraph(std::map<std::string, std::string>& aVertexMap, std::map<std::string, std::string>& aEdgeMap);
+    void getGraph(std::map<std::string, std::string>& aVertexMap, std::multimap<std::string, std::string>& aEdgeMap);
 };
 
 #endif // FILETOGRAPH_H

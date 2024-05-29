@@ -1,5 +1,6 @@
 #include "CircuitInitializer.h"
 
+#include "Circuit.h"
 #include "Input.h"
 #include "Vertex.h"
 
@@ -9,16 +10,16 @@ CircuitInitializer::CircuitInitializer(/* args */) { this->mIteration = 0; }
 
 CircuitInitializer::~CircuitInitializer() {}
 
-void CircuitInitializer::fillInputs(std::map<std::string, Vertex*>& aCircuit) {
-    for (const auto& pair : aCircuit) {
-        //Use dynamic_cast to check if the Vertex is an instance of Input
-        // Input* inputPtr = dynamic_cast<Input*>(pair.second);
-        // if (inputPtr) {
-        //     // If the cast is correct, it is an Input
-        //     if (inputPtr->getInput() == -1) {
-        //         this->mInputs.insert(inputPtr);
-        //     }
-        // }
+void CircuitInitializer::fillInputs() {
+    std::map<std::string, Vertex*> data = Circuit::getInstance()->getVertexMap();
+    for (std::map<std::string, Vertex*>::iterator iterator = data.begin(); iterator != data.end(); iterator++) {
+        // Use dynamic_cast to check if the Vertex is an instance of Input
+        if (dynamic_cast<Input*>(iterator->second)) {
+            // If the cast is correct, it is an Input
+            if (iterator->second->getOutput() == -1) {
+                this->mInputs.push_back(iterator->second);
+            }
+        }
     }
 }
 
@@ -32,20 +33,20 @@ void CircuitInitializer::setInputs() {
     mIteration++;
 }
 
-void CircuitInitializer::initCircuit(std::map<std::string, Vertex*>& aCircuit) {
+void CircuitInitializer::initCircuit() {
 
     if (this->mIteration == 0) {
-        CircuitInitializer::fillInputs(aCircuit);
+        CircuitInitializer::fillInputs();
     }
 
     setInputs();
 
-    for (const auto& pair : aCircuit) {
+    std::map<std::string, Vertex*> data = Circuit::getInstance()->getVertexMap();
+    for (std::map<std::string, Vertex*>::iterator iterator = data.begin(); iterator != data.end(); iterator++) {
         // Use dynamic_cast to check if the Vertex is an instance of Input
-        // Input* inputPtr = dynamic_cast<Input*>(pair.second);
-        // if (!inputPtr) {
-        //     // If the cast fails, it is not an Input, so call reset
-        //     pair.second->reset();
-        // }
+        if (!dynamic_cast<Input*>(iterator->second)) {
+            // If the cast is correct, it is not an Input
+                //iterator->second->reset();
+        }
     }
 }

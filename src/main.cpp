@@ -6,6 +6,9 @@
 #include "VertexFactory.h"
 #include <iostream>
 #include <map>
+#include "FileToGraph.h"
+#include "TextStrategy.h"
+#include "ResultToFile.h"
 
 void GraphBuilderTest() {
     // Map with vertices
@@ -26,7 +29,7 @@ void GraphBuilderTest() {
     GraphBuilder builder;
     builder.createGraph(myVertices, myConnections);
 
-    std::map<std::string, Vertex*> vertexMap = Circuit::getInstance().getVertexMap();
+    std::map<std::string, Vertex*> vertexMap = Circuit::getInstance()->getVertexMap();
     std::map<std::string, Vertex*>::iterator it = vertexMap.begin();
     while (it != vertexMap.end()) {
         std::cout << "My name is " << it->first << ". " << it->second->whoAmI() << std::endl;
@@ -59,10 +62,32 @@ void GraphBuilderTest() {
 //     subject.setState(2);
 // }
 
+void fileTest(){
+    std::map<std::string,std::string> vertexMap;
+    std::multimap<std::string,std::string> edgeMap;
+    FileToGraph fileReader("./inputfile.txt");
+    TextStrategy strategy;
+    ResultToFile fileWriter;
+
+    fileReader.setStrategy(&strategy);
+    fileReader.getGraph(vertexMap,edgeMap);
+
+    for(std::multimap<std::string,std::string>::iterator iterator = edgeMap.begin(); iterator != edgeMap.end(); iterator++){
+        std::cout << iterator->first << ", " << iterator->second << std::endl;
+    }
+    fileWriter.writeOutput();
+
+}
+
 int main() {
     std::cout << std::endl << std::endl;
 
-    GraphBuilderTest();
+    //GraphBuilderTest();
+    fileTest();
+
+    if(Circuit::getInstance() != nullptr){
+        delete Circuit::getInstance();
+    }
 
     std::cout << std::endl << std::endl;
     return 0;
