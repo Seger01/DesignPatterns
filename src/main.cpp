@@ -29,7 +29,7 @@ void GraphBuilderTest() {
     GraphBuilder builder;
     builder.createGraph(myVertices, myConnections);
 
-    std::map<std::string, Vertex*> vertexMap = Circuit::getInstance().getVertexMap();
+    std::map<std::string, Vertex*> vertexMap = Circuit::getInstance()->getVertexMap();
     std::map<std::string, Vertex*>::iterator it = vertexMap.begin();
     while (it != vertexMap.end()) {
         std::cout << "My name is " << it->first << ". " << it->second->whoAmI() << std::endl;
@@ -65,7 +65,6 @@ void GraphBuilderTest() {
 void fileTest(){
     std::map<std::string,std::string> vertexMap;
     std::multimap<std::string,std::string> edgeMap;
-    std::map<std::string, Vertex> circuitMap;
     FileToGraph fileReader("./inputfile.txt");
     TextStrategy strategy;
     ResultToFile fileWriter;
@@ -76,7 +75,7 @@ void fileTest(){
     for(std::multimap<std::string,std::string>::iterator iterator = edgeMap.begin(); iterator != edgeMap.end(); iterator++){
         std::cout << iterator->first << ", " << iterator->second << std::endl;
     }
-    fileWriter.writeOutput(circuitMap);
+    fileWriter.writeOutput();
 
 }
 
@@ -85,6 +84,10 @@ int main() {
 
     //GraphBuilderTest();
     fileTest();
+
+    if(Circuit::getInstance() != nullptr){
+        delete Circuit::getInstance();
+    }
 
     std::cout << std::endl << std::endl;
     return 0;

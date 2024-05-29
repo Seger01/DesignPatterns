@@ -4,32 +4,26 @@
 #include <map>
 #include <string>
 
-#include "Vertex.h"
+class Vertex;
 
 class Circuit {
-public:    
-    std::map<std::string, Vertex*> mMapVertexes;
-
 private:
     // Private constructor to prevent instantiation
     Circuit() { std::cout << "Circuit singleton instance created." << std::endl; }
 
-    // Private destructor
-    ~Circuit() { std::cout << "Circuit singleton instance destroyed." << std::endl; }
+    static Circuit* mCircuit;
+
+    std::map<std::string, Vertex*> mMapVertexes;
 
 public:
-    int state = 0;
+    // Public destructor
+    ~Circuit() { std::cout << "Circuit singleton instance destroyed." << std::endl; }
     // Delete copy constructor and assignment operator to prevent copying
     Circuit(const Circuit&) = delete;
     Circuit& operator=(const Circuit&) = delete;
 
     // Static method to get the single instance of the class
-    static Circuit& getInstance() {
-        static Circuit instance;
-        return instance;
-    }
+    static Circuit* getInstance();
 
-    // Example method
-    void showMessage() { std::cout << "Circuit singleton instance method called." << state << std::endl; }
-    std::map<std::string, Vertex*> &getVertexMap();
+    std::map<std::string, Vertex*> getVertexMap();
 };

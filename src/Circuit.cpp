@@ -1,5 +1,14 @@
 #include "Circuit.h"
 
-std::map<std::string, Vertex*> &Circuit::getVertexMap() {
-    return mMapVertexes;
+Circuit* Circuit::mCircuit = nullptr;
+;
+
+Circuit* Circuit::getInstance() {
+    if (mCircuit == nullptr) {
+        mCircuit = new Circuit;
+    }
+
+    return mCircuit;
 }
+
+std::map<std::string, Vertex*> Circuit::getVertexMap() { return mMapVertexes; }

@@ -2,10 +2,6 @@
 #define RESULT_TO_FILE_H
 
 #include <fstream>
-#include <map>
-#include <string>
-#include "Vertex.h"
-//class Vertex;
 
 #define OUTPUTDIR "output"
 
@@ -24,7 +20,7 @@ public:  // Functions
     ResultToFile();
     ~ResultToFile();
 
-    void writeOutput(std::map<std::string, Vertex> &aData);
+    void writeOutput();
 };
 
 #endif // RESULT_TO_FILE_H

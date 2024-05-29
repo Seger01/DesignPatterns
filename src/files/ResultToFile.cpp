@@ -3,6 +3,10 @@
 #include "Input.h"
 #include "Probe.h"
 #include "Vertex.h"
+#include "Circuit.h"
+
+#include <map>
+#include <string>
 
 #include <ctime>
 #include <filesystem>
@@ -57,7 +61,8 @@ void ResultToFile::closeFile() {
     }
 }
 
-void ResultToFile::writeOutput(std::map<std::string, Vertex>& aData) {
+void ResultToFile::writeOutput() {
+    std::map<std::string, Vertex*> data = Circuit::getInstance()->getVertexMap();
     openFile(); // Ensure the file is open before writing
 
     if (!mOutputFile.is_open()) {
@@ -71,11 +76,11 @@ void ResultToFile::writeOutput(std::map<std::string, Vertex>& aData) {
 
     // Input values
     mOutputFile << "Input:" << "\n";
-    for (std::map<std::string, Vertex>::iterator iterator = aData.begin(); iterator != aData.end(); iterator++) {
+    for (std::map<std::string, Vertex*>::iterator iterator = data.begin(); iterator != data.end(); iterator++) {
         // Use dynamic_cast to check if the Vertex is an instance of Input
-        if (dynamic_cast<Input*>(&(iterator->second))) {
+        if (dynamic_cast<Input*>(iterator->second)) {
             mOutputFile << iterator->first << ": \t";
-            mOutputFile << iterator->second.getOutput() << "\n";
+            mOutputFile << iterator->second->getOutput() << "\n";
         }
     }
 
@@ -83,11 +88,11 @@ void ResultToFile::writeOutput(std::map<std::string, Vertex>& aData) {
     mOutputFile << "\n"
                 << "Output:" << "\n";
 
-    for (std::map<std::string, Vertex>::iterator iterator = aData.begin(); iterator != aData.end(); iterator++) {
+    for (std::map<std::string, Vertex*>::iterator iterator = data.begin(); iterator != data.end(); iterator++) {
         // Use dynamic_cast to check if the Vertex is an instance of Input
-        if (dynamic_cast<Probe*>(&(iterator->second))) {
+        if (dynamic_cast<Probe*>(iterator->second)) {
             mOutputFile << iterator->first << ": \t";
-            mOutputFile << iterator->second.getOutput() << "\n";
+            mOutputFile << iterator->second->getOutput() << "\n";
         }
     }
 
