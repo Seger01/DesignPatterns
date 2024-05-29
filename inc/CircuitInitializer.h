@@ -1,26 +1,23 @@
 #ifndef CIRCUITINITIALIZER_H
 #define CIRCUITINITIALIZER_H
 
-#include <map>
-#include <string>
 #include <vector>
 
 class Vertex;
-class Input;
 class CircuitInitializer {
 private: // members
     int mIteration;
-    std::vector<Input*> mInputs;
+    std::vector<Vertex *> mInputs;
 
 public: // constructor
     CircuitInitializer(/* args */);
     ~CircuitInitializer();
 
 private: // private funtions
-    void fillInputs(std::map<std::string, Vertex*>& aCircuit);
+    void fillInputs();
     void setInputs();
 public:  // public functions
-    void initCircuit(std::map<std::string, Vertex*>& aCircuit);
+    void initCircuit();
 };
 
 #endif // CIRCUITINITIALIZER_H
