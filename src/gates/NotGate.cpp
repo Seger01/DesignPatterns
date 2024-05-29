@@ -26,7 +26,7 @@ NotGate::~NotGate() {
     }
 }
 
-void NotGate::setInput(unsigned aIndex, bool aValue) {
+void NotGate::setInput(int aIndex, int aValue) {
     if (aIndex < mAmountInputs)
         mInput[aIndex] = aValue ? 1 : 0;
 }
@@ -47,17 +47,13 @@ int NotGate::getOutput() {
 }
 
 void NotGate::setAmountInputs(unsigned aAmount) {
-    if (aAmount < mMinInputs || aAmount > mMaxInputs){
+    if (aAmount < mMinInputs || aAmount > mMaxInputs) {
         std::cout << "Error: invalid amount of inputs (" << aAmount << ") for NotGate" << std::endl;
         return;
     }
     mAmountInputs = aAmount;
 }
 
-Vertex *NotGate::clone() const {
-    return new NotGate;
-}
+Vertex* NotGate::clone() const { return new NotGate; }
 
-std::string NotGate::whoAmI() {
-    return std::string("I am a NotGate!");
-}
+std::string NotGate::whoAmI() { return std::string("I am a NotGate!"); }

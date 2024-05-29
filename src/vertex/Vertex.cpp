@@ -7,7 +7,8 @@
 Vertex::Vertex() {}
 
 Vertex::Vertex(std::string id) {
-    Factory::VertexFactory<std::string, Vertex>::assign(id, this); // Associate the ID of the child, so the factory knows which type of child to create
+    Factory::VertexFactory<std::string, Vertex>::assign(
+        id, this); // Associate the ID of the child, so the factory knows which type of child to create
     std::cout << "Vertex assignment constructor" << std::endl;
 }
 
@@ -48,11 +49,19 @@ void Vertex::setState(int state) {
     notify();
 }
 
-void Vertex::setInput(int aIndex, int value) { std::cout << "setInput " << aIndex << ", " << value << std::endl; }
-void Vertex::setInput(unsigned aIndex, bool aValue) {
-    if (aIndex < mAmountInputs)
-        mInput[aIndex] = aValue ? 1 : 0;
+void Vertex::setInput(int aIndex, int value) {
+    // std::cout << "setInput " << aIndex << ", " << value << std::endl;
+    if (aIndex < mAmountInputs) {
+        mInput[aIndex] = value;
+    }
+    notify();
+    return;
 }
+// void Vertex::setInput(unsigned aIndex, bool aValue) {
+//     if (aIndex < mAmountInputs)
+//         mInput[aIndex] = aValue ? 1 : 0;
+//     notify();
+// }
 
 int Vertex::getOutput() { return state; }
 
@@ -62,9 +71,7 @@ void Vertex::update() {
     }
 }
 
-std::string Vertex::whoAmI() {
-    return std::string("I am a Vertex!");
-}
+std::string Vertex::whoAmI() { return std::string("I am a Vertex!"); }
 
 // #include "Vertex.h"
 // #include "VertexFactory.h"

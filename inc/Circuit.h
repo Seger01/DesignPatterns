@@ -1,10 +1,9 @@
 #pragma once
 
+#include "Vertex.h"
 #include <iostream>
 #include <map>
 #include <string>
-
-class Vertex;
 
 class Circuit {
 private:
@@ -22,8 +21,10 @@ public:
     Circuit(const Circuit&) = delete;
     Circuit& operator=(const Circuit&) = delete;
 
+    void runSim();
+
     // Static method to get the single instance of the class
-    static Circuit* getInstance();
+    static Circuit& getInstance();
 
     std::map<std::string, Vertex*> getVertexMap();
 };

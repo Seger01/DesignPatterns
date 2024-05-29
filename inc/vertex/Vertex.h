@@ -28,11 +28,13 @@ public:
     void setState(int state);
 
     virtual void setInput(int aIndex, int value);
-    virtual void setInput(unsigned aIndex, bool value);
+    // virtual void setInput(unsigned aIndex, bool value);
 
     virtual int getOutput();
 
     virtual void update();
+
+    virtual void reset() {}
 
 protected:
 public:
