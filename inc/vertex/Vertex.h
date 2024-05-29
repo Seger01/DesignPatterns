@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include <vector>
-
+#include "IVertexVisitor.h"
 class Vertex {
 private:
     int state = -1;
@@ -35,6 +35,8 @@ public:
     virtual void update();
 
     virtual void reset() {}
+
+    virtual void acceptVisitor(IVertexVisitor aIVertexVisitor);
 
 protected:
 public:
