@@ -26,7 +26,7 @@ NandGate::~NandGate() {
     }
 }
 
-void NandGate::setInput(unsigned aIndex, bool aValue) {
+void NandGate::setInput(int aIndex, int aValue) {
     if (aIndex < mAmountInputs)
         mInput[aIndex] = aValue ? 1 : 0;
 }
@@ -49,17 +49,13 @@ int NandGate::getOutput() {
 }
 
 void NandGate::setAmountInputs(unsigned aAmount) {
-    if (aAmount < mMinInputs || aAmount > mMaxInputs){
+    if (aAmount < mMinInputs || aAmount > mMaxInputs) {
         std::cout << "Error: invalid amount of inputs (" << aAmount << ") for NandGate" << std::endl;
         return;
     }
     mAmountInputs = aAmount;
 }
 
-Vertex *NandGate::clone() const {
-    return new NandGate;
-}
+Vertex* NandGate::clone() const { return new NandGate; }
 
-std::string NandGate::whoAmI() {
-    return std::string("I am a NandGate!");
-}
+std::string NandGate::whoAmI() { return std::string("I am a NandGate!"); }

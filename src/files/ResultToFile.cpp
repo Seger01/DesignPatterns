@@ -1,9 +1,9 @@
 #include "ResultToFile.h"
 
+#include "Circuit.h"
 #include "Input.h"
 #include "Probe.h"
 #include "Vertex.h"
-#include "Circuit.h"
 
 #include <map>
 #include <string>
@@ -62,7 +62,7 @@ void ResultToFile::closeFile() {
 }
 
 void ResultToFile::writeOutput() {
-    std::map<std::string, Vertex*> data = Circuit::getInstance()->getVertexMap();
+    std::map<std::string, Vertex*> data = Circuit::getInstance().getVertexMap();
     openFile(); // Ensure the file is open before writing
 
     if (!mOutputFile.is_open()) {
@@ -71,11 +71,13 @@ void ResultToFile::writeOutput() {
     }
 
     static int simCount = 1;
-    mOutputFile << "-------------------------------------------------" << "\n";
+    mOutputFile << "-------------------------------------------------"
+                << "\n";
     mOutputFile << "Sim " << simCount++ << "\n";
 
     // Input values
-    mOutputFile << "Input:" << "\n";
+    mOutputFile << "Input:"
+                << "\n";
     for (std::map<std::string, Vertex*>::iterator iterator = data.begin(); iterator != data.end(); iterator++) {
         // Use dynamic_cast to check if the Vertex is an instance of Input
         if (dynamic_cast<Input*>(iterator->second)) {
@@ -86,7 +88,8 @@ void ResultToFile::writeOutput() {
 
     // Output values
     mOutputFile << "\n"
-                << "Output:" << "\n";
+                << "Output:"
+                << "\n";
 
     for (std::map<std::string, Vertex*>::iterator iterator = data.begin(); iterator != data.end(); iterator++) {
         // Use dynamic_cast to check if the Vertex is an instance of Input
@@ -96,5 +99,6 @@ void ResultToFile::writeOutput() {
         }
     }
 
-    mOutputFile << "-------------------------------------------------" << "\n\n";
+    mOutputFile << "-------------------------------------------------"
+                << "\n\n";
 }
