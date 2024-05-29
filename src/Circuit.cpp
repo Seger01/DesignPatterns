@@ -10,7 +10,7 @@ Circuit& Circuit::getInstance() {
     return *mCircuit;
 }
 
-std::map<std::string, Vertex*> Circuit::getVertexMap() { return mMapVertexes; }
+std::map<std::string, Vertex*> &Circuit::getVertexMap() { return mMapVertexes; }
 
 void Circuit::runSim() {
 

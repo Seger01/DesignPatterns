@@ -6,14 +6,14 @@
 #include <map>
 #include <string>
 
-void GraphBuilder::createGraph(std::map<std::string, std::string> vertexNameType,
-                               std::multimap<std::string, std::string> vertexConnections) {
+void GraphBuilder::createGraph(std::map<std::string, std::string> &vertexNameType,
+                               std::multimap<std::string, std::string> &vertexConnections) {
     populateCircuit(vertexNameType);
     connectVertices(vertexConnections);
 }
 
-void GraphBuilder::populateCircuit(std::map<std::string, std::string> vertexNameType) {
-    std::map<std::string, Vertex*> vertexMap =
+void GraphBuilder::populateCircuit(std::map<std::string, std::string> &vertexNameType) {
+    std::map<std::string, Vertex*> &vertexMap =
         Circuit::getInstance()
             .getVertexMap(); // Retrieve the map (containing vertex name and vertex pointer) from the Circuit singleton
     vertexMap.clear();       // Remove all elements from the map
@@ -27,8 +27,8 @@ void GraphBuilder::populateCircuit(std::map<std::string, std::string> vertexName
     }
 }
 
-void GraphBuilder::connectVertices(std::multimap<std::string, std::string> vertexConnections) {
-    std::map<std::string, Vertex*> vertexMap =
+void GraphBuilder::connectVertices(std::multimap<std::string, std::string> &vertexConnections) {
+    std::map<std::string, Vertex*> &vertexMap =
         Circuit::getInstance()
             .getVertexMap(); // Retrieve the map (containing vertex name and vertex pointer) from the Circuit singleton
     std::multimap<std::string, std::string>::iterator iter =

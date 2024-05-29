@@ -26,5 +26,5 @@ public:
     // Static method to get the single instance of the class
     static Circuit& getInstance();
 
-    std::map<std::string, Vertex*> getVertexMap();
+    std::map<std::string, Vertex*> &getVertexMap();
 };
