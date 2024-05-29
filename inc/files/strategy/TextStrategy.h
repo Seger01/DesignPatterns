@@ -21,7 +21,7 @@ public:
 
     void openFile(const std::string& aFilename) override;
     void closeFile() override;
-    void readFile(std::map<std::string, std::string>& aVertexMap, std::map<std::string, std::string>& aEdgeMap) override;
+    void readFile(std::map<std::string, std::string>& aVertexMap, std::multimap<std::string, std::string>& aEdgeMap) override;
 
 };
 

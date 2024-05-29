@@ -6,6 +6,8 @@
 #include "VertexFactory.h"
 #include <iostream>
 #include <map>
+#include "FileToGraph.h"
+#include "TextStrategy.h"
 
 void GraphBuilderTest() {
     // Map with vertices
@@ -59,10 +61,25 @@ void GraphBuilderTest() {
 //     subject.setState(2);
 // }
 
+void fileTest(){
+    std::map<std::string,std::string> vertexMap;
+    std::multimap<std::string,std::string> edgeMap;
+    FileToGraph fileReader("./inputfile.txt");
+    TextStrategy strategy;
+    fileReader.setStrategy(&strategy);
+    fileReader.getGraph(vertexMap,edgeMap);
+
+    for(std::multimap<std::string,std::string>::iterator iterator = edgeMap.begin(); iterator != edgeMap.end(); iterator++){
+        std::cout << iterator->first << ", " << iterator->second << std::endl;
+    }
+
+}
+
 int main() {
     std::cout << std::endl << std::endl;
 
-    GraphBuilderTest();
+    //GraphBuilderTest();
+    fileTest();
 
     std::cout << std::endl << std::endl;
     return 0;

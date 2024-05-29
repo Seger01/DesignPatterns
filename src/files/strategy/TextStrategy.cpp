@@ -33,7 +33,7 @@ void TextStrategy::closeFile() {
 }
 
 void TextStrategy::readFile(std::map<std::string, std::string>& aVertexMap,
-                            std::map<std::string, std::string>& aEdgeMap) {
+                            std::multimap<std::string, std::string>& aEdgeMap) {
     std::string line;
     int lineNumber = 0;
     bool edgeFound = false;    // Flag to indiciate if edge part of the file is found
