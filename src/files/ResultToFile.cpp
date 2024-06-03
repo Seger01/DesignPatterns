@@ -80,9 +80,11 @@ void ResultToFile::writeOutput() {
     // Input values
     mOutputFile << "Input:" << "\n";
     for (std::map<std::string, Vertex*>::iterator iterator = data.begin(); iterator != data.end(); iterator++) {
-        if (iterator->second->acceptOutputVisitor(outputVisitor) == 1) {
-            mOutputFile << iterator->first << ": \t";
-            mOutputFile << iterator->second->getOutput() << "\n";
+        if (iterator->second != nullptr) { // Check for nullptr
+            if (iterator->second->acceptOutputVisitor(outputVisitor) == 1) { //Check if it is an input
+                mOutputFile << iterator->first << ": \t";
+                mOutputFile << iterator->second->getOutput() << "\n";
+            }
         }
     }
 
@@ -91,9 +93,11 @@ void ResultToFile::writeOutput() {
                 << "Output:" << "\n";
 
     for (std::map<std::string, Vertex*>::iterator iterator = data.begin(); iterator != data.end(); iterator++) {
-        if (iterator->second->acceptOutputVisitor(outputVisitor) == 2) {
+        if (iterator->second != nullptr) { //Check for nullptr
+        if (iterator->second->acceptOutputVisitor(outputVisitor) == 2) { //Check if it is a probe
             mOutputFile << iterator->first << ": \t";
             mOutputFile << iterator->second->getOutput() << "\n";
+        }
         }
     }
 
