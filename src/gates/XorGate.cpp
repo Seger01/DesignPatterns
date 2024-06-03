@@ -60,3 +60,7 @@ void XorGate::setAmountInputs(unsigned aAmount) {
 Vertex* XorGate::clone() const { return new XorGate; }
 
 std::string XorGate::whoAmI() { return std::string("I am an XorGate!"); }
+
+int XorGate::acceptOutputVisitor(IOutputVisitor& aIOutputVisitor){
+    return aIOutputVisitor.visitVertex(this);
+}

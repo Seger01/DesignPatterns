@@ -58,3 +58,7 @@ void NotGate::setAmountInputs(unsigned aAmount) {
 Vertex* NotGate::clone() const { return new NotGate; }
 
 std::string NotGate::whoAmI() { return std::string("I am a NotGate!"); }
+
+int NotGate::acceptOutputVisitor(IOutputVisitor& aIOutputVisitor){
+    return aIOutputVisitor.visitVertex(this);
+}

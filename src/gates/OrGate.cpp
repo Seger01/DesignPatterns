@@ -58,3 +58,7 @@ void OrGate::setAmountInputs(unsigned aAmount) {
 Vertex* OrGate::clone() const { return new OrGate; }
 
 std::string OrGate::whoAmI() { return std::string("I am an OrGate!"); }
+
+int OrGate::acceptOutputVisitor(IOutputVisitor& aIOutputVisitor){
+    return aIOutputVisitor.visitVertex(this);
+}
