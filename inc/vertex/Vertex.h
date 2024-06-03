@@ -33,9 +33,9 @@ public:
 
     virtual void update();
 
-    virtual void reset() {}
+    virtual void reset() {};
 
-    virtual int acceptOutputVisitor(IOutputVisitor aIOutputVisitor);
+    virtual int acceptOutputVisitor(IOutputVisitor& aIOutputVisitor) {return -1;};
 
 protected:
 public:

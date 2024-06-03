@@ -19,7 +19,7 @@ public:
     int getValue();
     std::string whoAmI() override;
 
-    int acceptOutputVisitor(IOutputVisitor aIOutputVisitor) override;
+    int acceptOutputVisitor(IOutputVisitor& aIOutputVisitor) override;
 
     virtual Vertex* clone() const override;
 };

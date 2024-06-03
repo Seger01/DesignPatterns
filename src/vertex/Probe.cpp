@@ -32,6 +32,6 @@ std::string Probe::whoAmI() {
     return std::string("I am a Probe!");
 }
 
-int Probe::acceptOutputVisitor(IOutputVisitor aIOutputVisitor){
+int Probe::acceptOutputVisitor(IOutputVisitor& aIOutputVisitor){
     return aIOutputVisitor.visitProbe(this);
 }

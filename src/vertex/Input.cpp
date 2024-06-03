@@ -34,6 +34,6 @@ std::string Input::whoAmI() {
     return std::string("I am an Input!");
 }
 
-int Input::acceptOutputVisitor(IOutputVisitor aIOutputVisitor){
+int Input::acceptOutputVisitor(IOutputVisitor& aIOutputVisitor){
     return aIOutputVisitor.visitInput(this);
 }

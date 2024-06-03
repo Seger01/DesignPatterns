@@ -1,14 +1,15 @@
 #ifndef IOUTPUTVISITOR_H
 #define IOUTPUTVISITOR_H
 
-#include <fstream>
-
 class Input;
 class Probe;
+class Vertex;
 
 class IOutputVisitor {
 public:
-    virtual int visitInput(Input *aInput);
-    virtual int visitProbe(Probe *aProbe);
+    virtual ~IOutputVisitor() = default;
+    virtual int visitInput(Input* aInput) = 0;
+    virtual int visitProbe(Probe* aProbe) = 0;
+    virtual int visitVertex(Vertex* aVertex) = 0;
 };
 #endif // IOUTPUTVISITOR_H

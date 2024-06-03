@@ -12,5 +12,6 @@ public:
 public:
     int visitInput(Input *aInput) override;
     int visitProbe(Probe *aProbe) override;
+    int visitVertex(Vertex* aVertex) override;
 };
 #endif // OUTPUTVISITOR_H
