@@ -35,9 +35,9 @@ void GraphBuilder::connectVertices(std::multimap<std::string, std::string>& vert
         vertexConnections
             .begin(); // Create an iterator at the start of the map (containing vertex names of output and input)
     while (iter != vertexConnections.end()) { // Iterate through the map (containing vertex names of output and input)
-        Vertex* pVertex = vertexMap[iter->first]; // Get pointer to the first vertex in the map, from which the output
+        Vertex* pVertex = vertexMap.find(iter->first)->second; // Get pointer to the first vertex in the map, from which the output
                                                   // should be connected
-        pVertex->subscribe(vertexMap[iter->second]); // Connect to output of the first vertex to the input of the second
+        pVertex->subscribe(vertexMap.find(iter->second)->second); // Connect to output of the first vertex to the input of the second
                                                      // vertex in the map
         ++iter;
     }
