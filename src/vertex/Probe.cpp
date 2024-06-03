@@ -29,6 +29,4 @@ int Probe::getValue() { return mValue; }
 
 Vertex* Probe::clone() const { return new Probe; }
 
-std::string Probe::whoAmI() {
-    return std::string("I am a Probe!");
-}
+std::string Probe::whoAmI() { return std::string("I am a Probe!"); }
