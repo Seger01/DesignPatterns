@@ -30,6 +30,7 @@ void NotGate::setInput(int aIndex, int aValue) {
     if (aIndex < mAmountInputs)
         mInput[aIndex] = aValue ? 1 : 0;
 }
+
 int NotGate::getOutput() {
     bool output = false;
     if (mAmountInputs < 0) {
