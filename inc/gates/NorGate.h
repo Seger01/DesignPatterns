@@ -1,4 +1,5 @@
 #include "Vertex.h"
+#include "IOutputVisitor.h"
 
 class NorGate : public Vertex {
 private:
@@ -15,6 +16,8 @@ public:
     std::string whoAmI() override;
 
     Vertex* clone() const override;
+
+    int acceptOutputVisitor(IOutputVisitor& aIOutputVisitor) override;
 
 private:
     static NorGate m_cInstance;

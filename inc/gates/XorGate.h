@@ -16,6 +16,8 @@ public:
 
     Vertex* clone() const override;
 
+    int acceptOutputVisitor(IOutputVisitor& aIOutputVisitor) override;
+
 private:
     static XorGate m_cInstance;
 };
