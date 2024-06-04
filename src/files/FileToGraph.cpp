@@ -10,8 +10,11 @@
  */
 #include "FileToGraph.h"
 #include "Vertex.h"
+#include <algorithm>
 #include <cmath>
 #include <fstream>
+#include <map>
+#include <string>
 
 /**
  ************************************************************
@@ -44,13 +47,7 @@ FileToGraph::~FileToGraph() {}
  * @param[in] aMap - Map of vertex names to types
  */
 void FileToGraph::countConfigs(const std::map<std::string, std::string>& aMap) {
-    int counter = 0;
-
-    for (const auto& pair : aMap) {
-        if (pair.second == "INPUT") {
-            ++counter;
-        }
-    }
+    int counter = std::count_if(aMap.begin(), aMap.end(), [](const auto& pair) { return pair.second == "INPUT"; });
 
     this->mNumOfConfigs = pow(2, counter);
 }
