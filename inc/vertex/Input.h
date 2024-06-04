@@ -10,17 +10,20 @@ private:
 private:
     Input();
     Input(std::string);
+
 public:
     ~Input();
 
-    virtual void setInput(int aIndex, int aValue) override;
-    virtual int getOutput() override;
+    void setInput(int aIndex, int aValue) override;
+    int getOutput() override;
 
 public:                                        // Inherited methods
     void setAmountInputs(unsigned) override {} // Unused in input, not relevant
     std::string whoAmI() override;
 
     Vertex* clone() const override;
+
+    void setOutput() override;
 
     int acceptOutputVisitor(IOutputVisitor& aIOutputVisitor) override;
 

@@ -4,7 +4,6 @@
 XorGate XorGate::m_cInstance("XOR");
 
 XorGate::XorGate() {
-    std::cout << "XorGate default constructor" << std::endl;
     mAmountInputs = -1;
     mMinInputs = 2;
     mMaxInputs = 2;
@@ -12,7 +11,6 @@ XorGate::XorGate() {
 }
 
 XorGate::XorGate(std::string id) : Vertex(id) {
-    std::cout << "XorGate assignment constructor" << std::endl;
     mAmountInputs = -1;
     mMinInputs = 2;
     mMaxInputs = 2;
@@ -20,24 +18,24 @@ XorGate::XorGate(std::string id) : Vertex(id) {
 }
 
 XorGate::~XorGate() {
-    std::cout << "XorGate destructor" << std::endl;
     if (mInput != nullptr) {
-        delete mInput;
+        delete[] mInput;
     }
 }
 
-void XorGate::setInput(int aIndex, int aValue) {
-    if (aIndex < mAmountInputs)
-        mInput[aIndex] = aValue ? 1 : 0;
-}
 int XorGate::getOutput() {
     bool output = false;
     if (mAmountInputs < 0) {
         std::cout << "Amount of inputs not set!" << std::endl;
         return -1;
     }
+        if (mAmountInputs < mMinInputs) {
+        std::cout << "Not enough inputs connected to XOR gate" << std::endl;
+        std::cout << "Minimum inputs: " << mMinInputs << "\tInputs connected are: "<< mAmountInputs << std::endl;
+        std::exit(EXIT_FAILURE);
+    }
     if (mInput[0] == -1 || mInput[1] == -1) {
-        std::cout << "Inputs not set yet!" << std::endl;
+        // std::cout << "Inputs not set yet!" << std::endl;
         return -1;
     }
     if (mInput[0] == 1 && mInput[1] == 1) {
@@ -61,6 +59,4 @@ Vertex* XorGate::clone() const { return new XorGate; }
 
 std::string XorGate::whoAmI() { return std::string("I am an XorGate!"); }
 
-int XorGate::acceptOutputVisitor(IOutputVisitor& aIOutputVisitor){
-    return aIOutputVisitor.visitVertex(this);
-}
+int XorGate::acceptOutputVisitor(IOutputVisitor& aIOutputVisitor) { return aIOutputVisitor.visitVertex(this); }

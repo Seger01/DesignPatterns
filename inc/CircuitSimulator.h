@@ -12,7 +12,7 @@ private:
     CircuitInitializer* mCircuitInitializer;
 
 public:
-    CircuitSimulator();
+    CircuitSimulator(std::string aFilepath);
     ~CircuitSimulator();
 
     void run();

@@ -1,101 +1,43 @@
-#include "Circuit.h"
-#include "FileToGraph.h"
-#include "GraphBuilder.h"
-#include "Input.h"
-#include "Probe.h"
-#include "ResultToFile.h"
-#include "TextStrategy.h"
-#include "Vertex.h"
-#include "VertexFactory.h"
-#include <iostream>
-#include <map>
-
 #include "CircuitSimulator.h"
 
-void GraphBuilderTest() {
-    // Map with vertices
-    std::map<std::string, std::string> myVertices;
-    myVertices.insert({"andSiem", "AND"});
-    myVertices.insert({"orSeger", "OR"});
-    myVertices.insert({"inputSean", "INPUT"});
-    myVertices.insert({"inputWouter", "INPUT"});
-    myVertices.insert({"inputLoek", "INPUT"});
+#include <filesystem>
+#include <iostream>
+#include <string>
 
-    // Map with connections
-    std::multimap<std::string, std::string> myConnections;
-    myConnections.insert({"inputSean", "andSiem"});
-    myConnections.insert({"inputWouter", "andSiem"});
-    myConnections.insert({"andSiem", "orSeger"});
-    myConnections.insert({"inputLoek", "orSeger"});
+int main(int argc, char* argv[]) {
+    std::string inputFilePath;
 
-    GraphBuilder builder;
-    builder.createGraph(myVertices, myConnections);
-
-    std::map<std::string, Vertex*> vertexMap = Circuit::getInstance().getVertexMap();
-    std::map<std::string, Vertex*>::iterator it = vertexMap.begin();
-    while (it != vertexMap.end()) {
-        std::cout << "My name is " << it->first << ". " << it->second->whoAmI() << std::endl;
-        // std::cout << "My output is connected to: ";
-
-        ++it;
+    if (argc > 2){
+        std::cout << "ERROR wrong function usage" << std::endl;
+        std::cout << "usage: ./executable [inputfile.txt]" << std::endl;
+        return 1;
     }
-}
 
-// void vertexObserverTest() {
-//     std::cout << "Start!" << std::endl;
+    if (argc > 1) {
+        // Extract the path from the first argument
+        std::string argPath = argv[1];
+        std::cout << argc << std::endl;
+        std::cout << argPath << std::endl;
+        std::filesystem::path p(argPath);
 
-//     Vertex* pInput = Factory::VertexFactory<int, Vertex>::create subject(1234);
-
-//     Vertex observer1;
-//     Vertex observer2;
-
-//     observer1.addSubject(&subject);
-
-//     observer2.addSubject(&observer1);
-//     observer2.addSubject(&subject);
-
-//     Probe probe;
-
-//     probe.addSubject(&observer1);
-
-//     std::cout << "setstate(1)" << std::endl;
-//     subject.setState(1);
-//     std::cout << "setstate(2)" << std::endl;
-//     subject.setState(2);
-// }
-
-void fileTest() {
-    std::map<std::string, std::string> vertexMap;
-    std::multimap<std::string, std::string> edgeMap;
-    FileToGraph fileReader("./inputfile.txt");
-    TextStrategy strategy;
-    ResultToFile fileWriter;
-
-    fileReader.setStrategy(&strategy);
-    fileReader.getGraph(vertexMap, edgeMap);
-
-    for (std::multimap<std::string, std::string>::iterator iterator = edgeMap.begin(); iterator != edgeMap.end();
-         iterator++) {
-        std::cout << iterator->first << ", " << iterator->second << std::endl;
+        // Check if the path exists
+        if (std::filesystem::exists(p)) {
+            std::cout << "Path provided: " << p << std::endl;
+            inputFilePath = p;
+        } else {
+            std::cerr << "Warning: Invalid path provided!" << std::endl;
+            // Print usage instructions here
+        }
+    } else {
+        // No arguments provided, set a standard path
+        std::filesystem::path standardPath = "inputfile.txt";
+        inputFilePath = standardPath;
+        std::cout << "Using standard path: " << standardPath << std::endl;
     }
-    fileWriter.writeOutput();
-}
 
-int main() {
-    // std::cout << std::endl << std::endl;
-    //
-    // GraphBuilderTest();
-    //
-    // std::cout << std::endl << std::endl;
-
-    // GraphBuilderTest();
-    //  fileTest();
-
-    // if(Circuit::getInstance() != nullptr){
-    //     delete Circuit::getInstance();
-    // }
-    CircuitSimulator circuitSimulator;
+    CircuitSimulator circuitSimulator(inputFilePath);
 
     circuitSimulator.run();
+
     return 0;
 }

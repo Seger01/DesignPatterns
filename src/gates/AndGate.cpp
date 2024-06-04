@@ -4,7 +4,6 @@
 AndGate AndGate::m_cInstance("AND");
 
 AndGate::AndGate() {
-    std::cout << "AndGate default constructor" << std::endl;
     mAmountInputs = -1;
     mMinInputs = 2;
     mMaxInputs = 3;
@@ -12,7 +11,6 @@ AndGate::AndGate() {
 }
 
 AndGate::AndGate(std::string id) : Vertex(id) {
-    std::cout << "AndGate assignment constructor" << std::endl;
     mAmountInputs = -1;
     mMinInputs = 2;
     mMaxInputs = 3;
@@ -20,16 +18,15 @@ AndGate::AndGate(std::string id) : Vertex(id) {
 }
 
 AndGate::~AndGate() {
-    std::cout << "AndGate destructor" << std::endl;
     if (mInput != nullptr) {
         delete[] mInput;
     }
 }
 
-void AndGate::setInput(int aIndex, int aValue) {
-    if (aIndex < mAmountInputs)
-        mInput[aIndex] = aValue ? 1 : 0;
-}
+// void AndGate::setInput(int aIndex, int aValue) {
+//     if (aIndex < mAmountInputs)
+//         mInput[aIndex] = aValue ? 1 : 0;
+// }
 
 int AndGate::getOutput() {
     bool output = false;
@@ -37,9 +34,14 @@ int AndGate::getOutput() {
         std::cout << "Amount of inputs not set!" << std::endl;
         return -1;
     }
+    if (mAmountInputs < mMinInputs) {
+        std::cout << "Not enough inputs connected to AND gate" << std::endl;
+        std::cout << "Minimum inputs: " << mMinInputs << "\tInputs connected are: "<< mAmountInputs << std::endl;
+        std::exit(EXIT_FAILURE);
+    }
     for (int i = 0; i < mAmountInputs; i++) {
         if (mInput[i] == -1) {
-            std::cout << "Input at index " << i << " not set yet!" << std::endl;
+            // std::cout << "Input at index " << i << " not set yet!" << std::endl;
             return -1;
         }
         if (mInput[i] == 0) {
@@ -61,6 +63,4 @@ Vertex* AndGate::clone() const { return new AndGate; }
 
 std::string AndGate::whoAmI() { return std::string("I am an AndGate!"); }
 
-int AndGate::acceptOutputVisitor(IOutputVisitor& aIOutputVisitor){
-    return aIOutputVisitor.visitVertex(this);
-}
+int AndGate::acceptOutputVisitor(IOutputVisitor& aIOutputVisitor) { return aIOutputVisitor.visitVertex(this); }

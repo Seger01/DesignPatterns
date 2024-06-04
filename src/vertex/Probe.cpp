@@ -1,18 +1,17 @@
 #include <iostream>
 
-#include "Probe.h"
 #include "IOutputVisitor.h"
+#include "Probe.h"
 
 Probe Probe::m_cInstance("PROBE");
 
-Probe::Probe() { std::cout << "Probe constructor" << std::endl; }
+Probe::Probe() { }
 
 Probe::Probe(std::string id) : Vertex(id) {
-    std::cout << "Probe assignment constructor" << std::endl;
     mValue = -1;
 }
 
-Probe::~Probe() { std::cout << "Probe destructor" << std::endl; }
+Probe::~Probe() { }
 
 void Probe::setInput(int aIndex, int aValue) {
     if (aIndex != 0) {
@@ -25,13 +24,12 @@ void Probe::setInput(int aIndex, int aValue) {
     return;
 }
 int Probe::getValue() { return mValue; }
+int Probe::getOutput() {
+    return mValue;
+}
 
 Vertex* Probe::clone() const { return new Probe; }
 
-std::string Probe::whoAmI() {
-    return std::string("I am a Probe!");
-}
+std::string Probe::whoAmI() { return std::string("I am a Probe!"); }
 
-int Probe::acceptOutputVisitor(IOutputVisitor& aIOutputVisitor){
-    return aIOutputVisitor.visitProbe(this);
-}
+int Probe::acceptOutputVisitor(IOutputVisitor& aIOutputVisitor) { return aIOutputVisitor.visitProbe(this); }

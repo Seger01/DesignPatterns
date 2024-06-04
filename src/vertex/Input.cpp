@@ -5,35 +5,48 @@
 Input Input::m_cInstance("INPUT");
 
 Input::Input() {
-    std::cout << "Input default constructor" << std::endl;
     mValue = -1;
+    mAmountInputs = 1;
+    mMinInputs = 1;
+    mMaxInputs = 1;
+    mInput = new int[mMaxInputs];
 }
 
 Input::Input(std::string id) : Vertex(id) {
-    std::cout << "Input assignment constructor" << std::endl;
     mValue = -1;
+    mAmountInputs = 1;
+    mMinInputs = 1;
+    mMaxInputs = 1;
+    mInput = new int[mMaxInputs];
 }
 
-Input::~Input() { std::cout << "Input destructor" << std::endl; }
+Input::~Input() {
+    if (mInput != nullptr) {
+        delete[] mInput;
+    }
+}
 
 void Input::setInput(int aIndex, int aValue) {
     if (aIndex != 0) {
         std::cout << "Input::setInput error aIndex is not zero" << std::endl;
     }
-
-    mValue = aValue;
+    if (aIndex < mAmountInputs) {
+        mInput[aIndex] = aValue;
+    }
     return;
 }
-int Input::getOutput() { return mValue; }
+
+int Input::getOutput() { return mOutput; }
 
 void Input::setValue(bool aValue) { mValue = aValue ? 1 : 0; }
 
 Vertex* Input::clone() const { return new Input; }
 
-std::string Input::whoAmI() {
-    return std::string("I am an Input!");
+void Input::setOutput() {
+    mOutput = mInput[0];
+    notify();
 }
 
-int Input::acceptOutputVisitor(IOutputVisitor& aIOutputVisitor){
-    return aIOutputVisitor.visitInput(this);
-}
+std::string Input::whoAmI() { return std::string("I am an Input!"); }
+
+int Input::acceptOutputVisitor(IOutputVisitor& aIOutputVisitor) { return aIOutputVisitor.visitInput(this); }

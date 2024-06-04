@@ -4,7 +4,6 @@
 NotGate NotGate::m_cInstance("NOT");
 
 NotGate::NotGate() {
-    std::cout << "NotGate default constructor" << std::endl;
     mAmountInputs = -1;
     mMinInputs = 1;
     mMaxInputs = 1;
@@ -12,7 +11,6 @@ NotGate::NotGate() {
 }
 
 NotGate::NotGate(std::string id) : Vertex(id) {
-    std::cout << "NotGate assignment constructor" << std::endl;
     mAmountInputs = -1;
     mMinInputs = 1;
     mMaxInputs = 1;
@@ -20,25 +18,29 @@ NotGate::NotGate(std::string id) : Vertex(id) {
 }
 
 NotGate::~NotGate() {
-    std::cout << "NotGate desctructor" << std::endl;
     if (mInput != nullptr) {
         delete[] mInput;
     }
 }
 
-void NotGate::setInput(int aIndex, int aValue) {
-    if (aIndex < mAmountInputs)
-        mInput[aIndex] = aValue ? 1 : 0;
-}
-
+// void NotGate::setInput(int aIndex, int aValue) {
+//     if (aIndex < mAmountInputs)
+//         mInput[aIndex] = aValue ? 1 : 0;
+// }
+//
 int NotGate::getOutput() {
     bool output = false;
     if (mAmountInputs < 0) {
         std::cout << "Amount of inputs not set!" << std::endl;
         return -1;
     }
+        if (mAmountInputs < mMinInputs) {
+        std::cout << "Not enough inputs connected to NOT gate" << std::endl;
+        std::cout << "Minimum inputs: " << mMinInputs << "\tInputs connected are: "<< mAmountInputs << std::endl;
+        std::exit(EXIT_FAILURE);
+    }
     if (mInput[0] == -1) {
-        std::cout << "Input not set yet!" << std::endl;
+        // std::cout << "Input not set yet!" << std::endl;
         return -1;
     }
     if (mInput[0] == 0) {
@@ -59,6 +61,4 @@ Vertex* NotGate::clone() const { return new NotGate; }
 
 std::string NotGate::whoAmI() { return std::string("I am a NotGate!"); }
 
-int NotGate::acceptOutputVisitor(IOutputVisitor& aIOutputVisitor){
-    return aIOutputVisitor.visitVertex(this);
-}
+int NotGate::acceptOutputVisitor(IOutputVisitor& aIOutputVisitor) { return aIOutputVisitor.visitVertex(this); }

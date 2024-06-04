@@ -13,18 +13,19 @@ private:
     FileStrategy* mStrategy;
     int mNumOfConfigs;
 
-public:// constructor
+public: // constructor
     FileToGraph(const std::string& aInputFile);
     ~FileToGraph();
 
-    private: //private functions
+private: // private functions
     void countConfigs(const std::map<std::string, std::string>& aMap);
+    void checkVertexes(std::map<std::string, std::string>& aVertexMap, std::multimap<std::string, std::string>& aEdgeMap);
+    void checkEdges(std::map<std::string, std::string>& aVertexMap, std::multimap<std::string, std::string>& aEdgeMap);
 
-    public: //public functions
-
+public: // public functions
     int getNumOfConfigs();
 
-    void setStrategy(FileStrategy *aStrategy);
+    void setStrategy(FileStrategy* aStrategy);
     void getGraph(std::map<std::string, std::string>& aVertexMap, std::multimap<std::string, std::string>& aEdgeMap);
 };
 

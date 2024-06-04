@@ -7,9 +7,8 @@
 Vertex::Vertex() {}
 
 Vertex::Vertex(std::string id) {
-    Factory::VertexFactory<std::string, Vertex>::assign(
-        id, this); // Associate the ID of the child, so the factory knows which type of child to create
-    std::cout << "Vertex assignment constructor" << std::endl;
+    Factory::VertexFactory<std::string, Vertex>::assign(id, this); // Associate the ID of the child, so the factory
+                                                                   // knows which type of child to create
 }
 
 Vertex::~Vertex() {
@@ -20,7 +19,14 @@ Vertex::~Vertex() {
     }
 }
 
-void Vertex::subscribe(Vertex* observer) { observers.push_back(observer); }
+void Vertex::subscribe(Vertex* observer) {
+    if (observer == nullptr) {
+        std::cout << "Vertex::subscribe received nullptr" << std::endl;
+        // return;
+    }
+
+    observers.push_back(observer);
+}
 
 void Vertex::unsubscribe(Vertex* observer) {
     if (observers.size() == 0) {
@@ -28,9 +34,12 @@ void Vertex::unsubscribe(Vertex* observer) {
     }
     observers.erase(std::remove(observers.begin(), observers.end(), observer), observers.end());
 }
+
 void Vertex::addSubject(Vertex* subject) {
+    if (subject == nullptr) {
+        std::cout << "addSubject received nullptr" << std::endl;
+    }
     subjects.push_back(subject);
-    std::cout << "addSubject() " << subjects.size() << std::endl;
     subject->subscribe(this);
 }
 
@@ -50,7 +59,6 @@ void Vertex::setState(int state) {
 }
 
 void Vertex::setInput(int aIndex, int value) {
-    // std::cout << "setInput " << aIndex << ", " << value << std::endl;
     if (aIndex < mAmountInputs) {
         mInput[aIndex] = value;
     }
@@ -63,7 +71,11 @@ void Vertex::setInput(int aIndex, int value) {
 //     notify();
 // }
 
-int Vertex::getOutput() { return state; }
+int Vertex::getOutput() {
+    // mOutput = mInput[0];
+
+    return mOutput;
+}
 
 void Vertex::update() {
     for (int i = 0; i < subjects.size(); i++) {
@@ -72,30 +84,15 @@ void Vertex::update() {
 }
 
 int Vertex::bumpAmountInputs() {
-    if (mAmountInputs >= mMaxInputs) {
+    if (mAmountInputs >= (int)mMaxInputs) {
         std::cout << "Cannot increase amount of inputs for vertex, " << mAmountInputs << " already set!" << std::endl;
         return -1;
+    }
+    if (mAmountInputs == -1) {
+        mAmountInputs = 0;
     }
     mAmountInputs++;
     return 0;
 }
 
 std::string Vertex::whoAmI() { return std::string("I am a Vertex!"); }
-
-// #include "Vertex.h"
-// #include "VertexFactory.h"
-// #include <iostream>
-//
-// Vertex::Vertex() {
-//     std::cout << "Vertex default constructor" << std::endl;
-// }
-//
-// Vertex::Vertex(int id) {
-//     Factory::VertexFactory<int,Vertex>::assign(id,this); // Associate the ID of the child, so the factory knows which
-//     type of child to create std::cout << "Vertex assignment constructor" << std::endl;
-// }
-//
-// Vertex::~Vertex() {
-//     std::cout << "Vertex destructor" << std::endl;
-// }
-// >>>>>>> development
