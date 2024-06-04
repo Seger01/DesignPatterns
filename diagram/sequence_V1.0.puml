@@ -1,0 +1,32 @@
+@startuml sequence
+
+CircuitSimulator -> FileToGraph: getGraph(aVertexMap &, aEdgeMap &)
+activate FileToGraph
+CircuitSimulator <- FileToGraph
+CircuitSimulator -> FileToGraph: getNumOfConfigs
+CircuitSimulator <- FileToGraph: numOfConfigs
+deactivate FileToGraph
+
+CircuitSimulator -> GraphCreator: createGraph(aVertexMap &, aEdgeMap &)
+activate GraphCreator
+CircuitSimulator <- GraphCreator
+deactivate GraphCreator
+
+loop numberOfConfigs times
+CircuitSimulator -> CircuitInitializer: initCircuit(aVertexMap&)
+activate CircuitInitializer
+CircuitSimulator <- CircuitInitializer
+deactivate CircuitInitializer
+
+CircuitSimulator -> Circuit: runSim()
+activate Circuit
+CircuitSimulator <- Circuit
+deactivate Circuit
+
+CircuitSimulator -> ResultToFile: writeOutput()
+activate ResultToFile
+CircuitSimulator <- ResultToFile
+deactivate ResultToFile
+end
+
+@enduml
