@@ -38,4 +38,4 @@ executable
 
 #folders
 output/
-doc/
+doc/*
