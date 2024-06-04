@@ -18,11 +18,19 @@ class FileToGraph <Template Method> {
 
     - openFile() : void
     - closeFile() : void
-    - readVertex() : map<string, Vertex>
-    - readEdge() : map<string,string>
-    - getNumConfigs();
+    - getNumConfigs(): int
+    + setStrategy(FileStrategy* aStrategy) : void
     + getGraph(map<string, string>& aVertexMap, map<strng,string>& aEdgeMap) : void 
-    ' vertexMap :first string name of vertex second string type
+
+}
+
+class IOutputVisitor <Interface>{
+    + visitInput(Input* aInput) : int
+    + visitProbe(Probe* aProbe) : int
+    + visitVertex(Vertex* aVertex) : int
+}
+
+class OutputVisitor <visitir>{
 
 }
 
@@ -30,10 +38,9 @@ class FileToGraph <Template Method> {
 'TODO check of hierby dependency injection van toepassing is
 
 interface FileStrategy {
-    - openFile() : virtual void
-    - closeFile() : virtual void
-    - readVertex() : virtual map<string, Vertex>
-    - readEdge() : virtual map<string,string>
+    - openFile() : void
+    - closeFile() : void
+    - readFile(map<string, string>& aVertexMap, multimap<string, string>& aEdgeMap) : void
 }
 
 class TextStrategy <Strategy 1> {
@@ -44,8 +51,6 @@ class ResultToFile {
 
     - openFile() : void
     - closeFile() : void
-    - writeSingle(map<string, Vertex>&): void
-    - writeMultiple(map<string, Vertex>&): void
     + writeOutput(map<string, Vertex>&) : void
 }
 
@@ -89,6 +94,8 @@ class Vertex <Observer> {
     + notifySubscribers() : void
     
     + update() : void
+
+    + acceptOutputVisitor(IOutputVisitor& aIOutputVisitor): int
 
     - subscribers : Vertex[]
     - *mInput : int
@@ -136,6 +143,11 @@ Vertex --> GraphBuilder
 Circuit --> GraphBuilder
 Circuit --* Vertex
 VertexFactory --> Vertex
+
+OutputVisitor --|> IOutputVisitor
+Vertex ..> IOutputVisitor
+IOutputVisitor ..> Probe
+IOutputVisitor ..> Input
 
 FileToGraph *-- FileStrategy
 TextStrategy --|> FileStrategy
