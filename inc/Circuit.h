@@ -1,3 +1,16 @@
+/**
+ ************************************************************
+ * @file Circuit.h
+ *
+ * Manages the components and operations of a circuit simulation.
+ *
+ * This file defines the Circuit class, which represents a circuit
+ * in a simulation. It provides methods for initializing the circuit,
+ * running simulations, and accessing vertex information.
+ *
+ * @author Seger01
+ * @date 04/06/2024
+ */
 #pragma once
 
 #include "Vertex.h"

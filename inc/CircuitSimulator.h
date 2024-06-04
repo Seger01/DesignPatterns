@@ -1,3 +1,18 @@
+/**
+ ************************************************************
+ * @file CircuitSimulator.h
+ *
+ * Manages the simulation process of a circuit based on an input file.
+ *
+ * This file defines the CircuitSimulator class, which orchestrates
+ * the simulation process of a circuit based on an input file. It
+ * initializes the circuit, runs simulations, and outputs the results
+ * to a file.
+ *
+ * @author [Author Name]
+ * @date [Current Date]
+ */
+
 #include <iostream>
 #include <string>
 
