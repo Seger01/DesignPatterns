@@ -53,15 +53,19 @@ void CircuitInitializer::fillInputs(std::map<std::string, std::string>& aVertexM
                 this->mInputs.push_back(vertex);   // Add it to the inputs
             }
         }
-        if (iterator->second == "INPUT_HIGH") {                  // Vertex is input high
-            Vertex* vertex = data.find(iterator->first)->second; // Find Vertex in the map
-            if (vertex != data.end()->second) {                  // Check if it exists
+        if (iterator->second == "INPUT_HIGH") {                                             // Vertex is input high
+            std::map<std::string, Vertex*>::iterator dataIter = data.find(iterator->first); // Get iterator at name of
+                                                                                            // input
+            if (dataIter != data.end()) {          // Check if the input with id iterator->first exists
+                Vertex* vertex = dataIter->second; // If it exists, get the pointer to its vertex object
                 vertex->setInput(0, 1);
             }
         }
-        if (iterator->second == "INPUT_LOW") {                   // Vertex is input low
-            Vertex* vertex = data.find(iterator->first)->second; // Find Vertex in the map
-            if (vertex != data.end()->second) {                  // Check if it exists
+        if (iterator->second == "INPUT_LOW") {                                              // Vertex is input low
+            std::map<std::string, Vertex*>::iterator dataIter = data.find(iterator->first); // Get iterator at name of
+                                                                                            // input
+            if (dataIter != data.end()) {          // Check if the input with id iterator->first exists
+                Vertex* vertex = dataIter->second; // If it exists, get the pointer to its vertex object
                 vertex->setInput(0, 0);
             }
         }
