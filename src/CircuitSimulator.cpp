@@ -35,7 +35,7 @@ void CircuitSimulator::run() {
 
     // mCircuitInitializer->initCircuit(std::map<std::string, Vertex *> &aCircuit)
     for (int i = 0; i < numberOfConfigs; i++) {
-        mCircuitInitializer->initCircuit();
+        mCircuitInitializer->initCircuit(vertexMap);
 
         circuit.runSim();
 

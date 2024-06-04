@@ -85,6 +85,7 @@ void TextStrategy::readFile(std::map<std::string, std::string>& aVertexMap,
         if (!nodeType.empty()) {
             nodeType.erase(nodeType.size() - 1);
         }
+        //Check if it is an acceptable type
         if (stringSet.find(nodeType) == stringSet.end()) {
             std::cerr << "Error: Line " << lineNumber << " has invalid node type" << std::endl;
             std::exit(EXIT_FAILURE);
