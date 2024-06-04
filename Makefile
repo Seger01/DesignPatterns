@@ -35,5 +35,11 @@ $(TARGET): $(OBJ_FILES)
 
 .PHONY: all clean
 
-clean:
+clean: doxygen_clean
 	rm -rf $(BUILD_DIR) $(TARGET)
+
+doxygen_clean: 
+	rm -rf doc/*
+
+doxygen: doxygen_clean
+	doxygen

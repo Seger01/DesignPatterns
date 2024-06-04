@@ -4,7 +4,6 @@
 NandGate NandGate::m_cInstance("NAND");
 
 NandGate::NandGate() {
-    std::cout << "NandGate default constructor" << std::endl;
     mAmountInputs = -1;
     mMinInputs = 2;
     mMaxInputs = 3;
@@ -12,7 +11,6 @@ NandGate::NandGate() {
 }
 
 NandGate::NandGate(std::string id) : Vertex(id) {
-    std::cout << "NandGate assignment constructor" << std::endl;
     mAmountInputs = -1;
     mMinInputs = 2;
     mMaxInputs = 3;
@@ -20,7 +18,6 @@ NandGate::NandGate(std::string id) : Vertex(id) {
 }
 
 NandGate::~NandGate() {
-    std::cout << "NandGate destructor" << std::endl;
     if (mInput != nullptr) {
         delete[] mInput;
     }
@@ -36,9 +33,14 @@ int NandGate::getOutput() {
         std::cout << "Amount of inputs not set!" << std::endl;
         return -1;
     }
+        if (mAmountInputs < mMinInputs) {
+        std::cout << "Not enough inputs connected to NAND gate" << std::endl;
+        std::cout << "Minimum inputs: " << mMinInputs << "\tInputs connected are: "<< mAmountInputs << std::endl;
+        std::exit(EXIT_FAILURE);
+    }
     for (int i = 0; i < mAmountInputs; i++) {
         if (mInput[i] == -1) {
-            std::cout << "Input at index " << i << " not set yet!" << std::endl;
+            // std::cout << "Input at index " << i << " not set yet!" << std::endl;
             return -1;
         }
         if (mInput[i] == 0) {

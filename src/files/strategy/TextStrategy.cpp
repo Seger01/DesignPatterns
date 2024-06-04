@@ -1,13 +1,45 @@
+/**
+ ************************************************************
+ * @file FileStrategy.cpp
+ *
+ * Implements the FileStrategy abstract base class for file reading
+ * strategies.
+ *
+ * @autor Sean Groenenboom
+ * @date June 4, 2024
+ */
 #include "TextStrategy.h"
 #include <cstdlib>
 #include <iostream>
 #include <sstream>
 #include <string>
 
+/**
+ ************************************************************
+ * @brief Constructor for TextStrategy
+ *
+ * Initializes the TextStrategy object.
+ */
 TextStrategy::TextStrategy() {}
 
+/**
+ ************************************************************
+ * @brief Destructor for TextStrategy
+ *
+ * Closes the input file if it is open.
+ */
 TextStrategy::~TextStrategy() { closeFile(); }
 
+/**
+ ************************************************************
+ * @brief Removes all spaces from a string
+ *
+ * Removes all whitespace characters from the given string.
+ *
+ * @param[in] aString - The input string
+ *
+ * @return The string without spaces
+ */
 std::string TextStrategy::removeAllSpaces(const std::string& aString) {
     std::string result;
     for (char c : aString) {
@@ -18,6 +50,14 @@ std::string TextStrategy::removeAllSpaces(const std::string& aString) {
     return result;
 }
 
+/**
+ ************************************************************
+ * @brief Opens the input file
+ *
+ * Opens the specified input file for reading.
+ *
+ * @param[in] filename - The name of the file to open
+ */
 void TextStrategy::openFile(const std::string& filename) {
     mInputFile.open(filename);
     if (!mInputFile.is_open()) {
@@ -26,19 +66,36 @@ void TextStrategy::openFile(const std::string& filename) {
     }
 }
 
+/**
+ ************************************************************
+ * @brief Closes the input file
+ *
+ * Closes the input file if it is open.
+ */
 void TextStrategy::closeFile() {
     if (mInputFile.is_open()) {
         mInputFile.close();
     }
 }
 
+/**
+ ************************************************************
+ * @brief Reads the vertices and edges from the file
+ *
+ * Reads the vertices and edges from the input file and populates the
+ * corresponding maps.
+ *
+ * @param[inout] aVertexMap - Map of vertex names to types
+ * @param[inout] aEdgeMap - Multimap of edge connections
+ */
 void TextStrategy::readFile(std::map<std::string, std::string>& aVertexMap,
                             std::multimap<std::string, std::string>& aEdgeMap) {
     std::string line;
     int lineNumber = 0;
-    bool edgeFound = false;    // Flag to indiciate if edge part of the file is found
+    bool edgeFound = false;    // Flag to indicate if edge part of the file is found
     bool startReading = false; // Flag to indicate when to start reading
-    // read vertex
+
+    // Read vertices
     while (std::getline(mInputFile, line)) {
         lineNumber++;
         // Check if the line contains "# Description of all the nodes"
@@ -55,12 +112,13 @@ void TextStrategy::readFile(std::map<std::string, std::string>& aVertexMap,
             break; // Stop parsing when encountering this line
         }
 
+        // Trim whitespaces
+        line = removeAllSpaces(line);
+
         if (line.empty() || line[0] == '#') {
             continue; // Skip empty lines and comments
         }
 
-        // trim whitespaces
-        line = removeAllSpaces(line);
         if (line.back() != ';') { // Check if line ends with ;
             std::cerr << "Error: Line " << lineNumber << " does not end with ;" << std::endl;
             std::exit(EXIT_FAILURE);
@@ -85,6 +143,8 @@ void TextStrategy::readFile(std::map<std::string, std::string>& aVertexMap,
         if (!nodeType.empty()) {
             nodeType.erase(nodeType.size() - 1);
         }
+
+        // Check if it is an acceptable type
         if (stringSet.find(nodeType) == stringSet.end()) {
             std::cerr << "Error: Line " << lineNumber << " has invalid node type" << std::endl;
             std::exit(EXIT_FAILURE);
@@ -92,6 +152,7 @@ void TextStrategy::readFile(std::map<std::string, std::string>& aVertexMap,
 
         aVertexMap.insert({nodeName, nodeType});
     }
+
     // Check if the start line was found
     if (!startReading) {
         std::cerr << "Error: Could not find '# Description of all the nodes' in the input file." << std::endl;
@@ -103,7 +164,7 @@ void TextStrategy::readFile(std::map<std::string, std::string>& aVertexMap,
         std::exit(EXIT_FAILURE);
     }
 
-    // read edges
+    // Read edges
     while (std::getline(mInputFile, line)) {
         lineNumber++;
 
@@ -111,7 +172,7 @@ void TextStrategy::readFile(std::map<std::string, std::string>& aVertexMap,
             continue; // Skip empty lines and comments
         }
 
-        // trim whitespaces
+        // Trim whitespaces
         line = removeAllSpaces(line);
         if (line.back() != ';') { // Check if line ends with ;
             std::cerr << "Error: Line " << lineNumber << " does not end with ;" << std::endl;
@@ -135,6 +196,7 @@ void TextStrategy::readFile(std::map<std::string, std::string>& aVertexMap,
             std::exit(EXIT_FAILURE);
         }
 
+        // Read the edges from the colon position onwards
         std::stringstream stream(line.substr(colonPos + 1));
         std::string edgeEnd;
         while (std::getline(stream, edgeEnd, ',')) {

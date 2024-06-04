@@ -4,6 +4,20 @@
 #include "IOutputVisitor.h"
 #include <iostream>
 #include <vector>
+
+/**
+ ************************************************************
+ * @class Vertex
+ *
+ * @brief Represents a vertex in a circuit.
+ *
+ * The Vertex class represents a vertex in a circuit and provides
+ * methods for managing inputs, outputs, and propagation delays.
+ * It also supports observer pattern for notifying observers of changes.
+ *
+ * @author Seger01
+ * @date 04/06/2024
+ */
 class Vertex {
 private:
     int state = -1;
@@ -32,10 +46,17 @@ public:
     // virtual void setInput(unsigned aIndex, bool value);
 
     virtual int getOutput();
+    virtual int getPropagationDelay();
+
+    virtual void setOutput(){};
 
     virtual void update();
 
-    virtual void reset(){};
+    virtual void reset() {
+        mOutput = -1;
+
+        mCurrentPropogationDelay = 0;
+    };
 
     virtual int acceptOutputVisitor(IOutputVisitor& aIOutputVisitor) { return -1; };
 
@@ -56,6 +77,9 @@ protected:
 
     unsigned mMinInputs = 0;
     unsigned mMaxInputs = 0;
+
+    int mCurrentPropogationDelay = 0;
+    int mAddingPropagationDelay = 10;
 };
 
 #endif // VERTEX_H

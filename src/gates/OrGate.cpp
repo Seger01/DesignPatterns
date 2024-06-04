@@ -4,7 +4,6 @@
 OrGate OrGate::m_cInstance("OR");
 
 OrGate::OrGate() {
-    std::cout << "OrGate default constructor" << std::endl;
     mInput = new int[mMaxInputs];
     mAmountInputs = -1;
     mMinInputs = 2;
@@ -12,7 +11,6 @@ OrGate::OrGate() {
 }
 
 OrGate::OrGate(std::string id) : Vertex(id) {
-    std::cout << "OrGate assignment constructor" << std::endl;
     mInput = new int[mMaxInputs];
     mAmountInputs = -1;
     mMinInputs = 2;
@@ -20,24 +18,24 @@ OrGate::OrGate(std::string id) : Vertex(id) {
 }
 
 OrGate::~OrGate() {
-    std::cout << "OrGate destructor" << std::endl;
     if (mInput != nullptr) {
         delete[] mInput;
     }
 }
 
-// void OrGate::setInput(int aIndex, int aValue) {
-//     if (aIndex < mAmountInputs)
-//         mInput[aIndex] = aValue ? 1 : 0;
-// }
 int OrGate::getOutput() {
     if (mAmountInputs < 0) {
         std::cout << "Amount of inputs not set!" << std::endl;
         return -1;
     }
+        if (mAmountInputs < mMinInputs) {
+        std::cout << "Not enough inputs connected to OR gate" << std::endl;
+        std::cout << "Minimum inputs: " << mMinInputs << "\tInputs connected are: "<< mAmountInputs << std::endl;
+        std::exit(EXIT_FAILURE);
+    }
     for (int i = 0; i < mAmountInputs; i++) {
         if (mInput[i] == -1) {
-            std::cout << "Input at index " << i << " not set yet!" << std::endl;
+            // std::cout << "Input at index " << i << " not set yet!" << std::endl;
             return -1;
         }
         if (mInput[i] == 1) {
