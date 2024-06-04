@@ -70,7 +70,6 @@ NorGate::~NorGate() {
  * @return The output of the NOR gate (1 for true, 0 for false, -1 for error)
  */
 int NorGate::getOutput() {
-    bool output = false;
     if (mAmountInputs < 0) {
         std::cout << "Amount of inputs not set!" << std::endl;
         return -1;

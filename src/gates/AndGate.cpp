@@ -70,7 +70,6 @@ AndGate::~AndGate() {
  * @return The output of the AND gate (1 for true, 0 for false, -1 for error)
  */
 int AndGate::getOutput() {
-    bool output = false;
     if (mAmountInputs < 0) {
         std::cout << "Amount of inputs not set!" << std::endl;
         return -1;

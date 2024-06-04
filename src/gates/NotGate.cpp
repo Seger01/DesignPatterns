@@ -69,7 +69,6 @@ NotGate::~NotGate() {
  * @return The output of the NOT gate (1 for true, 0 for false, -1 for error)
  */
 int NotGate::getOutput() {
-    bool output = false;
     if (mAmountInputs < 0) {
         std::cout << "Amount of inputs not set!" << std::endl;
         return -1;
