@@ -1,5 +1,26 @@
+/**
+ ************************************************************
+ * @file XorGate.h
+ *
+ * This file contains the definition of the XorGate class,
+ * which is a derived class from Vertex and represents an
+ * XOR logic gate in a digital circuit simulation.
+ *
+ */
+
 #include "Vertex.h"
 
+/**
+ ************************************************************
+ * @class XorGate
+ *
+ * The XorGate class inherits from the Vertex class and
+ * represents an XOR logic gate. It overrides several
+ * methods from the Vertex class to implement specific
+ * behaviors for an XOR gate, such as calculating the output
+ * based on its inputs and cloning the gate.
+ *
+ */
 class XorGate : public Vertex {
 private:
     XorGate();

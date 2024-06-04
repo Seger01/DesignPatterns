@@ -1,7 +1,18 @@
+/**
+ ************************************************************
+ * @file Input.h
+ *
+ * This file contains the definition of the Input class,
+ * which is a derived class from Vertex and represents an
+ * input in a digital circuit simulation.
+ *
+ */
+
 #ifndef INPUT_H
 #define INPUT_H
 
 #include "Vertex.h"
+
 /**
  ************************************************************
  * @class Input

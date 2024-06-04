@@ -1,5 +1,26 @@
+/**
+ ************************************************************
+ * @file NotGate.h
+ *
+ * This file contains the definition of the NotGate class,
+ * which is a derived class from Vertex and represents a
+ * NOT logic gate in a digital circuit simulation.
+ *
+ */
+
 #include "Vertex.h"
 
+/**
+ ************************************************************
+ * @class NotGate
+ *
+ * The NotGate class inherits from the Vertex class and
+ * represents a NOT logic gate. It overrides several
+ * methods from the Vertex class to implement specific
+ * behaviors for a NOT gate, such as calculating the output
+ * based on its inputs and cloning the gate.
+ *
+ */
 class NotGate : public Vertex {
 private:
     NotGate();
