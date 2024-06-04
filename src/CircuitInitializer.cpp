@@ -44,7 +44,7 @@ CircuitInitializer::~CircuitInitializer() {}
 void CircuitInitializer::fillInputs(std::map<std::string, std::string>& aVertexMap) {
     std::map<std::string, Vertex*> data = Circuit::getInstance().getVertexMap();
     for (std::map<std::string, std::string>::iterator iterator = aVertexMap.begin(); iterator != aVertexMap.end();
-         iterator++) {
+         ++iterator) {
         if (iterator->second == "INPUT") {                                                  // Vertex is undefined input
             std::map<std::string, Vertex*>::iterator dataIter = data.find(iterator->first); // Get iterator at name of
                                                                                             // input
@@ -104,7 +104,7 @@ void CircuitInitializer::initCircuit(std::map<std::string, std::string>& aVertex
     }
 
     std::map<std::string, Vertex*> data = Circuit::getInstance().getVertexMap();
-    for (std::map<std::string, Vertex*>::iterator iterator = data.begin(); iterator != data.end(); iterator++) {
+    for (std::map<std::string, Vertex*>::iterator iterator = data.begin(); iterator != data.end(); ++iterator) {
         if (iterator->second != nullptr) { // Check for nullptr
             if (iterator->second->acceptOutputVisitor(outputVisitor) == 2 ||
                 iterator->second->acceptOutputVisitor(outputVisitor) == 3) { // Check if it is a probe or gate

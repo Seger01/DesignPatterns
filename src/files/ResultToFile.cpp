@@ -25,7 +25,7 @@
  ************************************************************
  * @brief Constructor for ResultToFile
  *
- * Initializes the ResultToFile object by setting the file open status to false 
+ * Initializes the ResultToFile object by setting the file open status to false
  * and generating the file.
  */
 ResultToFile::ResultToFile() {
@@ -49,7 +49,7 @@ ResultToFile::~ResultToFile() {
  ************************************************************
  * @brief Generates the output file
  *
- * Ensures the output directory exists and creates a new file 
+ * Ensures the output directory exists and creates a new file
  * with a timestamp in its name.
  */
 void ResultToFile::generateFile() {
@@ -70,7 +70,7 @@ void ResultToFile::generateFile() {
  ************************************************************
  * @brief Opens the output file
  *
- * Opens the output file in append mode if it is not already open. 
+ * Opens the output file in append mode if it is not already open.
  * Prints an error message if the file fails to open.
  */
 void ResultToFile::openFile() {
@@ -126,7 +126,7 @@ void ResultToFile::writeOutput() {
 
     // Input values
     mOutputFile << "Input:" << "\n";
-    for (std::map<std::string, Vertex*>::iterator iterator = data.begin(); iterator != data.end(); iterator++) {
+    for (std::map<std::string, Vertex*>::iterator iterator = data.begin(); iterator != data.end(); ++iterator) {
         if (iterator->second != nullptr) {                                   // Check for nullptr
             if (iterator->second->acceptOutputVisitor(outputVisitor) == 1) { // Check if it is an input
                 mOutputFile << iterator->first << ": \t";
@@ -138,7 +138,7 @@ void ResultToFile::writeOutput() {
     // Output values
     mOutputFile << "\n"
                 << "Output:" << "\n";
-    for (std::map<std::string, Vertex*>::iterator iterator = data.begin(); iterator != data.end(); iterator++) {
+    for (std::map<std::string, Vertex*>::iterator iterator = data.begin(); iterator != data.end(); ++iterator) {
         if (iterator->second != nullptr) {                                   // Check for nullptr
             if (iterator->second->acceptOutputVisitor(outputVisitor) == 2) { // Check if it is a probe
                 mOutputFile << iterator->first << ": \t";

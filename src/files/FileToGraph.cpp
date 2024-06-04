@@ -69,7 +69,7 @@ void FileToGraph::checkVertexes(std::map<std::string, std::string>& aVertexMap,
 
     std::map<std::string, std::string>::iterator iterator = aVertexMap.begin();
 
-    for (iterator; iterator != aVertexMap.end(); iterator++) {
+    for (iterator; iterator != aVertexMap.end(); ++iterator) {
         std::string vertex;
         if (iterator->second == "PROBE") { // Probes should not be connected to anything
             continue;
@@ -97,7 +97,7 @@ void FileToGraph::checkEdges(std::map<std::string, std::string>& aVertexMap,
                              std::multimap<std::string, std::string>& aEdgeMap) {
     std::multimap<std::string, std::string>::iterator iterator = aEdgeMap.begin();
 
-    for (iterator; iterator != aEdgeMap.end(); iterator++) {
+    for (iterator; iterator != aEdgeMap.end(); ++iterator) {
         std::string edge1, edge2;
         edge1 = iterator->first;
         edge2 = iterator->second;
