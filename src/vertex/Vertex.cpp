@@ -4,7 +4,10 @@
 #include "Vertex.h"
 #include "VertexFactory.h"
 
-Vertex::Vertex() {}
+Vertex::Vertex() {
+    mCurrentPropogationDelay = 0;
+    mAddingPropagationDelay = 10;
+}
 
 Vertex::Vertex(std::string id) {
     Factory::VertexFactory<std::string, Vertex>::assign(id, this); // Associate the ID of the child, so the factory
@@ -65,16 +68,20 @@ void Vertex::setInput(int aIndex, int value) {
     notify();
     return;
 }
-// void Vertex::setInput(unsigned aIndex, bool aValue) {
-//     if (aIndex < mAmountInputs)
-//         mInput[aIndex] = aValue ? 1 : 0;
-//     notify();
-// }
 
-int Vertex::getOutput() {
-    // mOutput = mInput[0];
+int Vertex::getOutput() { return mOutput; }
 
-    return mOutput;
+int Vertex::getPropagationDelay() {
+    int highestDelay = 0;
+    for (int i = 0; i < subjects.size(); i++) {
+        int subjectPropagationDelay = subjects[i]->getPropagationDelay();
+
+        if (subjectPropagationDelay > highestDelay) {
+            highestDelay = subjectPropagationDelay;
+        }
+    }
+
+    return highestDelay + mAddingPropagationDelay;
 }
 
 void Vertex::update() {

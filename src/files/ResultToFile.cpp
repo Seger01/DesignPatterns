@@ -74,14 +74,16 @@ void ResultToFile::writeOutput() {
     }
 
     static int simCount = 1;
-    mOutputFile << "-------------------------------------------------" << "\n";
+    mOutputFile << "-------------------------------------------------"
+                << "\n";
     mOutputFile << "Sim " << simCount++ << "\n";
 
     // Input values
-    mOutputFile << "Input:" << "\n";
+    mOutputFile << "Input:"
+                << "\n";
     for (std::map<std::string, Vertex*>::iterator iterator = data.begin(); iterator != data.end(); iterator++) {
-        if (iterator->second != nullptr) { // Check for nullptr
-            if (iterator->second->acceptOutputVisitor(outputVisitor) == 1) { //Check if it is an input
+        if (iterator->second != nullptr) {                                   // Check for nullptr
+            if (iterator->second->acceptOutputVisitor(outputVisitor) == 1) { // Check if it is an input
                 mOutputFile << iterator->first << ": \t";
                 mOutputFile << iterator->second->getOutput() << "\n";
             }
@@ -90,16 +92,17 @@ void ResultToFile::writeOutput() {
 
     // Output values
     mOutputFile << "\n"
-                << "Output:" << "\n";
-
+                << "Output:"
+                << "\n";
     for (std::map<std::string, Vertex*>::iterator iterator = data.begin(); iterator != data.end(); iterator++) {
-        if (iterator->second != nullptr) { //Check for nullptr
-        if (iterator->second->acceptOutputVisitor(outputVisitor) == 2) { //Check if it is a probe
-            mOutputFile << iterator->first << ": \t";
-            mOutputFile << iterator->second->getOutput() << "\n";
-        }
+        if (iterator->second != nullptr) {                                   // Check for nullptr
+            if (iterator->second->acceptOutputVisitor(outputVisitor) == 2) { // Check if it is a probe
+                mOutputFile << iterator->first << ": \t";
+                mOutputFile << iterator->second->getOutput() << "\n";
+            }
         }
     }
 
-    mOutputFile << "-------------------------------------------------" << "\n\n";
+    mOutputFile << "-------------------------------------------------"
+                << "\n\n";
 }
