@@ -17,6 +17,8 @@
  ************************************************************
  * @namespace Factory
  *
+ * @brief Contains all definition and implementation of the VertexFactory
+ *
  * The Factory namespace contains the VertexFactory template
  * class, which provides a mechanism for creating instances of
  * various gate classes derived from Vertex based on a unique ID.
@@ -27,6 +29,8 @@ namespace Factory {
 /**
  ************************************************************
  * @class VertexFactory
+ *
+ * @brief Template class with a factory method for creating vertex children
  *
  * The VertexFactory template class provides a mechanism to create
  * instances of classes derived from Vertex based on a unique ID.

@@ -14,6 +14,8 @@
  ************************************************************
  * @class XorGate
  *
+ * @brief Represents a logical xor gate
+ *
  * The XorGate class inherits from the Vertex class and
  * represents an XOR logic gate. It overrides several
  * methods from the Vertex class to implement specific

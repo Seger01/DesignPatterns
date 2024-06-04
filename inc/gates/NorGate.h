@@ -15,6 +15,8 @@
  ************************************************************
  * @class NorGate
  *
+ * @brief Represents a logical nor gate
+ *
  * The NorGate class inherits from the Vertex class and
  * represents a NOR logic gate. It overrides several
  * methods from the Vertex class to implement specific

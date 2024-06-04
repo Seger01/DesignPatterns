@@ -14,6 +14,8 @@
  ************************************************************
  * @class OrGate
  *
+ * @brief Represents a logical or gate
+ *
  * The OrGate class inherits from the Vertex class and
  * represents an OR logic gate. It overrides several
  * methods from the Vertex class to implement specific

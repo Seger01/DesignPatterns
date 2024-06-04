@@ -14,12 +14,15 @@
  ************************************************************
  * @class NandGate
  *
- * The NandGate class inherits from the Vertex class and 
- * represents a NAND logic gate. It overrides several 
- * methods from the Vertex class to implement specific 
- * behaviors for a NAND gate, such as calculating the output 
+ * @brief Represents a logical nand gate
+ *
+ * The NandGate class inherits from the Vertex class and
+ * represents a NAND logic gate. It overrides several
+ * methods from the Vertex class to implement specific
+ * behaviors for a NAND gate, such as calculating the output
  * based on its inputs and cloning the gate.
  *
+ */
 class NandGate : public Vertex {
 private:
     NandGate();

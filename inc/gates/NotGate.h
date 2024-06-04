@@ -14,6 +14,8 @@
  ************************************************************
  * @class NotGate
  *
+ * @brief Represents a logical not gate
+ *
  * The NotGate class inherits from the Vertex class and
  * represents a NOT logic gate. It overrides several
  * methods from the Vertex class to implement specific

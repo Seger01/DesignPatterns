@@ -14,6 +14,8 @@
  ************************************************************
  * @class AndGate
  *
+ * @brief Represents a logical and gate
+ *
  * The AndGate class inherits from the Vertex class and
  * represents an AND logic gate. It overrides several
  * methods from the Vertex class to implement specific
