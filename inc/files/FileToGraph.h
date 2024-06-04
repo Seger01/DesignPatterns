@@ -19,6 +19,7 @@ public: // constructor
 
 private: // private functions
     void countConfigs(const std::map<std::string, std::string>& aMap);
+    void checkEdges(std::map<std::string, std::string>& aVertexMap, std::multimap<std::string, std::string>& aEdgeMap);
 
 public: // public functions
     int getNumOfConfigs();

@@ -11,15 +11,27 @@ CircuitInitializer::CircuitInitializer(/* args */) { this->mIteration = 0; }
 
 CircuitInitializer::~CircuitInitializer() {}
 
-void CircuitInitializer::fillInputs() {
-    OutputVisitor outputVisitor;
+void CircuitInitializer::fillInputs(std::map<std::string, std::string>& aVertexMap) {
+
     std::map<std::string, Vertex*> data = Circuit::getInstance().getVertexMap();
-    for (std::map<std::string, Vertex*>::iterator iterator = data.begin(); iterator != data.end(); iterator++) {
-        if (iterator->second != nullptr) {                                   // Check for nullptr
-            if (iterator->second->acceptOutputVisitor(outputVisitor) == 1) { // check if it is an input
-                if (iterator->second->getOutput() == -1) {                   // check if it is an undefined input
-                    this->mInputs.push_back(iterator->second);
-                }
+    for (std::map<std::string, std::string>::iterator iterator = aVertexMap.begin(); iterator != aVertexMap.end();
+         iterator++) {
+        if (iterator->second == "INPUT") {                       // Vertex is undefined input
+            Vertex* vertex = data.find(iterator->first)->second; // Find Vertex in the map
+            if (vertex != data.end()->second) {                  // Check if it exists
+                this->mInputs.push_back(vertex);
+            }
+        }
+        if (iterator->second == "INPUT_HIGH") {                  // Vertex is input high
+            Vertex* vertex = data.find(iterator->first)->second; // Find Vertex in the map
+            if (vertex != data.end()->second) {                  // Check if it exists
+                vertex->setInput(0, 1);
+            }
+        }
+        if (iterator->second == "INPUT_LOW") {                   // Vertex is input low
+            Vertex* vertex = data.find(iterator->first)->second; // Find Vertex in the map
+            if (vertex != data.end()->second) {                  // Check if it exists
+                vertex->setInput(0, 0);
             }
         }
     }
@@ -35,11 +47,11 @@ void CircuitInitializer::setInputs() {
     mIteration++;
 }
 
-void CircuitInitializer::initCircuit() {
+void CircuitInitializer::initCircuit(std::map<std::string, std::string>& aVertexMap) {
     OutputVisitor outputVisitor;
 
     if (this->mIteration == 0) {
-        CircuitInitializer::fillInputs();
+        CircuitInitializer::fillInputs(aVertexMap);
     }
     std::map<std::string, Vertex*> data = Circuit::getInstance().getVertexMap();
     for (std::map<std::string, Vertex*>::iterator iterator = data.begin(); iterator != data.end(); iterator++) {

@@ -30,7 +30,11 @@ void GraphBuilder::populateCircuit(std::map<std::string, std::string>& vertexNam
                                                                                 // the map (containing vertex name and
                                                                                 // vertex type)
     while (iter != vertexNameType.end()) { // Iterate through the map (containing vertex name and vertex type)
-        Vertex* pVertex = Factory::VertexFactory<std::string, Vertex>::create(iter->second); // Create a new vertex of
+        std::string type = iter->second;
+        if (type.find("INPUT") != std::string::npos){
+            type = "INPUT";
+        }
+        Vertex* pVertex = Factory::VertexFactory<std::string, Vertex>::create(type); // Create a new vertex of
                                                                                              // the right type
                                                                                              // (iter->second contains
                                                                                              // the type as a string)
