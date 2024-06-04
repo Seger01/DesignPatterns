@@ -16,6 +16,8 @@
  ************************************************************
  * @class GraphBuilder
  *
+ * @brief Responsible for creating the vertices, subscribing them to each other and checking for loops
+ *
  * The GraphBuilder class is responsible for creating and managing the graph
  * structure of vertices and their connections. It handles the population of
  * vertices in the circuit, connects them, and checks for cycles in the graph.
