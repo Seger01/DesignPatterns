@@ -2,7 +2,7 @@
  ************************************************************
  * @file CircuitInitializer.cpp
  *
- * Implements the CircuitInitializer class for initializing and managing 
+ * Implements the CircuitInitializer class for initializing and managing
  * circuit inputs and iteration state.
  *
  * @author Sean Groenenboom
@@ -45,10 +45,12 @@ void CircuitInitializer::fillInputs(std::map<std::string, std::string>& aVertexM
     std::map<std::string, Vertex*> data = Circuit::getInstance().getVertexMap();
     for (std::map<std::string, std::string>::iterator iterator = aVertexMap.begin(); iterator != aVertexMap.end();
          iterator++) {
-        if (iterator->second == "INPUT") {                       // Vertex is undefined input
-            Vertex* vertex = data.find(iterator->first)->second; // Find Vertex in the map
-            if (vertex != data.end()->second) {                  // Check if it exists
-                this->mInputs.push_back(vertex);
+        if (iterator->second == "INPUT") {                                                  // Vertex is undefined input
+            std::map<std::string, Vertex*>::iterator dataIter = data.find(iterator->first); // Get iterator at name of
+                                                                                            // input
+            if (dataIter != data.end()) {          // Check if the input with id iterator->first exists
+                Vertex* vertex = dataIter->second; // If it exists, get the pointer to its vertex object
+                this->mInputs.push_back(vertex);   // Add it to the inputs
             }
         }
         if (iterator->second == "INPUT_HIGH") {                  // Vertex is input high
