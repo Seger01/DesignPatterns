@@ -91,7 +91,7 @@ void ResultToFile::writeOutput() {
             if (iterator->second->acceptOutputVisitor(outputVisitor) == 2) { // Check if it is a probe
                 mOutputFile << iterator->first << ": \t";
                 mOutputFile << iterator->second->getOutput() << "\t";
-                mOutputFile << "propagation delay is: " << iterator->second->getPropagationDelay() << "\n";
+                mOutputFile << "propagation delay is: " << iterator->second->getPropagationDelay() << " us \n";
             }
         }
     }

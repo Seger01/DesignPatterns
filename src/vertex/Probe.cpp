@@ -9,13 +9,22 @@ Probe::Probe() {
     mCurrentPropogationDelay = 0;
     mAddingPropagationDelay = 0;
 
-    mAmountInputs = 1;
+    // mAmountInputs = 1;
     mMinInputs = 1;
     mMaxInputs = 1;
     mInput = new int[mMaxInputs];
 }
 
-Probe::Probe(std::string id) : Vertex(id) { mValue = -1; }
+Probe::Probe(std::string id) : Vertex(id) {
+    mValue = -1;
+    mCurrentPropogationDelay = 0;
+    mAddingPropagationDelay = 0;
+
+    // mAmountInputs = 1;
+    mMinInputs = 1;
+    mMaxInputs = 1;
+    mInput = new int[mMaxInputs];
+}
 
 Probe::~Probe() {}
 
