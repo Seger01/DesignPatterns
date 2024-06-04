@@ -1,4 +1,5 @@
 #include "Circuit.h"
+#include "OutputVisitor.h"
 
 Circuit* Circuit::mCircuit = nullptr;
 
@@ -13,16 +14,13 @@ Circuit& Circuit::getInstance() {
 std::map<std::string, Vertex*>& Circuit::getVertexMap() { return mMapVertexes; }
 
 void Circuit::runSim() {
+    OutputVisitor outputVisitor;
 
-    std::cout << "mapVertexes.size " << this->mMapVertexes.size() << std::endl;
-    std::cout << "Start" << std::endl;
-
-    for (const auto& pair : mMapVertexes) {
-        if (pair.second == nullptr) {
-            std::cout << "Key: " << pair.first << ", Value: "
-                      << "nullptr" << std::endl;
-        } else {
-            std::cout << "Key: " << pair.first << ", Value: " << pair.second->getOutput() << std::endl;
+    for (std::map<std::string, Vertex*>::iterator iterator = mMapVertexes.begin(); iterator != mMapVertexes.end(); iterator++) {
+        if (iterator->second != nullptr) {                                   // Check for nullptr
+            if (iterator->second->acceptOutputVisitor(outputVisitor) == 1) { // Check if it is an input
+                iterator->second->setOutput();
+            }
         }
     }
 

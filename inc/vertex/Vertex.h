@@ -33,6 +33,8 @@ public:
 
     virtual int getOutput();
 
+    virtual void setOutput() {};
+
     virtual void update();
 
     virtual void reset(){};

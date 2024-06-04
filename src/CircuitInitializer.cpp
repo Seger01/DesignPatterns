@@ -30,7 +30,7 @@ void CircuitInitializer::setInputs() {
     for (int i = 0; i < numOfInputs; i++) {
         // Determine the value to set based on the iteration and position
         bool value = (mIteration >> i) & 1;
-        mInputs[i]->setInput(0, value);
+        mInputs[i]->setInput(0, (int)value);
     }
     mIteration++;
 }

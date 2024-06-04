@@ -14,7 +14,7 @@ private:
 public:
     ~Input();
 
-    // virtual void setInput(int aIndex, int aValue) override;
+    void setInput(int aIndex, int aValue) override;
     virtual int getOutput() override;
 
 public:                                        // Inherited methods
@@ -22,6 +22,8 @@ public:                                        // Inherited methods
     std::string whoAmI() override;
 
     Vertex* clone() const override;
+
+    void setOutput() override;
 
     int acceptOutputVisitor(IOutputVisitor& aIOutputVisitor) override;
 

@@ -102,9 +102,12 @@ void Vertex::update() {
 }
 
 int Vertex::bumpAmountInputs() {
-    if (mAmountInputs >= mMaxInputs) {
+    if (mAmountInputs >= (int)mMaxInputs) {
         std::cout << "Cannot increase amount of inputs for vertex, " << mAmountInputs << " already set!" << std::endl;
         return -1;
+    }
+    if(mAmountInputs == -1){
+        mAmountInputs = 0;
     }
     mAmountInputs++;
     return 0;
