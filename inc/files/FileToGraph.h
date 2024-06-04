@@ -1,3 +1,13 @@
+/**
+ ************************************************************
+ * @file FileToGraph.h
+ *
+ * Defines the FileToGraph class for reading a file and constructing
+ * a graph representation of a circuit.
+ *
+ * @autor Sean Groenenboom
+ * @date June 4, 2024
+ */
 #ifndef FILETOGRAPH_H
 #define FILETOGRAPH_H
 
@@ -7,6 +17,12 @@
 #include "FileStrategy.h"
 #include "Vertex.h"
 
+/**
+ ************************************************************
+ * @class FileToGraph
+ *
+ * Reads a file and constructs a graph representation of the circuit.
+ */
 class FileToGraph {
 private:
     std::string mInputFile;
