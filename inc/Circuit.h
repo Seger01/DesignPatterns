@@ -4,7 +4,22 @@
 #include <iostream>
 #include <map>
 #include <string>
-
+/**
+ ************************************************************
+ * @class Circuit
+ *
+ * @brief Manages a collection of Vertex objects and runs simulations on them.
+ *
+ * The Circuit class is a singleton that contains a map of Vertex objects
+ * identified by their string keys. It provides methods to run simulations
+ * and to access the map of Vertex objects.
+ *
+ * @note The class prevents copying and assignment by deleting the copy
+ * constructor and assignment operator.
+ *
+ * @author Seger01
+ * @date 04/06/2024
+ */
 class Circuit {
 private:
     // Private constructor to prevent instantiation

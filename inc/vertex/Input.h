@@ -2,7 +2,19 @@
 #define INPUT_H
 
 #include "Vertex.h"
-
+/**
+ ************************************************************
+ * @class Input
+ *
+ * @brief Represents an input vertex in a circuit.
+ *
+ * The Input class represents a vertex in a circuit that serves
+ * as an input. It inherits from the Vertex class and provides
+ * methods to set and get input values.
+ *
+ * @author Seger01
+ * @date 04/06/2024
+ */
 class Input : public Vertex {
 private:
     int mValue = -1;

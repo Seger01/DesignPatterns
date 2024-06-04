@@ -2,7 +2,20 @@
 #define PROBE_H
 
 #include "Vertex.h"
-
+/**
+ ************************************************************
+ * @class Probe
+ *
+ * @brief Represents a probe vertex in a circuit.
+ *
+ * The Probe class represents a vertex in a circuit that serves
+ * as a probe to monitor the circuit's behavior. It inherits from
+ * the Vertex class and provides methods to set and get input values
+ * and retrieve the output value.
+ *
+ * @author Seger01
+ * @date 04/06/2024
+ */
 class Probe : public Vertex {
 private:
     int mValue = -1;
