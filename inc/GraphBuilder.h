@@ -1,3 +1,15 @@
+/**
+ ************************************************************
+ * @file GraphBuilder.h
+ *
+ * This file contains the definition of the GraphBuilder class, which is
+ * responsible for creating and managing the graph structure of vertices and
+ * their connections. It includes methods to populate the circuit with vertices,
+ * connect them, and check for cycles in the graph.
+ *
+ * @author Your Name
+ * @date 2024-06-04
+ */
 #include "Vertex.h"
 #include <map>
 #include <string>
