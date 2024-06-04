@@ -16,7 +16,7 @@ public:
     ~Probe();
 
     using Vertex::Vertex;
-    virtual void setInput(int aIndex, int aValue) override;
+    void setInput(int aIndex, int aValue) override;
     int getValue();
     int getOutput() override;
     std::string whoAmI() override;

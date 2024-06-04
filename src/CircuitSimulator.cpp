@@ -16,7 +16,6 @@ CircuitSimulator::~CircuitSimulator() {
 }
 
 void CircuitSimulator::run() {
-    std::cout << "CircuitSimulator::run()" << std::endl;
     TextStrategy textStrategy;
     GraphBuilder graphBuilder;
 
@@ -30,28 +29,6 @@ void CircuitSimulator::run() {
     mFileToGraph->getGraph(vertexMap, edgeMap);
     numberOfConfigs = mFileToGraph->getNumOfConfigs();
 
-    for (const auto& pair : vertexMap) {
-        std::cout << "Key: " << pair.first << ", Value: " << pair.second << std::endl;
-    }
-    // Temp shit
-    // Map with vertices
-    // std::map<std::string, std::string> myVertices;
-
-    // myVertices.insert({"andSiem", "AND"});
-    // myVertices.insert({"orSeger", "OR"});
-    // myVertices.insert({"inputSean", "INPUT"});
-    // myVertices.insert({"inputWouter", "INPUT"});
-    // myVertices.insert({"inputLoek", "INPUT"});
-
-    // Map with connections
-    // std::multimap<std::string, std::string> myConnections;
-    // myConnections.insert({"inputSean", "andSiem"});
-    // myConnections.insert({"inputWouter", "andSiem"});
-    // myConnections.insert({"andSiem", "orSeger"});
-    // myConnections.insert({"inputLoek", "orSeger"});
-    // graphBuilder.createGraph(myVertices,myConnections);
-    // End temp shit
-
     graphBuilder.createGraph(vertexMap, edgeMap);
 
     std::cout << "Number of configs: " << numberOfConfigs << std::endl;
@@ -64,6 +41,9 @@ void CircuitSimulator::run() {
 
         mResultToFile->writeOutput();
     }
+
+    delete &Circuit::getInstance();
+
 
     return;
 }

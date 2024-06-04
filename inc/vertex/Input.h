@@ -15,7 +15,7 @@ public:
     ~Input();
 
     void setInput(int aIndex, int aValue) override;
-    virtual int getOutput() override;
+    int getOutput() override;
 
 public:                                        // Inherited methods
     void setAmountInputs(unsigned) override {} // Unused in input, not relevant

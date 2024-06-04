@@ -4,7 +4,6 @@
 NorGate NorGate::m_cInstance("NOR");
 
 NorGate::NorGate() {
-    std::cout << "NorGate default constructor" << std::endl;
     mAmountInputs = -1;
     mMinInputs = 2;
     mMaxInputs = 3;
@@ -12,7 +11,6 @@ NorGate::NorGate() {
 }
 
 NorGate::NorGate(std::string id) : Vertex(id) {
-    std::cout << "NorGate assignment constructor" << std::endl;
     mAmountInputs = -1;
     mMinInputs = 2;
     mMaxInputs = 3;
@@ -20,7 +18,6 @@ NorGate::NorGate(std::string id) : Vertex(id) {
 }
 
 NorGate::~NorGate() {
-    std::cout << "NorGate destructor" << std::endl;
     if (mInput != nullptr) {
         delete[] mInput;
     }
@@ -38,7 +35,7 @@ int NorGate::getOutput() {
     }
     for (int i = 0; i < mAmountInputs; i++) {
         if (mInput[i] == -1) {
-            std::cout << "Input at index " << i << " not set yet!" << std::endl;
+            // std::cout << "Input at index " << i << " not set yet!" << std::endl;
             return -1;
         }
         if (mInput[i] == 1) {

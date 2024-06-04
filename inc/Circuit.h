@@ -8,7 +8,7 @@
 class Circuit {
 private:
     // Private constructor to prevent instantiation
-    Circuit() { std::cout << "Circuit singleton instance created." << std::endl; }
+    Circuit() {}
 
     static Circuit* mCircuit;
 
@@ -16,7 +16,7 @@ private:
 
 public:
     // Public destructor
-    ~Circuit() { std::cout << "Circuit singleton instance destroyed." << std::endl; }
+    ~Circuit();
     // Delete copy constructor and assignment operator to prevent copying
     Circuit(const Circuit&) = delete;
     Circuit& operator=(const Circuit&) = delete;

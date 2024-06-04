@@ -51,7 +51,6 @@ void GraphBuilder::connectVertices(std::multimap<std::string, std::string>& vert
                                                                                         // vertex names of output and
                                                                                         // input)
     while (iter != vertexConnections.end()) { // Iterate through the map (containing vertex names of output and input)
-        std::cout << "start of while loop" << std::endl;
         Vertex* pVertexOutputting = vertexMap.find(iter->first)->second; // Get pointer to the first vertex in the map,
                                                                          // from which the output should be connected
         Vertex* pVertexReceiving = vertexMap.find(iter->second)->second;
@@ -64,30 +63,6 @@ void GraphBuilder::connectVertices(std::multimap<std::string, std::string>& vert
         }
         ++iter;
         // pVertexReceiving->setAmountInputs(pVertexReceiving->subjects.size()); // dirty but not my code :)
-    }
-
-    {
-
-        std::multimap<std::string, std::string>::iterator iter = vertexConnections.begin(); // Create an iterator at the
-                                                                                            // start of the map
-                                                                                            // (containing vertex names
-                                                                                            // of output and input)
-        while (iter != vertexConnections.end()) { // Iterate through the map (containing vertex names of output and
-                                                  // input)
-            Vertex* pVertexOutputting = vertexMap.find(iter->first)->second; // Get pointer to the first vertex in the
-                                                                             // map, from which the output should be
-                                                                             // connected
-            Vertex* pVertexReceiving = vertexMap.find(iter->second)->second;
-
-            // pVertexReceiving->addSubject(pVertexOutputting);
-            // // pVertex->subscribe(vertexMap.find(iter->second)->second); // Connect to output of the first vertex to
-            // the
-            // // input of the second vertex in the map
-            //
-            ++iter;
-
-            pVertexReceiving->setAmountInputs(pVertexReceiving->subjects.size()); // dirty but not my code :)
-        }
     }
 }
 

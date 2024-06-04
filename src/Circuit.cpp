@@ -3,6 +3,14 @@
 
 Circuit* Circuit::mCircuit = nullptr;
 
+Circuit::~Circuit() {
+    for (std::map<std::string, Vertex*>::iterator iterator = mMapVertexes.begin(); iterator != mMapVertexes.end(); iterator++) {
+        if (iterator->second != nullptr) { // Check for nullptr
+            delete iterator->second;
+        }
+    }
+}
+
 Circuit& Circuit::getInstance() {
     if (mCircuit == nullptr) {
         mCircuit = new Circuit;
@@ -23,7 +31,5 @@ void Circuit::runSim() {
             }
         }
     }
-
-    std::cout << "END" << std::endl;
     return;
 }

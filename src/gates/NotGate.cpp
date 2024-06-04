@@ -4,7 +4,6 @@
 NotGate NotGate::m_cInstance("NOT");
 
 NotGate::NotGate() {
-    std::cout << "NotGate default constructor" << std::endl;
     mAmountInputs = -1;
     mMinInputs = 1;
     mMaxInputs = 1;
@@ -12,7 +11,6 @@ NotGate::NotGate() {
 }
 
 NotGate::NotGate(std::string id) : Vertex(id) {
-    std::cout << "NotGate assignment constructor" << std::endl;
     mAmountInputs = -1;
     mMinInputs = 1;
     mMaxInputs = 1;
@@ -20,7 +18,6 @@ NotGate::NotGate(std::string id) : Vertex(id) {
 }
 
 NotGate::~NotGate() {
-    std::cout << "NotGate desctructor" << std::endl;
     if (mInput != nullptr) {
         delete[] mInput;
     }
@@ -38,7 +35,7 @@ int NotGate::getOutput() {
         return -1;
     }
     if (mInput[0] == -1) {
-        std::cout << "Input not set yet!" << std::endl;
+        // std::cout << "Input not set yet!" << std::endl;
         return -1;
     }
     if (mInput[0] == 0) {
