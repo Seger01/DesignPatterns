@@ -3,16 +3,41 @@
 #include <cmath>
 #include <fstream>
 
+/**
+ ************************************************************
+ * @brief Constructor for FileToGraph
+ *
+ * Initializes the FileToGraph object with the input file.
+ *
+ * @param[in] aInputFile - The input file name
+ */
 FileToGraph::FileToGraph(const std::string& aInputFile) {
     this->mInputFile = aInputFile;
     this->mNumOfConfigs = -1;
     this->mStrategy = nullptr;
 }
 
+/**
+ ************************************************************
+ * @brief Destructor for FileToGraph
+ *
+ * Cleans up resources used by the FileToGraph object.
+ */
 FileToGraph::~FileToGraph() {
-    // delete mStrategy;
+    if (mStrategy != nullptr)
+    {
+        delete mStrategy;
+    }
 }
 
+/**
+ ************************************************************
+ * @brief Counts the number of configurations
+ *
+ * Counts the number of configurations based on the input vertices.
+ *
+ * @param[in] aMap - Map of vertex names to types
+ */
 void FileToGraph::countConfigs(const std::map<std::string, std::string>& aMap) {
     int counter = 0;
 
@@ -25,6 +50,15 @@ void FileToGraph::countConfigs(const std::map<std::string, std::string>& aMap) {
     this->mNumOfConfigs = pow(2, counter);
 }
 
+/**
+ ************************************************************
+ * @brief Checks the connectivity of vertices
+ *
+ * Ensures that all vertices except probes are connected.
+ *
+ * @param[in] aVertexMap - Map of vertex names to types
+ * @param[in] aEdgeMap - Multimap of edge connections
+ */
 void FileToGraph::checkVertexes(std::map<std::string, std::string>& aVertexMap,
                                 std::multimap<std::string, std::string>& aEdgeMap) {
 
@@ -45,6 +79,15 @@ void FileToGraph::checkVertexes(std::map<std::string, std::string>& aVertexMap,
     }
 }
 
+/**
+ ************************************************************
+ * @brief Checks the validity of edges
+ *
+ * Ensures that all edges connect to valid vertices.
+ *
+ * @param[in] aVertexMap - Map of vertex names to types
+ * @param[in] aEdgeMap - Multimap of edge connections
+ */
 void FileToGraph::checkEdges(std::map<std::string, std::string>& aVertexMap,
                              std::multimap<std::string, std::string>& aEdgeMap) {
     std::multimap<std::string, std::string>::iterator iterator = aEdgeMap.begin();
@@ -67,10 +110,35 @@ void FileToGraph::checkEdges(std::map<std::string, std::string>& aVertexMap,
     }
 }
 
+/**
+ ************************************************************
+ * @brief Sets the strategy for reading the file
+ *
+ * Sets the file strategy to be used for reading the file.
+ *
+ * @param[in] aStrategy - Pointer to the FileStrategy object
+ */
 void FileToGraph::setStrategy(FileStrategy* aStrategy) { this->mStrategy = aStrategy; }
 
+/**
+ ************************************************************
+ * @brief Gets the number of configurations
+ *
+ * Returns the number of configurations calculated.
+ *
+ * @return The number of configurations
+ */
 int FileToGraph::getNumOfConfigs() { return this->mNumOfConfigs; }
 
+/**
+ ************************************************************
+ * @brief Builds the graph from the file
+ *
+ * Reads the vertices and edges from the file and checks their validity.
+ *
+ * @param[inout] aVertexMap - Map of vertex names to types
+ * @param[inout] aEdgeMap - Multimap of edge connections
+ */
 void FileToGraph::getGraph(std::map<std::string, std::string>& aVertexMap,
                            std::multimap<std::string, std::string>& aEdgeMap) {
     if (this->mStrategy == nullptr) {
