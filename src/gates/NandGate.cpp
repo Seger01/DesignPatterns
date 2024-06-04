@@ -33,6 +33,11 @@ int NandGate::getOutput() {
         std::cout << "Amount of inputs not set!" << std::endl;
         return -1;
     }
+        if (mAmountInputs < mMinInputs) {
+        std::cout << "Not enough inputs connected to NAND gate" << std::endl;
+        std::cout << "Minimum inputs: " << mMinInputs << "\tInputs connected are: "<< mAmountInputs << std::endl;
+        std::exit(EXIT_FAILURE);
+    }
     for (int i = 0; i < mAmountInputs; i++) {
         if (mInput[i] == -1) {
             // std::cout << "Input at index " << i << " not set yet!" << std::endl;
