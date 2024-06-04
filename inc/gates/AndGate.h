@@ -4,16 +4,19 @@ class AndGate : public Vertex {
 private:
     AndGate();
     AndGate(std::string);
+
 public:
     virtual ~AndGate();
 
 public:
-    void setInput(unsigned, bool) override;
+    virtual void setInput(int, int) override;
     int getOutput() override;
     void setAmountInputs(unsigned) override;
     std::string whoAmI() override;
 
-    Vertex *clone() const override;
+    Vertex* clone() const override;
+
+    int acceptOutputVisitor(IOutputVisitor& aIOutputVisitor) override;
 
 private:
     static AndGate m_cInstance;

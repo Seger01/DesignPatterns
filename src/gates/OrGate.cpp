@@ -26,7 +26,7 @@ OrGate::~OrGate() {
     }
 }
 
-void OrGate::setInput(unsigned aIndex, bool aValue) {
+void OrGate::setInput(int aIndex, int aValue) {
     if (aIndex < mAmountInputs)
         mInput[aIndex] = aValue ? 1 : 0;
 }
@@ -48,17 +48,17 @@ int OrGate::getOutput() {
 }
 
 void OrGate::setAmountInputs(unsigned aAmount) {
-    if (aAmount < mMinInputs || aAmount > mMaxInputs){
+    if (aAmount < mMinInputs || aAmount > mMaxInputs) {
         std::cout << "Error: invalid amount of inputs (" << aAmount << ") for OrGate" << std::endl;
         return;
     }
     mAmountInputs = aAmount;
 }
 
-Vertex *OrGate::clone() const {
-    return new OrGate;
-}
+Vertex* OrGate::clone() const { return new OrGate; }
 
-std::string OrGate::whoAmI() {
-    return std::string("I am an OrGate!");
+std::string OrGate::whoAmI() { return std::string("I am an OrGate!"); }
+
+int OrGate::acceptOutputVisitor(IOutputVisitor& aIOutputVisitor){
+    return aIOutputVisitor.visitVertex(this);
 }

@@ -1,14 +1,19 @@
 #include "ResultToFile.h"
 
-#include "Vertex.h" 
+#include "Circuit.h"
 #include "Input.h"
+#include "OutputVisitor.h"
 #include "Probe.h"
+#include "Vertex.h"
 
-#include <iostream>
-#include <iomanip>
-#include <sstream>
+#include <map>
+#include <string>
+
 #include <ctime>
 #include <filesystem>
+#include <iomanip>
+#include <iostream>
+#include <sstream>
 
 ResultToFile::ResultToFile() {
     mFileIsOpen = false;
@@ -22,7 +27,7 @@ ResultToFile::~ResultToFile() {
 }
 
 void ResultToFile::generateFile() {
-        // Ensure the output directory exists
+    // Ensure the output directory exists
     std::string outputDir = OUTPUTDIR;
     if (!std::filesystem::exists(outputDir)) {
         std::filesystem::create_directory(outputDir);
@@ -38,7 +43,7 @@ void ResultToFile::openFile() {
     if (!mFileIsOpen) {
         // Open file in append mode
         mOutputFile.open(mFilename, std::ios::out | std::ios::app);
-        
+
         // Check if the file was opened successfully
         if (!mOutputFile.is_open()) {
             std::cerr << "Failed to open the file." << std::endl;
@@ -57,7 +62,10 @@ void ResultToFile::closeFile() {
     }
 }
 
-void ResultToFile::writeOutput(const std::map<std::string, Vertex> &aData) {
+void ResultToFile::writeOutput() {
+    std::map<std::string, Vertex*> data = Circuit::getInstance().getVertexMap();
+    OutputVisitor outputVisitor;
+
     openFile(); // Ensure the file is open before writing
 
     if (!mOutputFile.is_open()) {
@@ -71,26 +79,27 @@ void ResultToFile::writeOutput(const std::map<std::string, Vertex> &aData) {
 
     // Input values
     mOutputFile << "Input:" << "\n";
-    // for (auto pair = aData.begin(); pair != aData.end(); ++pair) {
-    //     //Use dynamic_cast to check if the Vertex is an instance of Input
-    //     Input* inputPtr = dynamic_cast<Input*>(pair.second);
-    //     if (inputPtr) {
-    //         mOutputFile << pair->first << ": \t";
-    //         mOutputFile << pair->second.getInput() << "\n";
-    //     }
-    // }
+    for (std::map<std::string, Vertex*>::iterator iterator = data.begin(); iterator != data.end(); iterator++) {
+        if (iterator->second != nullptr) { // Check for nullptr
+            if (iterator->second->acceptOutputVisitor(outputVisitor) == 1) { //Check if it is an input
+                mOutputFile << iterator->first << ": \t";
+                mOutputFile << iterator->second->getOutput() << "\n";
+            }
+        }
+    }
 
     // Output values
-    mOutputFile << "\n"<< "Output:" << "\n";
-    // for (auto pair = aData.begin(); pair != aData.end(); ++pair) {
-    //     //Use dynamic_cast to check if the Vertex is an instance of Input
-    //     Probe* probePtr = dynamic_cast<Probe*>(pair.second);
-    //     if (probePtr) {
-    //         mOutputFile << pair->first << ": \t";
-    //         mOutputFile << pair->second.getOutput() << "\n";
-    //     }
-    // }
+    mOutputFile << "\n"
+                << "Output:" << "\n";
+
+    for (std::map<std::string, Vertex*>::iterator iterator = data.begin(); iterator != data.end(); iterator++) {
+        if (iterator->second != nullptr) { //Check for nullptr
+        if (iterator->second->acceptOutputVisitor(outputVisitor) == 2) { //Check if it is a probe
+            mOutputFile << iterator->first << ": \t";
+            mOutputFile << iterator->second->getOutput() << "\n";
+        }
+        }
+    }
 
     mOutputFile << "-------------------------------------------------" << "\n\n";
 }
-

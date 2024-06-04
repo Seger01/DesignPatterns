@@ -26,7 +26,7 @@ XorGate::~XorGate() {
     }
 }
 
-void XorGate::setInput(unsigned aIndex, bool aValue) {
+void XorGate::setInput(int aIndex, int aValue) {
     if (aIndex < mAmountInputs)
         mInput[aIndex] = aValue ? 1 : 0;
 }
@@ -50,17 +50,17 @@ int XorGate::getOutput() {
 }
 
 void XorGate::setAmountInputs(unsigned aAmount) {
-    if (aAmount < mMinInputs || aAmount > mMaxInputs){
+    if (aAmount < mMinInputs || aAmount > mMaxInputs) {
         std::cout << "Error: invalid amount of inputs (" << aAmount << ") for XorGate" << std::endl;
         return;
     }
     mAmountInputs = aAmount;
 }
 
-Vertex *XorGate::clone() const {
-    return new XorGate;
-}
+Vertex* XorGate::clone() const { return new XorGate; }
 
-std::string XorGate::whoAmI() {
-    return std::string("I am an XorGate!");
+std::string XorGate::whoAmI() { return std::string("I am an XorGate!"); }
+
+int XorGate::acceptOutputVisitor(IOutputVisitor& aIOutputVisitor){
+    return aIOutputVisitor.visitVertex(this);
 }

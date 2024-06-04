@@ -1,27 +1,32 @@
 #include "Circuit.h"
+#include "FileToGraph.h"
 #include "GraphBuilder.h"
 #include "Input.h"
 #include "Probe.h"
+#include "ResultToFile.h"
+#include "TextStrategy.h"
 #include "Vertex.h"
 #include "VertexFactory.h"
 #include <iostream>
 #include <map>
 
+#include "CircuitSimulator.h"
+
 void GraphBuilderTest() {
     // Map with vertices
-    std::map<std::string,std::string> myVertices;
-    myVertices.insert({"andSiem","AND"});
-    myVertices.insert({"orSeger","OR"});
-    myVertices.insert({"inputSean","INPUT"});
-    myVertices.insert({"inputWouter","INPUT"});
-    myVertices.insert({"inputLoek","INPUT"});
+    std::map<std::string, std::string> myVertices;
+    myVertices.insert({"andSiem", "AND"});
+    myVertices.insert({"orSeger", "OR"});
+    myVertices.insert({"inputSean", "INPUT"});
+    myVertices.insert({"inputWouter", "INPUT"});
+    myVertices.insert({"inputLoek", "INPUT"});
 
     // Map with connections
-    std::multimap<std::string,std::string> myConnections;
-    myConnections.insert({"inputSean","andSiem"});
-    myConnections.insert({"inputWouter","andSiem"});
-    myConnections.insert({"andSiem","orSeger"});
-    myConnections.insert({"inputLoek","orSeger"});
+    std::multimap<std::string, std::string> myConnections;
+    myConnections.insert({"inputSean", "andSiem"});
+    myConnections.insert({"inputWouter", "andSiem"});
+    myConnections.insert({"andSiem", "orSeger"});
+    myConnections.insert({"inputLoek", "orSeger"});
 
     GraphBuilder builder;
     builder.createGraph(myVertices, myConnections);
@@ -30,8 +35,8 @@ void GraphBuilderTest() {
     std::map<std::string, Vertex*>::iterator it = vertexMap.begin();
     while (it != vertexMap.end()) {
         std::cout << "My name is " << it->first << ". " << it->second->whoAmI() << std::endl;
-        //std::cout << "My output is connected to: ";
-        
+        // std::cout << "My output is connected to: ";
+
         ++it;
     }
 }
@@ -59,11 +64,38 @@ void GraphBuilderTest() {
 //     subject.setState(2);
 // }
 
+void fileTest() {
+    std::map<std::string, std::string> vertexMap;
+    std::multimap<std::string, std::string> edgeMap;
+    FileToGraph fileReader("./inputfile.txt");
+    TextStrategy strategy;
+    ResultToFile fileWriter;
+
+    fileReader.setStrategy(&strategy);
+    fileReader.getGraph(vertexMap, edgeMap);
+
+    for (std::multimap<std::string, std::string>::iterator iterator = edgeMap.begin(); iterator != edgeMap.end();
+         iterator++) {
+        std::cout << iterator->first << ", " << iterator->second << std::endl;
+    }
+    fileWriter.writeOutput();
+}
+
 int main() {
-    std::cout << std::endl << std::endl;
+    // std::cout << std::endl << std::endl;
+    //
+    // GraphBuilderTest();
+    //
+    // std::cout << std::endl << std::endl;
 
-    GraphBuilderTest();
+    // GraphBuilderTest();
+    //  fileTest();
 
-    std::cout << std::endl << std::endl;
+    // if(Circuit::getInstance() != nullptr){
+    //     delete Circuit::getInstance();
+    // }
+    CircuitSimulator circuitSimulator;
+
+    circuitSimulator.run();
     return 0;
 }

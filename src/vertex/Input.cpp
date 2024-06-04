@@ -1,5 +1,3 @@
-#pragma once
-
 #include <iostream>
 
 #include "Input.h"
@@ -34,4 +32,8 @@ Vertex* Input::clone() const { return new Input; }
 
 std::string Input::whoAmI() {
     return std::string("I am an Input!");
+}
+
+int Input::acceptOutputVisitor(IOutputVisitor& aIOutputVisitor){
+    return aIOutputVisitor.visitInput(this);
 }

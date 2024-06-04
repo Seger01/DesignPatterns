@@ -26,10 +26,11 @@ AndGate::~AndGate() {
     }
 }
 
-void AndGate::setInput(unsigned aIndex, bool aValue) {
+void AndGate::setInput(int aIndex, int aValue) {
     if (aIndex < mAmountInputs)
         mInput[aIndex] = aValue ? 1 : 0;
 }
+
 int AndGate::getOutput() {
     bool output = false;
     if (mAmountInputs < 0) {
@@ -49,17 +50,17 @@ int AndGate::getOutput() {
 }
 
 void AndGate::setAmountInputs(unsigned aAmount) {
-    if (aAmount < mMinInputs || aAmount > mMaxInputs){
+    if (aAmount < mMinInputs || aAmount > mMaxInputs) {
         std::cout << "Error: invalid amount of inputs (" << aAmount << ") for andgate" << std::endl;
         return;
     }
     mAmountInputs = aAmount;
 }
 
-Vertex *AndGate::clone() const {
-    return new AndGate;
-}
+Vertex* AndGate::clone() const { return new AndGate; }
 
-std::string AndGate::whoAmI() {
-    return std::string("I am an AndGate!");
+std::string AndGate::whoAmI() { return std::string("I am an AndGate!"); }
+
+int AndGate::acceptOutputVisitor(IOutputVisitor& aIOutputVisitor){
+    return aIOutputVisitor.visitVertex(this);
 }

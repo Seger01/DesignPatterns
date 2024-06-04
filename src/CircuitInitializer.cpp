@@ -1,6 +1,8 @@
 #include "CircuitInitializer.h"
 
+#include "Circuit.h"
 #include "Input.h"
+#include "OutputVisitor.h"
 #include "Vertex.h"
 
 #include <cmath>
@@ -9,16 +11,17 @@ CircuitInitializer::CircuitInitializer(/* args */) { this->mIteration = 0; }
 
 CircuitInitializer::~CircuitInitializer() {}
 
-void CircuitInitializer::fillInputs(std::map<std::string, Vertex*>& aCircuit) {
-    for (const auto& pair : aCircuit) {
-        //Use dynamic_cast to check if the Vertex is an instance of Input
-        // Input* inputPtr = dynamic_cast<Input*>(pair.second);
-        // if (inputPtr) {
-        //     // If the cast is correct, it is an Input
-        //     if (inputPtr->getInput() == -1) {
-        //         this->mInputs.insert(inputPtr);
-        //     }
-        // }
+void CircuitInitializer::fillInputs() {
+    OutputVisitor outputVisitor;
+    std::map<std::string, Vertex*> data = Circuit::getInstance().getVertexMap();
+    for (std::map<std::string, Vertex*>::iterator iterator = data.begin(); iterator != data.end(); iterator++) {
+        if (iterator->second != nullptr) {                                   // Check for nullptr
+            if (iterator->second->acceptOutputVisitor(outputVisitor) == 1) { // check if it is an input
+                if (iterator->second->getOutput() == -1) {                   // check if it is an undefined input
+                    this->mInputs.push_back(iterator->second);
+                }
+            }
+        }
     }
 }
 
@@ -32,20 +35,21 @@ void CircuitInitializer::setInputs() {
     mIteration++;
 }
 
-void CircuitInitializer::initCircuit(std::map<std::string, Vertex*>& aCircuit) {
+void CircuitInitializer::initCircuit() {
+    OutputVisitor outputVisitor;
 
     if (this->mIteration == 0) {
-        CircuitInitializer::fillInputs(aCircuit);
+        CircuitInitializer::fillInputs();
+    }
+    std::map<std::string, Vertex*> data = Circuit::getInstance().getVertexMap();
+    for (std::map<std::string, Vertex*>::iterator iterator = data.begin(); iterator != data.end(); iterator++) {
+        if (iterator->second != nullptr) { // Check for nullptr
+            if (iterator->second->acceptOutputVisitor(outputVisitor) == 2 ||
+                iterator->second->acceptOutputVisitor(outputVisitor) == 3) { // Check if it is an probe or gate
+                iterator->second->reset();
+            }
+        }
     }
 
     setInputs();
-
-    for (const auto& pair : aCircuit) {
-        // Use dynamic_cast to check if the Vertex is an instance of Input
-        // Input* inputPtr = dynamic_cast<Input*>(pair.second);
-        // if (!inputPtr) {
-        //     // If the cast fails, it is not an Input, so call reset
-        //     pair.second->reset();
-        // }
-    }
 }

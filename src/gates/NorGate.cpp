@@ -26,7 +26,7 @@ NorGate::~NorGate() {
     }
 }
 
-void NorGate::setInput(unsigned aIndex, bool aValue) {
+void NorGate::setInput(int aIndex, int aValue) {
     if (aIndex < mAmountInputs)
         mInput[aIndex] = aValue ? 1 : 0;
 }
@@ -49,17 +49,17 @@ int NorGate::getOutput() {
 }
 
 void NorGate::setAmountInputs(unsigned aAmount) {
-    if (aAmount < mMinInputs || aAmount > mMaxInputs){
+    if (aAmount < mMinInputs || aAmount > mMaxInputs) {
         std::cout << "Error: invalid amount of inputs (" << aAmount << ") for NorGate" << std::endl;
         return;
     }
     mAmountInputs = aAmount;
 }
 
-Vertex *NorGate::clone() const {
-    return new NorGate;
-}
+Vertex* NorGate::clone() const { return new NorGate; }
 
-std::string NorGate::whoAmI() {
-    return std::string("I am an NorGate!");
+std::string NorGate::whoAmI() { return std::string("I am an NorGate!"); }
+
+int NorGate::acceptOutputVisitor(IOutputVisitor& aIOutputVisitor){
+    return aIOutputVisitor.visitVertex(this);
 }

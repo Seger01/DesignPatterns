@@ -1,8 +1,7 @@
-#pragma once
-
 #include <iostream>
 
 #include "Probe.h"
+#include "IOutputVisitor.h"
 
 Probe Probe::m_cInstance("PROBE");
 
@@ -31,4 +30,8 @@ Vertex* Probe::clone() const { return new Probe; }
 
 std::string Probe::whoAmI() {
     return std::string("I am a Probe!");
+}
+
+int Probe::acceptOutputVisitor(IOutputVisitor& aIOutputVisitor){
+    return aIOutputVisitor.visitProbe(this);
 }

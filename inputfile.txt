@@ -2,9 +2,9 @@
 #
 # Description of all the nodes
 #
-A: INPUT_HIGH; 
-B: INPUT_HIGH;
-Cin: INPUT_LOW;
+A: INPUT; 
+B: INPUT;
+Cin: INPUT;
 Cout: PROBE; 
 S: PROBE;
 NODE1: OR;
