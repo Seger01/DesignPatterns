@@ -11,12 +11,14 @@ private:
 private:
     Probe();
     Probe(std::string);
+
 public:
     ~Probe();
 
     using Vertex::Vertex;
     virtual void setInput(int aIndex, int aValue) override;
     int getValue();
+    int getOutput() override;
     std::string whoAmI() override;
 
     int acceptOutputVisitor(IOutputVisitor& aIOutputVisitor) override;

@@ -26,10 +26,10 @@ XorGate::~XorGate() {
     }
 }
 
-void XorGate::setInput(int aIndex, int aValue) {
-    if (aIndex < mAmountInputs)
-        mInput[aIndex] = aValue ? 1 : 0;
-}
+// void XorGate::setInput(int aIndex, int aValue) {
+//     if (aIndex < mAmountInputs)
+//         mInput[aIndex] = aValue ? 1 : 0;
+// }
 int XorGate::getOutput() {
     bool output = false;
     if (mAmountInputs < 0) {
@@ -61,6 +61,4 @@ Vertex* XorGate::clone() const { return new XorGate; }
 
 std::string XorGate::whoAmI() { return std::string("I am an XorGate!"); }
 
-int XorGate::acceptOutputVisitor(IOutputVisitor& aIOutputVisitor){
-    return aIOutputVisitor.visitVertex(this);
-}
+int XorGate::acceptOutputVisitor(IOutputVisitor& aIOutputVisitor) { return aIOutputVisitor.visitVertex(this); }
