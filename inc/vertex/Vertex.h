@@ -1,16 +1,18 @@
 #ifndef VERTEX_H
 #define VERTEX_H
 
+#include "IOutputVisitor.h"
 #include <iostream>
 #include <vector>
-#include "IOutputVisitor.h"
 class Vertex {
 private:
     int state = -1;
+    int mValue = -1;
+
+public:
     std::vector<Vertex*> observers;
     std::vector<Vertex*> subjects;
 
-public:
     Vertex();
     Vertex(std::string);
 
@@ -24,7 +26,7 @@ public:
 
     void notify();
 
-    void setState(int state);
+    virtual void setState(int state);
 
     virtual void setInput(int aIndex, int value);
     // virtual void setInput(unsigned aIndex, bool value);
@@ -33,9 +35,9 @@ public:
 
     virtual void update();
 
-    virtual void reset() {};
+    virtual void reset(){};
 
-    virtual int acceptOutputVisitor(IOutputVisitor& aIOutputVisitor) {return -1;};
+    virtual int acceptOutputVisitor(IOutputVisitor& aIOutputVisitor) { return -1; };
 
 protected:
 public:
@@ -48,7 +50,7 @@ public:
 
 protected:
     int* mInput;
-    int mOutput;
+    int mOutput = -1;
     int mAmountInputs = -1;
     int mAmountInputsSet = 0;
 

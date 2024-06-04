@@ -9,7 +9,7 @@ public:
     virtual ~NandGate();
 
 public:
-    void setInput(int, int) override;
+    // void setInput(int, int) override;
     int getOutput() override;
     void setAmountInputs(unsigned) override;
     std::string whoAmI() override;

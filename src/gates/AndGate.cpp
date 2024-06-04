@@ -26,10 +26,10 @@ AndGate::~AndGate() {
     }
 }
 
-void AndGate::setInput(int aIndex, int aValue) {
-    if (aIndex < mAmountInputs)
-        mInput[aIndex] = aValue ? 1 : 0;
-}
+// void AndGate::setInput(int aIndex, int aValue) {
+//     if (aIndex < mAmountInputs)
+//         mInput[aIndex] = aValue ? 1 : 0;
+// }
 
 int AndGate::getOutput() {
     bool output = false;
@@ -61,6 +61,4 @@ Vertex* AndGate::clone() const { return new AndGate; }
 
 std::string AndGate::whoAmI() { return std::string("I am an AndGate!"); }
 
-int AndGate::acceptOutputVisitor(IOutputVisitor& aIOutputVisitor){
-    return aIOutputVisitor.visitVertex(this);
-}
+int AndGate::acceptOutputVisitor(IOutputVisitor& aIOutputVisitor) { return aIOutputVisitor.visitVertex(this); }

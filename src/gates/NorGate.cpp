@@ -26,10 +26,10 @@ NorGate::~NorGate() {
     }
 }
 
-void NorGate::setInput(int aIndex, int aValue) {
-    if (aIndex < mAmountInputs)
-        mInput[aIndex] = aValue ? 1 : 0;
-}
+// void NorGate::setInput(int aIndex, int aValue) {
+//     if (aIndex < mAmountInputs)
+//         mInput[aIndex] = aValue ? 1 : 0;
+// }
 int NorGate::getOutput() {
     bool output = false;
     if (mAmountInputs < 0) {
@@ -60,6 +60,4 @@ Vertex* NorGate::clone() const { return new NorGate; }
 
 std::string NorGate::whoAmI() { return std::string("I am an NorGate!"); }
 
-int NorGate::acceptOutputVisitor(IOutputVisitor& aIOutputVisitor){
-    return aIOutputVisitor.visitVertex(this);
-}
+int NorGate::acceptOutputVisitor(IOutputVisitor& aIOutputVisitor) { return aIOutputVisitor.visitVertex(this); }

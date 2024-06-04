@@ -7,9 +7,11 @@
 Vertex::Vertex() {}
 
 Vertex::Vertex(std::string id) {
-    Factory::VertexFactory<std::string, Vertex>::assign(
-        id, this); // Associate the ID of the child, so the factory knows which type of child to create
+    Factory::VertexFactory<std::string, Vertex>::assign(id, this); // Associate the ID of the child, so the factory
+                                                                   // knows which type of child to create
     std::cout << "Vertex assignment constructor" << std::endl;
+
+    mInput = new int[1];
 }
 
 Vertex::~Vertex() {
@@ -20,7 +22,17 @@ Vertex::~Vertex() {
     }
 }
 
-void Vertex::subscribe(Vertex* observer) { observers.push_back(observer); }
+void Vertex::subscribe(Vertex* observer) {
+    if (observer == nullptr) {
+        std::cout << "Vertex::subscribe received nullptr" << std::endl;
+        // return;
+    } else {
+        std::cout << "Vertex::subscribe called" << std::endl;
+    }
+
+    observers.push_back(observer);
+    std::cout << "Vertex::subscribe called2" << std::endl;
+}
 
 void Vertex::unsubscribe(Vertex* observer) {
     if (observers.size() == 0) {
@@ -28,7 +40,17 @@ void Vertex::unsubscribe(Vertex* observer) {
     }
     observers.erase(std::remove(observers.begin(), observers.end(), observer), observers.end());
 }
+
 void Vertex::addSubject(Vertex* subject) {
+    if (subject == nullptr) {
+        std::cout << "addSubject received nullptr" << std::endl;
+    }
+    std::cout << "Vertex::addSubject() " << std::endl;
+    std::cout << subject << std::endl;
+
+    std::cout << "accesing subject" << std::endl;
+    subject->whoAmI();
+    std::cout << "push_back" << std::endl;
     subjects.push_back(subject);
     std::cout << "addSubject() " << subjects.size() << std::endl;
     subject->subscribe(this);
@@ -39,6 +61,7 @@ void Vertex::removeSubject(Vertex* subject) {
     subject->unsubscribe(this);
 }
 void Vertex::notify() {
+    std::cout << "Vertex::notify()" << std::endl;
     for (Vertex* observer : observers) {
         observer->update();
     }
@@ -50,7 +73,9 @@ void Vertex::setState(int state) {
 }
 
 void Vertex::setInput(int aIndex, int value) {
+    std::cout << "Vertex::setInput" << std::endl;
     // std::cout << "setInput " << aIndex << ", " << value << std::endl;
+    mOutput = value;
     if (aIndex < mAmountInputs) {
         mInput[aIndex] = value;
     }
@@ -63,9 +88,14 @@ void Vertex::setInput(int aIndex, int value) {
 //     notify();
 // }
 
-int Vertex::getOutput() { return state; }
+int Vertex::getOutput() {
+    // mOutput = mInput[0];
+
+    return mOutput;
+}
 
 void Vertex::update() {
+    std::cout << "Vertex::update()" << std::endl;
     for (int i = 0; i < subjects.size(); i++) {
         this->setInput(i, subjects[i]->getOutput());
     }

@@ -10,10 +10,11 @@ private:
 private:
     Input();
     Input(std::string);
+
 public:
     ~Input();
 
-    virtual void setInput(int aIndex, int aValue) override;
+    // virtual void setInput(int aIndex, int aValue) override;
     virtual int getOutput() override;
 
 public:                                        // Inherited methods
