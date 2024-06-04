@@ -1,9 +1,26 @@
+/**
+ ************************************************************
+ * @file FileStrategy.h
+ *
+ * Defines the FileStrategy abstract base class for file reading
+ * strategies.
+ *
+ * @autor Sean Groenenboom
+ * @date June 4, 2024
+ */
+
 #ifndef FILESTRATEGY_H
 #define FILESTRATEGY_H
 
 #include <map>
 #include <string>
 
+/**
+ ************************************************************
+ * @class FileStrategy
+ *
+ * Abstract base class for file reading strategies.
+ */
 class FileStrategy {
 public:
     virtual ~FileStrategy() {}

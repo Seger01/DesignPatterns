@@ -1,3 +1,14 @@
+/**
+ ************************************************************
+ * @file ResultToFile.cpp
+ *
+ * Implements the ResultToFile class for managing the writing of circuit
+ * results to an output file.
+ *
+ * @autor Sean Groenenboom
+ * @date June 4, 2024
+ */
+
 #include "ResultToFile.h"
 
 #include "Circuit.h"
@@ -10,17 +21,37 @@
 #include <sstream>
 #include <string>
 
+/**
+ ************************************************************
+ * @brief Constructor for ResultToFile
+ *
+ * Initializes the ResultToFile object by setting the file open status to false 
+ * and generating the file.
+ */
 ResultToFile::ResultToFile() {
     mFileIsOpen = false;
     generateFile();
 }
 
+/**
+ ************************************************************
+ * @brief Destructor for ResultToFile
+ *
+ * Closes the file if it is open.
+ */
 ResultToFile::~ResultToFile() {
     if (mFileIsOpen) {
         closeFile();
     }
 }
 
+/**
+ ************************************************************
+ * @brief Generates the output file
+ *
+ * Ensures the output directory exists and creates a new file 
+ * with a timestamp in its name.
+ */
 void ResultToFile::generateFile() {
     // Ensure the output directory exists
     std::string outputDir = OUTPUTDIR;
@@ -28,12 +59,20 @@ void ResultToFile::generateFile() {
         std::filesystem::create_directory(outputDir);
     }
 
+    // Create a filename with a timestamp
     std::ostringstream oss;
     std::time_t now = std::time(nullptr);
     oss << outputDir << "/circuitOutput_" << std::put_time(std::localtime(&now), "%Y_%m_%d_%H:%M:%S") << ".txt";
     mFilename = oss.str();
 }
 
+/**
+ ************************************************************
+ * @brief Opens the output file
+ *
+ * Opens the output file in append mode if it is not already open. 
+ * Prints an error message if the file fails to open.
+ */
 void ResultToFile::openFile() {
     if (!mFileIsOpen) {
         // Open file in append mode
@@ -50,6 +89,12 @@ void ResultToFile::openFile() {
     }
 }
 
+/**
+ ************************************************************
+ * @brief Closes the output file
+ *
+ * Closes the output file if it is open and sets the file open status to false.
+ */
 void ResultToFile::closeFile() {
     if (mFileIsOpen) {
         mOutputFile.close();
@@ -57,6 +102,13 @@ void ResultToFile::closeFile() {
     }
 }
 
+/**
+ ************************************************************
+ * @brief Writes the simulation output to the file
+ *
+ * Writes the input and output values of the circuit to the file.
+ * Ensures the file is open before writing.
+ */
 void ResultToFile::writeOutput() {
     std::map<std::string, Vertex*> data = Circuit::getInstance().getVertexMap();
     OutputVisitor outputVisitor;
