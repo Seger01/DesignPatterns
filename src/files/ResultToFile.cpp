@@ -94,17 +94,14 @@ void ResultToFile::writeOutput() {
     mOutputFile << "\n"
                 << "Output:"
                 << "\n";
-    std::cout << "Start" << std::endl;
     for (std::map<std::string, Vertex*>::iterator iterator = data.begin(); iterator != data.end(); iterator++) {
         if (iterator->second != nullptr) {                                   // Check for nullptr
             if (iterator->second->acceptOutputVisitor(outputVisitor) == 2) { // Check if it is a probe
                 mOutputFile << iterator->first << ": \t";
                 mOutputFile << iterator->second->getOutput() << "\n";
-                std::cout << "Calculated Propagation Delay: " << iterator->second->getPropagationDelay() << std::endl;
             }
         }
     }
-    std::cout << "End" << std::endl;
 
     mOutputFile << "-------------------------------------------------"
                 << "\n\n";
