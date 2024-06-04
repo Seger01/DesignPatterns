@@ -54,13 +54,13 @@ void TextStrategy::readFile(std::map<std::string, std::string>& aVertexMap,
             edgeFound = true;
             break; // Stop parsing when encountering this line
         }
+        // trim whitespaces
+        line = removeAllSpaces(line);
 
         if (line.empty() || line[0] == '#') {
             continue; // Skip empty lines and comments
         }
 
-        // trim whitespaces
-        line = removeAllSpaces(line);
         if (line.back() != ';') { // Check if line ends with ;
             std::cerr << "Error: Line " << lineNumber << " does not end with ;" << std::endl;
             std::exit(EXIT_FAILURE);
@@ -85,7 +85,7 @@ void TextStrategy::readFile(std::map<std::string, std::string>& aVertexMap,
         if (!nodeType.empty()) {
             nodeType.erase(nodeType.size() - 1);
         }
-        //Check if it is an acceptable type
+        // Check if it is an acceptable type
         if (stringSet.find(nodeType) == stringSet.end()) {
             std::cerr << "Error: Line " << lineNumber << " has invalid node type" << std::endl;
             std::exit(EXIT_FAILURE);
