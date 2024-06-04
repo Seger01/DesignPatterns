@@ -1,3 +1,14 @@
+/**
+ ************************************************************
+ * @file ResultToFile.h
+ *
+ * Defines the ResultToFile class for managing the writing of circuit
+ * results to an output file.
+ *
+ * @author Sean Groenenboom
+ * @date June 4, 2024
+ */
+
 #ifndef RESULT_TO_FILE_H
 #define RESULT_TO_FILE_H
 
@@ -11,9 +22,6 @@
  * @class ResultToFile
  *
  * Manages writing the results of circuit operations to a file.
- *
- * @author Sean Groenenboom
- * @date June 4, 2024
  */
 class ResultToFile {
 private: // Members

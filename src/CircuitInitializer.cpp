@@ -1,3 +1,13 @@
+/**
+ ************************************************************
+ * @file CircuitInitializer.cpp
+ *
+ * Implements the CircuitInitializer class for initializing and managing 
+ * circuit inputs and iteration state.
+ *
+ * @author Sean Groenenboom
+ * @date June 4, 2024
+ */
 #include "CircuitInitializer.h"
 
 #include "Circuit.h"

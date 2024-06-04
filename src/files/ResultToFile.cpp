@@ -1,3 +1,14 @@
+/**
+ ************************************************************
+ * @file ResultToFile.cpp
+ *
+ * Implements the ResultToFile class for managing the writing of circuit
+ * results to an output file.
+ *
+ * @autor Sean Groenenboom
+ * @date June 4, 2024
+ */
+
 #include "ResultToFile.h"
 
 #include "Circuit.h"

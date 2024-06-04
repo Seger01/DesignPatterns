@@ -1,3 +1,13 @@
+/**
+ ************************************************************
+ * @file FileToGraph.h
+ *
+ * Defines the FileToGraph class for reading a file and constructing
+ * a graph representation of a circuit.
+ *
+ * @autor Sean Groenenboom
+ * @date June 4, 2024
+ */
 #ifndef FILETOGRAPH_H
 #define FILETOGRAPH_H
 
@@ -12,9 +22,6 @@
  * @class FileToGraph
  *
  * Reads a file and constructs a graph representation of the circuit.
- *
- * @author Sean Groenenboom
- * @date June 4, 2024
  */
 class FileToGraph {
 private:

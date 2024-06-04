@@ -1,3 +1,13 @@
+/**
+ ************************************************************
+ * @file FileStrategy.cpp
+ *
+ * Implements the FileStrategy abstract base class for file reading
+ * strategies.
+ *
+ * @autor Sean Groenenboom
+ * @date June 4, 2024
+ */
 #include "TextStrategy.h"
 #include <cstdlib>
 #include <iostream>

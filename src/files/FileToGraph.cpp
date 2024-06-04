@@ -1,3 +1,13 @@
+/**
+ ************************************************************
+ * @file FileToGraph.cpp
+ *
+ * Implements the FileToGraph class for reading a file and constructing
+ * a graph representation of a circuit.
+ *
+ * @autor Sean Groenenboom
+ * @date June 4, 2024
+ */
 #include "FileToGraph.h"
 #include "Vertex.h"
 #include <cmath>
@@ -23,12 +33,7 @@ FileToGraph::FileToGraph(const std::string& aInputFile) {
  *
  * Cleans up resources used by the FileToGraph object.
  */
-FileToGraph::~FileToGraph() {
-    if (mStrategy != nullptr)
-    {
-        delete mStrategy;
-    }
-}
+FileToGraph::~FileToGraph() {}
 
 /**
  ************************************************************
@@ -155,7 +160,7 @@ void FileToGraph::getGraph(std::map<std::string, std::string>& aVertexMap,
 
     countConfigs(aVertexMap);
 
-    checkVertexes(aVertexMap, aEdgeMap);    
+    checkVertexes(aVertexMap, aEdgeMap);
 
     checkEdges(aVertexMap, aEdgeMap);
 }
