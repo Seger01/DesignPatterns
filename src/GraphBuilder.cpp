@@ -1,8 +1,10 @@
 #include "GraphBuilder.h"
 
 #include "Circuit.h"
+#include "Vertex.h"
 #include "VertexFactory.h"
 
+#include <list>
 #include <map>
 #include <string>
 
@@ -10,6 +12,12 @@ void GraphBuilder::createGraph(std::map<std::string, std::string>& vertexNameTyp
                                std::multimap<std::string, std::string>& vertexConnections) {
     populateCircuit(vertexNameType);
     connectVertices(vertexConnections);
+    const std::map<std::string, Vertex*> constVertexMap = Circuit::getInstance().getVertexMap();
+    const std::multimap<std::string, std::string> constVertexConnections = vertexConnections;
+    if (hasCycle(constVertexMap, vertexConnections)) {
+        std::cout << "Input file contains cycles, aborting" << std::endl;
+        std::exit(EXIT_FAILURE);
+    }
 }
 
 void GraphBuilder::populateCircuit(std::map<std::string, std::string>& vertexNameType) {
@@ -58,7 +66,7 @@ void GraphBuilder::connectVertices(std::multimap<std::string, std::string>& vert
         // pVertexReceiving->setAmountInputs(pVertexReceiving->subjects.size()); // dirty but not my code :)
     }
 
-    { // idk what this is I am tired
+    {
 
         std::multimap<std::string, std::string>::iterator iter = vertexConnections.begin(); // Create an iterator at the
                                                                                             // start of the map
@@ -81,4 +89,42 @@ void GraphBuilder::connectVertices(std::multimap<std::string, std::string>& vert
             pVertexReceiving->setAmountInputs(pVertexReceiving->subjects.size()); // dirty but not my code :)
         }
     }
+}
+
+bool GraphBuilder::hasCycleDFS(const std::string& node, std::map<std::string, bool>& visited,
+                               std::map<std::string, bool>& recStack,
+                               const std::multimap<std::string, std::string>& edges) {
+    if (!visited[node]) {
+        visited[node] = true;
+        recStack[node] = true;
+
+        auto range = edges.equal_range(node);
+        for (auto i = range.first; i != range.second; ++i) {
+            std::string neighbour = i->second;
+            if (!visited[neighbour] && hasCycleDFS(neighbour, visited, recStack, edges))
+                return true;
+            else if (recStack[neighbour])
+                return true;
+        }
+    }
+    recStack[node] = false;
+    return false;
+}
+
+bool GraphBuilder::hasCycle(const std::map<std::string, Vertex*>& vertices,
+                            const std::multimap<std::string, std::string>& edges) {
+    std::map<std::string, bool> visited;
+    std::map<std::string, bool> recStack;
+
+    for (auto& pair : vertices) {
+        visited[pair.first] = false;
+        recStack[pair.first] = false;
+    }
+
+    for (auto& pair : vertices) {
+        if (hasCycleDFS(pair.first, visited, recStack, edges))
+            return true;
+    }
+
+    return false;
 }

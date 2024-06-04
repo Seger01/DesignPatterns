@@ -5,7 +5,7 @@
 #include "TextStrategy.h"
 
 CircuitSimulator::CircuitSimulator() {
-    mFileToGraph = new FileToGraph("inputfile.txt");
+    mFileToGraph = new FileToGraph("inputfile_fulladder.txt");
     mResultToFile = new ResultToFile();
     mCircuitInitializer = new CircuitInitializer();
 }
