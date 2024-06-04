@@ -118,6 +118,9 @@ void TextStrategy::readFile(std::map<std::string, std::string>& aVertexMap,
             std::exit(EXIT_FAILURE);
         }
 
+        // Remove the ; from the string
+        line.resize(line.size() - 1);
+
         // Find the position of the colon
         size_t colonPos = line.find(':');
         if (colonPos == std::string::npos) {
