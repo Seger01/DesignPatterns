@@ -73,9 +73,9 @@ void Vertex::setState(int state) {
 }
 
 void Vertex::setInput(int aIndex, int value) {
-    std::cout << "Vertex::setInput" << std::endl;
+    std::cout << "Vertex::setInput, mAmountInputs: " << mAmountInputs << std::endl;
     // std::cout << "setInput " << aIndex << ", " << value << std::endl;
-    mOutput = value;
+    // mOutput = value;
     if (aIndex < mAmountInputs) {
         mInput[aIndex] = value;
     }
