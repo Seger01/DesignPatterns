@@ -37,3 +37,6 @@ $(TARGET): $(OBJ_FILES)
 
 clean:
 	rm -rf $(BUILD_DIR) $(TARGET)
+
+doxygen:
+	doxygen
