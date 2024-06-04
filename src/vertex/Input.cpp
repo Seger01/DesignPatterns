@@ -16,24 +16,26 @@ Input::Input(std::string id) : Vertex(id) {
 
 Input::~Input() { std::cout << "Input destructor" << std::endl; }
 
-void Input::setInput(int aIndex, int aValue) {
-    if (aIndex != 0) {
-        std::cout << "Input::setInput error aIndex is not zero" << std::endl;
-    }
+// void Input::setInput(int aIndex, int aValue) {
+//     std::cout << "Input::setInput" << std::endl;
+//     if (aIndex != 0) {
+//         std::cout << "Input::setInput error aIndex is not zero" << std::endl;
+//     }
+//
+//     mValue = aValue;
+//     mOutput = aValue;
+//     return;
+// }
+int Input::getOutput() {
+    std::cout << "Input::getOutput()" << std::endl;
 
-    mValue = aValue;
-    return;
+    return mOutput;
 }
-int Input::getOutput() { return mValue; }
 
 void Input::setValue(bool aValue) { mValue = aValue ? 1 : 0; }
 
 Vertex* Input::clone() const { return new Input; }
 
-std::string Input::whoAmI() {
-    return std::string("I am an Input!");
-}
+std::string Input::whoAmI() { return std::string("I am an Input!"); }
 
-int Input::acceptOutputVisitor(IOutputVisitor& aIOutputVisitor){
-    return aIOutputVisitor.visitInput(this);
-}
+int Input::acceptOutputVisitor(IOutputVisitor& aIOutputVisitor) { return aIOutputVisitor.visitInput(this); }

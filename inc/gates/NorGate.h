@@ -1,5 +1,5 @@
-#include "Vertex.h"
 #include "IOutputVisitor.h"
+#include "Vertex.h"
 
 class NorGate : public Vertex {
 private:
@@ -10,7 +10,7 @@ public:
     virtual ~NorGate();
 
 public:
-    void setInput(int, int) override;
+    // void setInput(int, int) override;
     int getOutput() override;
     void setAmountInputs(unsigned) override;
     std::string whoAmI() override;

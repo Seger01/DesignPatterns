@@ -9,7 +9,11 @@ CircuitSimulator::CircuitSimulator() {
     mResultToFile = new ResultToFile();
     mCircuitInitializer = new CircuitInitializer();
 }
-CircuitSimulator::~CircuitSimulator() { delete mFileToGraph; }
+CircuitSimulator::~CircuitSimulator() {
+    delete mCircuitInitializer;
+    delete mResultToFile;
+    delete mFileToGraph;
+}
 
 void CircuitSimulator::run() {
     std::cout << "CircuitSimulator::run()" << std::endl;

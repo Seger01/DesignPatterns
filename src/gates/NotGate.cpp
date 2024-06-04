@@ -26,11 +26,11 @@ NotGate::~NotGate() {
     }
 }
 
-void NotGate::setInput(int aIndex, int aValue) {
-    if (aIndex < mAmountInputs)
-        mInput[aIndex] = aValue ? 1 : 0;
-}
-
+// void NotGate::setInput(int aIndex, int aValue) {
+//     if (aIndex < mAmountInputs)
+//         mInput[aIndex] = aValue ? 1 : 0;
+// }
+//
 int NotGate::getOutput() {
     bool output = false;
     if (mAmountInputs < 0) {
@@ -59,6 +59,4 @@ Vertex* NotGate::clone() const { return new NotGate; }
 
 std::string NotGate::whoAmI() { return std::string("I am a NotGate!"); }
 
-int NotGate::acceptOutputVisitor(IOutputVisitor& aIOutputVisitor){
-    return aIOutputVisitor.visitVertex(this);
-}
+int NotGate::acceptOutputVisitor(IOutputVisitor& aIOutputVisitor) { return aIOutputVisitor.visitVertex(this); }

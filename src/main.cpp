@@ -41,28 +41,52 @@ void GraphBuilderTest() {
     }
 }
 
-// void vertexObserverTest() {
-//     std::cout << "Start!" << std::endl;
+void vertexObserverTest() {
+    // std::cout << "Start!" << std::endl;
+    //
+    // // Vertex* pInput = Input
+    // Vertex* pInput1 = Factory::VertexFactory<std::string, Vertex>::create("INPUT"); // Create a new vertex of
+    //
+    // Vertex* pProbe = Factory::VertexFactory<std::string, Vertex>::create("PROBE"); // Create a new vertex of
+    //
+    // pProbe->addSubject(pInput1);
+    //
+    // std::cout << "setstate(1)" << std::endl;
+    // pInput1->setInput(0, 1);
+    // std::cout << "Input output: " << pInput1->getOutput() << std::endl;
+    // std::cout << "Probe output: " << pProbe->getOutput() << std::endl;
+    // pInput1->setInput(0, 0);
+    // std::cout << "Input output: " << pInput1->getOutput() << std::endl;
+    // std::cout << "Probe output: " << pProbe->getOutput() << std::endl;
+    std::cout << "Start!" << std::endl;
 
-//     Vertex* pInput = Factory::VertexFactory<int, Vertex>::create subject(1234);
+    // Vertex* pInput = Input
+    Vertex* pInput1 = Factory::VertexFactory<std::string, Vertex>::create("INPUT"); // Create a new vertex of
+    Vertex* pInput2 = Factory::VertexFactory<std::string, Vertex>::create("INPUT"); // Create a new vertex of
 
-//     Vertex observer1;
-//     Vertex observer2;
+    Vertex* pAndGate = Factory::VertexFactory<std::string, Vertex>::create("AND"); // Create a new vertex of;
+    pAndGate->setAmountInputs(2);
 
-//     observer1.addSubject(&subject);
+    pAndGate->addSubject(pInput1);
+    pAndGate->addSubject(pInput2);
 
-//     observer2.addSubject(&observer1);
-//     observer2.addSubject(&subject);
+    Vertex* pProbe = Factory::VertexFactory<std::string, Vertex>::create("PROBE"); // Create a new vertex of
 
-//     Probe probe;
+    pProbe->addSubject(pAndGate);
 
-//     probe.addSubject(&observer1);
+    std::cout << "setstate(1)" << std::endl;
+    pInput1->setInput(0, 1);
+    pInput2->setInput(0, 1);
 
-//     std::cout << "setstate(1)" << std::endl;
-//     subject.setState(1);
-//     std::cout << "setstate(2)" << std::endl;
-//     subject.setState(2);
-// }
+    // std::cout << "Input output: " << pInput->getOutput() << std::endl;
+    // std::cout << "Vertex output: " << observer1.getOutput() << std::endl;
+    std::cout << "Probe output: " << pProbe->getOutput() << std::endl;
+    std::cout << "setstate(2)" << std::endl;
+    pInput1->setInput(0, 0);
+    pInput2->setInput(0, 0);
+    // std::cout << "Input output: " << pInput->getOutput() << std::endl;
+    std::cout << "Probe output: " << pProbe->getOutput() << std::endl;
+}
 
 void fileTest() {
     std::map<std::string, std::string> vertexMap;
@@ -87,6 +111,8 @@ int main() {
     // GraphBuilderTest();
     //
     // std::cout << std::endl << std::endl;
+
+    // vertexObserverTest();
 
     // GraphBuilderTest();
     //  fileTest();

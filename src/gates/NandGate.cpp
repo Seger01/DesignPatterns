@@ -26,10 +26,10 @@ NandGate::~NandGate() {
     }
 }
 
-void NandGate::setInput(int aIndex, int aValue) {
-    if (aIndex < mAmountInputs)
-        mInput[aIndex] = aValue ? 1 : 0;
-}
+// void NandGate::setInput(int aIndex, int aValue) {
+//     if (aIndex < mAmountInputs)
+//         mInput[aIndex] = aValue ? 1 : 0;
+// }
 int NandGate::getOutput() {
     bool output = false;
     if (mAmountInputs < 0) {
@@ -60,6 +60,4 @@ Vertex* NandGate::clone() const { return new NandGate; }
 
 std::string NandGate::whoAmI() { return std::string("I am a NandGate!"); }
 
-int NandGate::acceptOutputVisitor(IOutputVisitor& aIOutputVisitor){
-    return aIOutputVisitor.visitVertex(this);
-}
+int NandGate::acceptOutputVisitor(IOutputVisitor& aIOutputVisitor) { return aIOutputVisitor.visitVertex(this); }
