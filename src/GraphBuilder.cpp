@@ -27,6 +27,7 @@ void GraphBuilder::populateCircuit(std::map<std::string, std::string>& vertexNam
                                                                                              // (iter->second contains
                                                                                              // the type as a string)
         vertexMap.insert(std::make_pair(iter->first, pVertex)); // Insert the new vertex pointer
+
         ++iter;
     }
 }
@@ -50,7 +51,9 @@ void GraphBuilder::connectVertices(std::multimap<std::string, std::string>& vert
         pVertexReceiving->addSubject(pVertexOutputting);
         // pVertex->subscribe(vertexMap.find(iter->second)->second); // Connect to output of the first vertex to the
         // input of the second vertex in the map
-
+        if (pVertexReceiving->bumpAmountInputs() != 0) {
+            std::cout << "Failed to increment inputs on " << iter->second << std::endl;
+        }
         ++iter;
         // pVertexReceiving->setAmountInputs(pVertexReceiving->subjects.size()); // dirty but not my code :)
     }
