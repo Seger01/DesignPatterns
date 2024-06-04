@@ -32,12 +32,17 @@ public:
     // virtual void setInput(unsigned aIndex, bool value);
 
     virtual int getOutput();
+    virtual int getPropagationDelay();
 
-    virtual void setOutput() {};
+    virtual void setOutput(){};
 
     virtual void update();
 
-    virtual void reset(){};
+    virtual void reset() {
+        mOutput = -1;
+
+        mCurrentPropogationDelay = 0;
+    };
 
     virtual int acceptOutputVisitor(IOutputVisitor& aIOutputVisitor) { return -1; };
 
@@ -58,6 +63,9 @@ protected:
 
     unsigned mMinInputs = 0;
     unsigned mMaxInputs = 0;
+
+    int mCurrentPropogationDelay = 0;
+    int mAddingPropagationDelay = 10;
 };
 
 #endif // VERTEX_H

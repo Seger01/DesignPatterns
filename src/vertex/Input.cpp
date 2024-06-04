@@ -5,6 +5,9 @@
 Input Input::m_cInstance("INPUT");
 
 Input::Input() {
+    mCurrentPropogationDelay = 0;
+    mAddingPropagationDelay = 0;
+
     mValue = -1;
     mAmountInputs = 1;
     mMinInputs = 1;
