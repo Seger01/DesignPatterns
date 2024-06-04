@@ -101,6 +101,15 @@ void Vertex::update() {
     }
 }
 
+int Vertex::bumpAmountInputs() {
+    if (mAmountInputs >= mMaxInputs) {
+        std::cout << "Cannot increase amount of inputs for vertex, " << mAmountInputs << " already set!" << std::endl;
+        return -1;
+    }
+    mAmountInputs++;
+    return 0;
+}
+
 std::string Vertex::whoAmI() { return std::string("I am a Vertex!"); }
 
 // #include "Vertex.h"
