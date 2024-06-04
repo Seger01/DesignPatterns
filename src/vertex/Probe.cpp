@@ -5,13 +5,19 @@
 
 Probe Probe::m_cInstance("PROBE");
 
-Probe::Probe() { }
+Probe::Probe() {
+    mCurrentPropogationDelay = 0;
+    mAddingPropagationDelay = 0;
 
-Probe::Probe(std::string id) : Vertex(id) {
-    mValue = -1;
+    mAmountInputs = 1;
+    mMinInputs = 1;
+    mMaxInputs = 1;
+    mInput = new int[mMaxInputs];
 }
 
-Probe::~Probe() { }
+Probe::Probe(std::string id) : Vertex(id) { mValue = -1; }
+
+Probe::~Probe() {}
 
 void Probe::setInput(int aIndex, int aValue) {
     if (aIndex != 0) {
@@ -24,9 +30,7 @@ void Probe::setInput(int aIndex, int aValue) {
     return;
 }
 int Probe::getValue() { return mValue; }
-int Probe::getOutput() {
-    return mValue;
-}
+int Probe::getOutput() { return mValue; }
 
 Vertex* Probe::clone() const { return new Probe; }
 
