@@ -40,6 +40,7 @@ public:
 protected:
 public:
     virtual void setAmountInputs(unsigned) { std::cout << "setAmountInputs()" << std::endl; };
+    virtual int bumpAmountInputs();
     virtual std::string whoAmI();
 
 public:
@@ -49,6 +50,7 @@ protected:
     int* mInput;
     int mOutput;
     int mAmountInputs = -1;
+    int mAmountInputsSet = 0;
 
     unsigned mMinInputs = 0;
     unsigned mMaxInputs = 0;
