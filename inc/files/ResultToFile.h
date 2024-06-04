@@ -21,7 +21,7 @@
  ************************************************************
  * @class ResultToFile
  *
- * Manages writing the results of circuit operations to a file.
+ * @brief Manages writing the results of circuit operations to a file.
  */
 class ResultToFile {
 private: // Members
