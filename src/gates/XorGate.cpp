@@ -29,6 +29,11 @@ int XorGate::getOutput() {
         std::cout << "Amount of inputs not set!" << std::endl;
         return -1;
     }
+        if (mAmountInputs < mMinInputs) {
+        std::cout << "Not enough inputs connected to XOR gate" << std::endl;
+        std::cout << "Minimum inputs: " << mMinInputs << "\tInputs connected are: "<< mAmountInputs << std::endl;
+        std::exit(EXIT_FAILURE);
+    }
     if (mInput[0] == -1 || mInput[1] == -1) {
         // std::cout << "Inputs not set yet!" << std::endl;
         return -1;

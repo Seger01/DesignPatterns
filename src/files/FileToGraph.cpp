@@ -25,8 +25,28 @@ void FileToGraph::countConfigs(const std::map<std::string, std::string>& aMap) {
     this->mNumOfConfigs = pow(2, counter);
 }
 
-void FileToGraph::checkEdges( std::map<std::string, std::string>& aVertexMap,
-                              std::multimap<std::string, std::string>& aEdgeMap) {
+void FileToGraph::checkVertexes(std::map<std::string, std::string>& aVertexMap,
+                                std::multimap<std::string, std::string>& aEdgeMap) {
+
+    std::map<std::string, std::string>::iterator iterator = aVertexMap.begin();
+
+    for (iterator; iterator != aVertexMap.end(); iterator++) {
+        std::string vertex;
+        if (iterator->second == "PROBE") { // Probes should not be connected to anything
+            continue;
+        }
+        vertex = iterator->first;
+
+        if (aEdgeMap.find(vertex) == aEdgeMap.end()) {
+            std::cerr << "vertex: " << vertex << " not connected" << std::endl;
+            std::cerr << "Check the edges of the input file" << std::endl;
+            std::exit(EXIT_FAILURE);
+        }
+    }
+}
+
+void FileToGraph::checkEdges(std::map<std::string, std::string>& aVertexMap,
+                             std::multimap<std::string, std::string>& aEdgeMap) {
     std::multimap<std::string, std::string>::iterator iterator = aEdgeMap.begin();
 
     for (iterator; iterator != aEdgeMap.end(); iterator++) {
@@ -35,12 +55,12 @@ void FileToGraph::checkEdges( std::map<std::string, std::string>& aVertexMap,
         edge2 = iterator->second;
 
         if (aVertexMap.find(edge1) == aVertexMap.end()) {
-            std::cerr << edge1 << " vertex does not exist" << std::endl;
+            std::cerr << "Vertex: " << edge1 << " does not exist" << std::endl;
             std::cerr << "Check the edges of the input file" << std::endl;
             std::exit(EXIT_FAILURE);
         }
         if (aVertexMap.find(edge2) == aVertexMap.end()) {
-            std::cerr << edge2 << " vertex does not exist" << std::endl;
+            std::cerr << "Vertex: " << edge2 << " does not exist" << std::endl;
             std::cerr << "Check the edges of the input file" << std::endl;
             std::exit(EXIT_FAILURE);
         }
@@ -66,6 +86,8 @@ void FileToGraph::getGraph(std::map<std::string, std::string>& aVertexMap,
     mStrategy->closeFile();
 
     countConfigs(aVertexMap);
+
+    checkVertexes(aVertexMap, aEdgeMap);    
 
     checkEdges(aVertexMap, aEdgeMap);
 }
