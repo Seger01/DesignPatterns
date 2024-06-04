@@ -19,7 +19,7 @@
  ************************************************************
  * @class FileStrategy
  *
- * Abstract base class for file reading strategies.
+ * @brief Abstract base class for file reading strategies.
  */
 class FileStrategy {
 public:
