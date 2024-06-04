@@ -6,6 +6,16 @@
 #include <string>
 
 class Vertex;
+
+/**
+ ************************************************************
+ * @class CircuitInitializer
+ *
+ * Initializes and manages the state of the circuit inputs and iteration.
+ *
+ * @author Sean Groenenboom
+ * @date June 4, 2024
+ */
 class CircuitInitializer {
 private: // members
     int mIteration;

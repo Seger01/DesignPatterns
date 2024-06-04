@@ -7,6 +7,15 @@
 #include "FileStrategy.h"
 #include "Vertex.h"
 
+/**
+ ************************************************************
+ * @class FileToGraph
+ *
+ * Reads a file and constructs a graph representation of the circuit.
+ *
+ * @author Sean Groenenboom
+ * @date June 4, 2024
+ */
 class FileToGraph {
 private:
     std::string mInputFile;

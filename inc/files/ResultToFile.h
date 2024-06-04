@@ -5,6 +5,16 @@
 
 #define OUTPUTDIR "output"
 
+
+/**
+ ************************************************************
+ * @class ResultToFile
+ *
+ * Manages writing the results of circuit operations to a file.
+ *
+ * @author Sean Groenenboom
+ * @date June 4, 2024
+ */
 class ResultToFile {
 private: // Members
     std::fstream mOutputFile;

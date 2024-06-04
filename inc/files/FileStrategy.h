@@ -4,6 +4,15 @@
 #include <map>
 #include <string>
 
+/**
+ ************************************************************
+ * @class FileStrategy
+ *
+ * Abstract base class for file reading strategies.
+ *
+ * @author Sean Groenenboom
+ * @date June 4, 2024
+ */
 class FileStrategy {
 public:
     virtual ~FileStrategy() {}
