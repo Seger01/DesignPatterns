@@ -7,8 +7,6 @@
  * their connections. It includes methods to populate the circuit with vertices,
  * connect them, and check for cycles in the graph.
  *
- * @author Your Name
- * @date 2024-06-04
  */
 #include "Vertex.h"
 #include <map>
@@ -29,8 +27,6 @@
  * - hasCycleDFS: Performs a DFS to detect cycles in the graph.
  * - hasCycle: Checks if the graph contains a cycle.
  *
- * @author Your Name
- * @date 2024-06-04
  */
 class GraphBuilder {
 public:

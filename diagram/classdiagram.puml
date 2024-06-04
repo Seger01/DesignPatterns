@@ -118,10 +118,6 @@ class VertexFactory <Factory method> {
     + createVertex()
 }
 
-class ProbeFactory{
-    
-}
-
 class GraphBuilder {
     ' The createGraph function takes a multimap of two strings, where the first string is the name of a vertex and the seconds string is the type, so for example <"gate1","OR">. It uses these to fill the map in Circuit with <"nameOfVertex",Vertex>
     ' It also takes a multimap of strings, where the first string is the output of one vertex and the second string is the input of another vertex which should be connected. It is a multimap because the IDs are not unique.

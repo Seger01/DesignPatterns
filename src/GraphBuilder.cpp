@@ -1,3 +1,13 @@
+/**
+ ************************************************************
+ * @file GraphBuilder.h
+ *
+ * This file contains the declaration of the GraphBuilder class, which is
+ * responsible for creating and managing the graph structure of vertices and
+ * their connections. It includes methods to populate the circuit with vertices,
+ * connect them, and check for cycles in the graph.
+ *
+ */
 #include "GraphBuilder.h"
 
 #include "Circuit.h"
