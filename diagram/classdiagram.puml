@@ -30,7 +30,7 @@ class IOutputVisitor <Interface>{
     + visitVertex(Vertex* aVertex) : int
 }
 
-class OutputVisitor <visitir>{
+class OutputVisitor <Visitor>{
 
 }
 
@@ -122,16 +122,15 @@ class Probe {
 }
 
 class VertexFactory <Factory method> {
-    + createVertex()
+    + create(const ID&) : Class*
+    - assign(const ID&, const Class*) : void
 }
 
 class GraphBuilder {
-    ' The createGraph function takes a multimap of two strings, where the first string is the name of a vertex and the seconds string is the type, so for example <"gate1","OR">. It uses these to fill the map in Circuit with <"nameOfVertex",Vertex>
-    ' It also takes a multimap of strings, where the first string is the output of one vertex and the second string is the input of another vertex which should be connected. It is a multimap because the IDs are not unique.
     + createGraph(map<String, String>, multimap<String, String>) : void
-    ' The populateCircuit function fills the map in Circuit, by inserting the names of the vertices and then creating the Vertex using the factory and also inserting that into the Circuit map
     - populateCircuit(map<String, String>) : void
     - connectVertices(multimap<String, String>) : void
+    - hasCycle(const map<String, Vertex*>, const multimap<String, String>) : bool
 }
 
 VertexFactory --> GraphBuilder
