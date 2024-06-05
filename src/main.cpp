@@ -16,8 +16,6 @@ int main(int argc, const char* argv[]) {
     if (argc > 1) {
         // Extract the path from the first argument
         std::string argPath = argv[1];
-        std::cout << argc << std::endl;
-        std::cout << argPath << std::endl;
         std::filesystem::path p(argPath);
 
         // Check if the path exists
