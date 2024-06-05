@@ -18,6 +18,8 @@ class Vertex;
 /**
  ************************************************************
  * @class IOutputVisitor
+ * 
+ * @brief Interface for the visitor pattern
  *
  * Interface for the visitor pattern, allowing operations to be 
  * performed on different types of vertices in a circuit.

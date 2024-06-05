@@ -10,8 +10,11 @@
  */
 #include "FileToGraph.h"
 #include "Vertex.h"
+#include <algorithm>
 #include <cmath>
 #include <fstream>
+#include <map>
+#include <string>
 
 /**
  ************************************************************
@@ -44,13 +47,7 @@ FileToGraph::~FileToGraph() {}
  * @param[in] aMap - Map of vertex names to types
  */
 void FileToGraph::countConfigs(const std::map<std::string, std::string>& aMap) {
-    int counter = 0;
-
-    for (const auto& pair : aMap) {
-        if (pair.second == "INPUT") {
-            ++counter;
-        }
-    }
+    int counter = std::count_if(aMap.begin(), aMap.end(), [](const auto& pair) { return pair.second == "INPUT"; });
 
     this->mNumOfConfigs = pow(2, counter);
 }
@@ -69,7 +66,7 @@ void FileToGraph::checkVertexes(std::map<std::string, std::string>& aVertexMap,
 
     std::map<std::string, std::string>::iterator iterator = aVertexMap.begin();
 
-    for (iterator; iterator != aVertexMap.end(); iterator++) {
+    for (iterator; iterator != aVertexMap.end(); ++iterator) {
         std::string vertex;
         if (iterator->second == "PROBE") { // Probes should not be connected to anything
             continue;
@@ -97,7 +94,7 @@ void FileToGraph::checkEdges(std::map<std::string, std::string>& aVertexMap,
                              std::multimap<std::string, std::string>& aEdgeMap) {
     std::multimap<std::string, std::string>::iterator iterator = aEdgeMap.begin();
 
-    for (iterator; iterator != aEdgeMap.end(); iterator++) {
+    for (iterator; iterator != aEdgeMap.end(); ++iterator) {
         std::string edge1, edge2;
         edge1 = iterator->first;
         edge2 = iterator->second;

@@ -12,7 +12,7 @@ Circuit* Circuit::mCircuit = nullptr;
  */
 Circuit::~Circuit() {
     for (std::map<std::string, Vertex*>::iterator iterator = mMapVertexes.begin(); iterator != mMapVertexes.end();
-         iterator++) {
+         ++iterator) {
         if (iterator->second != nullptr) { // Check for nullptr
             delete iterator->second;
         }
@@ -58,7 +58,7 @@ void Circuit::runSim() {
     OutputVisitor outputVisitor;
 
     for (std::map<std::string, Vertex*>::iterator iterator = mMapVertexes.begin(); iterator != mMapVertexes.end();
-         iterator++) {
+         ++iterator) {
         if (iterator->second != nullptr) {                                   // Check for nullptr
             if (iterator->second->acceptOutputVisitor(outputVisitor) == 1) { // Check if it is an input
                 iterator->second->setOutput();

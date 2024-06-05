@@ -1,3 +1,13 @@
+/**
+ ************************************************************
+ * @file Probe.h
+ *
+ * This file contains the definition of the Probe class,
+ * which is a derived class from Vertex and represents an
+ * output in a digital circuit simulation.
+ *
+ */
+
 #ifndef PROBE_H
 #define PROBE_H
 

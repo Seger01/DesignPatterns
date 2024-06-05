@@ -1,3 +1,13 @@
+/**
+ ************************************************************
+ * @file GraphBuilder.h
+ *
+ * This file contains the declaration of the GraphBuilder class, which is
+ * responsible for creating and managing the graph structure of vertices and
+ * their connections. It includes methods to populate the circuit with vertices,
+ * connect them, and check for cycles in the graph.
+ *
+ */
 #include "GraphBuilder.h"
 
 #include "Circuit.h"
@@ -22,9 +32,8 @@ void GraphBuilder::createGraph(std::map<std::string, std::string>& vertexNameTyp
                                std::multimap<std::string, std::string>& vertexConnections) {
     populateCircuit(vertexNameType);
     connectVertices(vertexConnections);
-    const std::map<std::string, Vertex*> constVertexMap = Circuit::getInstance().getVertexMap();
-    const std::multimap<std::string, std::string> constVertexConnections = vertexConnections;
-    if (hasCycle(constVertexMap, vertexConnections)) {
+    std::map<std::string, Vertex*> vertexMap = Circuit::getInstance().getVertexMap();
+    if (hasCycle(vertexMap, vertexConnections)) {
         std::cout << "Input file contains cycles, aborting" << std::endl;
         std::exit(EXIT_FAILURE);
     }

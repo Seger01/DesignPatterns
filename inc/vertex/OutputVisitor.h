@@ -17,6 +17,8 @@
 /**
  ************************************************************
  * @class OutputVisitor
+ * 
+ * @brief Implementation for the visitor pattern
  *
  * Implementation for the visitor pattern, allowing operations to be 
  * performed on different types of vertices in a circuit.

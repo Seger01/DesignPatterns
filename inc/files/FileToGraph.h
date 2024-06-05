@@ -21,7 +21,7 @@
  ************************************************************
  * @class FileToGraph
  *
- * Reads a file and constructs a graph representation of the circuit.
+ * @brief Reads a file and constructs a graph representation of the circuit.
  */
 class FileToGraph {
 private:

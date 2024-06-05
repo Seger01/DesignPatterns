@@ -18,11 +18,19 @@ class FileToGraph <Template Method> {
 
     - openFile() : void
     - closeFile() : void
-    - readVertex() : map<string, Vertex>
-    - readEdge() : map<string,string>
-    - getNumConfigs();
+    - getNumConfigs(): int
+    + setStrategy(FileStrategy* aStrategy) : void
     + getGraph(map<string, string>& aVertexMap, map<strng,string>& aEdgeMap) : void 
-    ' vertexMap :first string name of vertex second string type
+
+}
+
+class IOutputVisitor <Interface>{
+    + visitInput(Input* aInput) : int
+    + visitProbe(Probe* aProbe) : int
+    + visitVertex(Vertex* aVertex) : int
+}
+
+class OutputVisitor <Visitor>{
 
 }
 
@@ -30,10 +38,9 @@ class FileToGraph <Template Method> {
 'TODO check of hierby dependency injection van toepassing is
 
 interface FileStrategy {
-    - openFile() : virtual void
-    - closeFile() : virtual void
-    - readVertex() : virtual map<string, Vertex>
-    - readEdge() : virtual map<string,string>
+    - openFile() : void
+    - closeFile() : void
+    - readFile(map<string, string>& aVertexMap, multimap<string, string>& aEdgeMap) : void
 }
 
 class TextStrategy <Strategy 1> {
@@ -44,8 +51,6 @@ class ResultToFile {
 
     - openFile() : void
     - closeFile() : void
-    - writeSingle(map<string, Vertex>&): void
-    - writeMultiple(map<string, Vertex>&): void
     + writeOutput(map<string, Vertex>&) : void
 }
 
@@ -90,6 +95,8 @@ class Vertex <Observer> {
     
     + update() : void
 
+    + acceptOutputVisitor(IOutputVisitor& aIOutputVisitor): int
+
     - subscribers : Vertex[]
     - *mInput : int
     - mOutput : int
@@ -115,20 +122,15 @@ class Probe {
 }
 
 class VertexFactory <Factory method> {
-    + createVertex()
-}
-
-class ProbeFactory{
-    
+    + create(const ID&) : Class*
+    - assign(const ID&, const Class*) : void
 }
 
 class GraphBuilder {
-    ' The createGraph function takes a multimap of two strings, where the first string is the name of a vertex and the seconds string is the type, so for example <"gate1","OR">. It uses these to fill the map in Circuit with <"nameOfVertex",Vertex>
-    ' It also takes a multimap of strings, where the first string is the output of one vertex and the second string is the input of another vertex which should be connected. It is a multimap because the IDs are not unique.
     + createGraph(map<String, String>, multimap<String, String>) : void
-    ' The populateCircuit function fills the map in Circuit, by inserting the names of the vertices and then creating the Vertex using the factory and also inserting that into the Circuit map
     - populateCircuit(map<String, String>) : void
     - connectVertices(multimap<String, String>) : void
+    - hasCycle(const map<String, Vertex*>, const multimap<String, String>) : bool
 }
 
 VertexFactory --> GraphBuilder
@@ -136,6 +138,11 @@ Vertex --> GraphBuilder
 Circuit --> GraphBuilder
 Circuit --* Vertex
 VertexFactory --> Vertex
+
+OutputVisitor --|> IOutputVisitor
+Vertex ..> IOutputVisitor
+IOutputVisitor ..> Probe
+IOutputVisitor ..> Input
 
 FileToGraph *-- FileStrategy
 TextStrategy --|> FileStrategy
