@@ -48,7 +48,11 @@ Probe::Probe(std::string id) : Vertex(id) {
  * Cleans up resources used by the Probe
  *
  */
-Probe::~Probe() {}
+Probe::~Probe() {
+    if(mInput != nullptr){
+        delete[] mInput;
+    }
+}
 
 /**
  ************************************************************
