@@ -1,0 +1,12 @@
+/**
+ ************************************************************
+ * @brief Brief description of the method
+ *
+ * Full description of method
+ *
+ * @param[in] nameOfInputParam - Description of input param
+ * @param[inout] nameOfInputOutputParam - Description of input and output param
+ * @param[out] nameOfOutputPram - Description of input and output param
+ *
+ * @return Description of return value
+ */

@@ -1,0 +1,18 @@
+#
+#
+# Description of all the nodes
+#
+A: INPUT; 
+S: PROBE;
+NODE1: NOT;
+NODE2: NOT;
+
+
+#
+#
+# Description of all the edges
+#
+A: NODE1;
+NODE1: NODE2;
+NODE2: NODE1;
+NODE2: S;

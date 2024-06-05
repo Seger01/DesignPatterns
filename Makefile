@@ -2,38 +2,44 @@ MAKEFLAGS := --jobs=16
 
 TARGET := executable
 
-all: build_dir build
+all: $(TARGET)
 
 # Compiler
 CXX := g++
 SRC_EXTENSION := .cpp
+HEAD_EXTENSION := .h
+HPP_EXTENSION := .hpp
+OBJ_EXTENSION := .o
 
 # Directories
 SRC_DIR := src
 INC_DIR := inc
 BUILD_DIR := obj
 
-# Files
-SRC_FILES := $(wildcard $(SRC_DIR)/*$(SRC_EXTENSION))
-HDR_FILES := $(wildcard $(INC_DIR)/*.h)
-OBJ_FILES := $(patsubst $(SRC_DIR)/%$(SRC_EXTENSION),$(BUILD_DIR)/%.o,$(SRC_FILES))
+# Source and Header Files
+SRC_FILES := $(shell find $(SRC_DIR) -name '*$(SRC_EXTENSION)')
+HDR_FILES := $(shell find $(INC_DIR) -name '*$(HEAD_EXTENSION)')
+HPP_FILES := $(shell find $(INC_DIR) -name '*$(HPP_EXTENSION)')
+OBJ_FILES := $(patsubst $(SRC_DIR)/%$(SRC_EXTENSION),$(BUILD_DIR)/%$(OBJ_EXTENSION),$(SRC_FILES))
 
-INC_DIRS := $(addprefix -I,$(INC_DIR))
-
-# Rule to create the build directory
-build_dir:
-	# rm -r $(BUILD_DIR)
-	mkdir -p $(BUILD_DIR) 
+INC_DIRS := $(addsuffix /,$(addprefix -I,$(shell find $(INC_DIR) -type d))) 
 
 # Rule for object files
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%$(SRC_EXTENSION) $(HDR_FILES) | build_dir
-	$(CXX) $(INC_DIRS) -c $< -o $@
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%$(SRC_EXTENSION)
+	@mkdir -p $(dir $@)
+	$(CXX) $(CFLAGS) -g $(INC_DIRS) $(INCLUDE_PATHS) -c $< -o $@
 
 # Main target
-build: $(OBJ_FILES) | build_dir
-	$(CXX) -o $(TARGET) $(OBJ_FILES)
+$(TARGET): $(OBJ_FILES)
+	$(CXX)  -o $@ $(OBJ_FILES) -g  
 
 .PHONY: all clean
 
-clean:
+clean: doxygen_clean
 	rm -rf $(BUILD_DIR) $(TARGET)
+
+doxygen_clean: 
+	rm -rf doc/*
+
+doxygen: doxygen_clean
+	doxygen

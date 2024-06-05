@@ -1,11 +1,43 @@
+#include "CircuitSimulator.h"
+
+#include <filesystem>
 #include <iostream>
+#include <string>
 
-#include "Component.h"
+int main(int argc, const char* argv[]) {
+    std::string inputFilePath;
 
-int main() {
-    Component component;
+    if (argc > 2) {
+        std::cout << "ERROR wrong function usage" << std::endl;
+        std::cout << "usage: ./executable [inputfile.txt]" << std::endl;
+        return 1;
+    }
 
-    component.printComponent();
+    if (argc > 1) {
+        // Extract the path from the first argument
+        std::string argPath = argv[1];
+        std::cout << argc << std::endl;
+        std::cout << argPath << std::endl;
+        std::filesystem::path p(argPath);
+
+        // Check if the path exists
+        if (std::filesystem::exists(p)) {
+            std::cout << "Path provided: " << p << std::endl;
+            inputFilePath = p;
+        } else {
+            std::cerr << "Warning: Invalid path provided!" << std::endl;
+            // Print usage instructions here
+        }
+    } else {
+        // No arguments provided, set a standard path
+        std::filesystem::path standardPath = "inputfile.txt";
+        inputFilePath = standardPath;
+        std::cout << "Using standard path: " << standardPath << std::endl;
+    }
+
+    CircuitSimulator circuitSimulator(inputFilePath);
+
+    circuitSimulator.run();
 
     return 0;
 }

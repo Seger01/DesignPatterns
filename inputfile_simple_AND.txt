@@ -1,0 +1,17 @@
+#
+#
+# Description of all the nodes
+#
+A: INPUT; 
+B: INPUT;
+S: PROBE;
+
+NODE1: AND;
+
+#
+#
+# Description of all the edges
+#
+A: NODE1;
+B: NODE1;
+NODE1: S;

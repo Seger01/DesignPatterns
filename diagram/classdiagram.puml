@@ -2,6 +2,12 @@
 
 
 class CircuitSimulator{
+    - FileToGraph* mFileToGraph
+    - ResultToFile* mResultToFile
+    - CircuitInitializer* mCircuitInitializer
+
+    + CircuitSimulator(std::sting aFilePath)
+
     + run() : void
 }
 
@@ -10,7 +16,9 @@ class Circuit <singleton>{
     - mMapVertexes : map<string,Vertex>
     - Circuit() : void
     + getInstance() : Circuit
+
     + runSim() : void
+    + getVertexMap() : std::map<std::string, Vertex*>&
 }
 
 class FileToGraph <Template Method> {
@@ -18,11 +26,18 @@ class FileToGraph <Template Method> {
 
     - openFile() : void
     - closeFile() : void
-    - readVertex() : map<string, Vertex>
-    - readEdge() : map<string,string>
-    - getNumConfigs();
+    - getNumConfigs(): int
+    + setStrategy(FileStrategy* aStrategy) : void
     + getGraph(map<string, string>& aVertexMap, map<strng,string>& aEdgeMap) : void 
-    ' vertexMap :first string name of vertex second string type
+}
+
+class IOutputVisitor <Interface>{
+    + visitInput(Input* aInput) : int
+    + visitProbe(Probe* aProbe) : int
+    + visitVertex(Vertex* aVertex) : int
+}
+
+class OutputVisitor <Visitor>{
 
 }
 
@@ -30,10 +45,9 @@ class FileToGraph <Template Method> {
 'TODO check of hierby dependency injection van toepassing is
 
 interface FileStrategy {
-    - openFile() : virtual void
-    - closeFile() : virtual void
-    - readVertex() : virtual map<string, Vertex>
-    - readEdge() : virtual map<string,string>
+    - openFile() : void
+    - closeFile() : void
+    - readFile(map<string, string>& aVertexMap, multimap<string, string>& aEdgeMap) : void
 }
 
 class TextStrategy <Strategy 1> {
@@ -44,8 +58,6 @@ class ResultToFile {
 
     - openFile() : void
     - closeFile() : void
-    - writeSingle(map<string, Vertex>&): void
-    - writeMultiple(map<string, Vertex>&): void
     + writeOutput(map<string, Vertex>&) : void
 }
 
@@ -79,21 +91,11 @@ class NotGate{
 
 }
 
-class IGate <interface>{
-    - *mInput : int
-    - mOutput : int
-    - mAmountInputs : int
-
-    - mMinInputs : int
-    - mMaxInputs : int    
-
-    + setInput(int aIndex, bool aValue) virtual override : void
+class Vertex <Observer> {
+    + setInput(unsigned aIndex, bool aValue) virtual : void
     + getOutput() virtual : int
     + setAmountInputs(int aInputs) virtual : void
-}
-
-class Vertex <Observer> {
-    + setInput(int aIndex, bool aValue) virtual : void
+    + bumpAmountInputs() : void
 
     + addSubscriber(Vertex *) : void
     + removeSubscriber(Vertex *) : void
@@ -101,82 +103,58 @@ class Vertex <Observer> {
     
     + update() : void
 
-    - subscribers : Vertex[]
+    + acceptOutputVisitor(IOutputVisitor& aIOutputVisitor): int
 
+    - subscribers : Vertex*[]
+    - subjects : Vertex*[]
+    - *mInput : int
+    - mOutput : int
+    - mAmountInputs : int
+
+    - mMinInputs : const unsigned
+    - mMaxInputs : const unsigned
+
+    - mCurrentPropagationDelay : int
+    - mAddingPropagationDelay : int
 }
 
 class Input {
     - mValue : int
 
     + Input(bool aStartValue) : void
-    + SetValue(bool) : void
     + setInput(int aIndex, bool aValue) override : void
-
+    + getInput() : int
 }
 
 class Probe {
     - mValue : int
 
-    + getValue() : bool
     + setInput(int aIndex, bool aValue) override : void
+    + getInput() : int
 }
 
 class VertexFactory <Factory method> {
-    + createVertex()
-}
-
-class OrGateFactory{
-
-}
-
-class AndGateFactory{
-    
-}
-
-class NorGateFactory{
-    
-}
-
-class NandGateFactory{
-    
-}
-
-class XorGateFactory{
-    
-}
-
-class NotGateFactory{
-    
-}
-
-class InputFactory{
-    
-}
-
-class ProbeFactory{
-    
+    + create(const ID&) : Class*
+    - assign(const ID&, const Class*) : void
 }
 
 class GraphBuilder {
-    + createGraph(map<String, String>, map<String, String>)
-    'Only create the vertices (make the vertices subscribe to its inputs)
-    + createVertices(map<String, String>) : void
-    - fillVertex()
+    + createGraph(map<String, String>, multimap<String, String>) : void
+    - populateCircuit(map<String, String>) : void
+    - connectVertices(multimap<String, String>) : void
+    - hasCycle(const map<String, Vertex*>, const multimap<String, String>) : bool
 }
-
-VertexFactory <|-- OrGateFactory
-VertexFactory <|-- AndGateFactory
-VertexFactory <|-- NorGateFactory
-VertexFactory <|-- NandGateFactory
-VertexFactory <|-- XorGateFactory
-VertexFactory <|-- NotGateFactory
-VertexFactory <|-- InputFactory
-VertexFactory <|-- ProbeFactory
 
 VertexFactory --> GraphBuilder
 Vertex --> GraphBuilder
 Circuit --> GraphBuilder
 Circuit --* Vertex
+VertexFactory --> Vertex
+
+OutputVisitor --|> IOutputVisitor
+Vertex ..> IOutputVisitor
+IOutputVisitor ..> Probe
+IOutputVisitor ..> Input
 
 FileToGraph *-- FileStrategy
 TextStrategy --|> FileStrategy
@@ -186,14 +164,13 @@ CircuitSimulator <-- ResultToFile
 CircuitSimulator <-- Circuit
 CircuitSimulator <-- CircuitInitializer
 
-OrGate --|> IGate
-NorGate --|> IGate
-AndGate --|> IGate
-NandGate --|> IGate
-XorGate --|> IGate
-NotGate --|> IGate
+OrGate --|> Vertex
+NorGate --|> Vertex
+AndGate --|> Vertex
+NandGate --|> Vertex
+XorGate --|> Vertex
+NotGate --|> Vertex
 
-IGate --|> Vertex
 Input --|> Vertex
 Probe --|> Vertex
 
