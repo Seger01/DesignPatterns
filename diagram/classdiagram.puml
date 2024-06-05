@@ -2,6 +2,12 @@
 
 
 class CircuitSimulator{
+    - FileToGraph* mFileToGraph
+    - ResultToFile* mResultToFile
+    - CircuitInitializer* mCircuitInitializer
+
+    + CircuitSimulator(std::sting aFilePath)
+
     + run() : void
 }
 
@@ -10,7 +16,9 @@ class Circuit <singleton>{
     - mMapVertexes : map<string,Vertex>
     - Circuit() : void
     + getInstance() : Circuit
+
     + runSim() : void
+    + getVertexMap() : std::map<std::string, Vertex*>&
 }
 
 class FileToGraph <Template Method> {
@@ -21,7 +29,6 @@ class FileToGraph <Template Method> {
     - getNumConfigs(): int
     + setStrategy(FileStrategy* aStrategy) : void
     + getGraph(map<string, string>& aVertexMap, map<strng,string>& aEdgeMap) : void 
-
 }
 
 class IOutputVisitor <Interface>{
@@ -88,6 +95,7 @@ class Vertex <Observer> {
     + setInput(unsigned aIndex, bool aValue) virtual : void
     + getOutput() virtual : int
     + setAmountInputs(int aInputs) virtual : void
+    + bumpAmountInputs() : void
 
     + addSubscriber(Vertex *) : void
     + removeSubscriber(Vertex *) : void
@@ -97,13 +105,17 @@ class Vertex <Observer> {
 
     + acceptOutputVisitor(IOutputVisitor& aIOutputVisitor): int
 
-    - subscribers : Vertex[]
+    - subscribers : Vertex*[]
+    - subjects : Vertex*[]
     - *mInput : int
     - mOutput : int
     - mAmountInputs : int
 
     - mMinInputs : const unsigned
     - mMaxInputs : const unsigned
+
+    - mCurrentPropagationDelay : int
+    - mAddingPropagationDelay : int
 }
 
 class Input {
